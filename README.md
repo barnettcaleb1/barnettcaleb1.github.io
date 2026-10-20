@@ -2,8 +2,9 @@
 
 A plain HTML research page for AI-assisted mathematics, ready for GitHub Pages. Publish papers directly as PDFs or write results in Markdown with rendered LaTeX. A JSON index controls their metadata. The site has no build step, package manager, or backend.
 
-The archive currently contains three papers by Caleb Barnett:
+The archive currently contains four papers by Caleb Barnett:
 
+- [Hyperrigidity in low dimensions and a dimension-33 counterexample](content/papers/hyperrigidity-low-dimensions-dimension-33-counterexample-draft.pdf), dated 20 October 2026 — Working draft, not a published paper or released preprint (independent review pending). [LaTeX source](content/attachments/hyperrigidity-low-dimensions-dimension-33-counterexample-draft.tex).
 - [Kirchberg algebras as full amalgams of stably finite algebras](content/papers/kirchberg-algebras-full-amalgams-stably-finite-draft.pdf), dated 7 October 2026 — Draft (conditional verification).
 - [Cubic lower bounds for conjugacy separation in nilpotent groups](content/papers/cubic-lower-bounds-conjugacy-separation-nilpotent-groups-draft.pdf), dated 7 October 2026 — Draft (independent review pending).
 - [Rapid Decay and C*-Simplicity: A Supplementary Sunflower Proof](content/papers/rapid-decay-c-star-simplicity-sunflower-proof.pdf), dated 4 October 2026.

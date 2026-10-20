@@ -2,6 +2,33 @@
   "version": 1,
   "results": [
     {
+      "slug": "hyperrigidity-low-dimensions-dimension-33-counterexample-draft",
+      "title": "Hyperrigidity in low dimensions and a dimension-33 counterexample",
+      "summary": "Hyperrigidity for three-dimensional convex bodies with closed extreme boundary under exposedness or C1 assumptions, an explicit commutative counterexample in affine dimension 33, and obstructions to smaller versions of the construction. Working draft, not a published paper or released preprint; independent human mathematical verification is pending.",
+      "date": "2026-10-20",
+      "authors": [
+        "Caleb Barnett"
+      ],
+      "topic": "Operator algebras",
+      "status": "Draft",
+      "isExample": false,
+      "pdf": "content/papers/hyperrigidity-low-dimensions-dimension-33-counterexample-draft.pdf",
+      "tags": [
+        "hyperrigidity",
+        "operator algebras",
+        "compact convex sets",
+        "unique extension property",
+        "Riesz energy",
+        "research draft"
+      ],
+      "attachments": [
+        {
+          "label": "LaTeX source",
+          "url": "content/attachments/hyperrigidity-low-dimensions-dimension-33-counterexample-draft.tex"
+        }
+      ]
+    },
+    {
       "slug": "kirchberg-algebras-full-amalgams-stably-finite-draft",
       "title": "Kirchberg algebras as full amalgams of stably finite algebras",
       "summary": "A proposed decomposition of unital Kirchberg algebras as full amalgamated free products of stably finite algebras. Public draft 2, with conditional Lean verification through external analytic interfaces; independent human mathematical verification is pending.",
