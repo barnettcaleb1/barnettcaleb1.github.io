@@ -43,6 +43,7 @@
     if (result.authors.length) details.push(notebook.element("span", "result-authors", result.authors.join(", ")));
     if (result.topic) details.push(notebook.element("span", "result-topic", result.topic));
     if (result.pdf) details.push(notebook.element("span", "result-format", "PDF"));
+    if (result.version) details.push(notebook.element("span", "result-version", `v${result.version}`));
     if (result.status) details.push(notebook.statusBadge(result.status));
     if (result.date) {
       const date = notebook.element("time", "result-date", notebook.formatDate(result.date));

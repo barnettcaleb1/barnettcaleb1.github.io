@@ -89,6 +89,9 @@
         throw new Error("Note dates must use YYYY-MM-DD.");
       }
     }
+    if (result.version !== undefined && (!Number.isInteger(result.version) || result.version <= 0)) {
+      throw new Error("A paper version must be a positive integer.");
+    }
     if (result.status !== undefined && !Object.hasOwn(STATUSES, result.status)) throw new Error("Unknown note verification status.");
     if (result.tags !== undefined && (!Array.isArray(result.tags) || result.tags.some((tag) => typeof tag !== "string"))) {
       throw new Error("Note tags must be an array of strings.");

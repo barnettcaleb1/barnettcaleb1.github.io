@@ -4,7 +4,7 @@ A plain HTML research page for AI-assisted mathematics, ready for GitHub Pages. 
 
 The archive currently contains four papers by Caleb Barnett:
 
-- [Hyperrigidity in low dimensions and a dimension-33 counterexample](content/papers/hyperrigidity-low-dimensions-dimension-33-counterexample-draft.pdf), dated 20 October 2026 — Working draft, not a published paper or released preprint (independent review pending). [LaTeX source](content/attachments/hyperrigidity-low-dimensions-dimension-33-counterexample-draft.tex).
+- [Hyperrigidity in low dimensions and a dimension-33 counterexample](content/papers/hyperrigidity-low-dimensions-dimension-33-counterexample-draft.pdf), version 2, dated 23 October 2026 — Working draft, not a published paper or released preprint (independent review pending). [LaTeX source](content/attachments/hyperrigidity-low-dimensions-dimension-33-counterexample-draft.tex).
 - [Kirchberg algebras as full amalgams of stably finite algebras](content/papers/kirchberg-algebras-full-amalgams-stably-finite-draft.pdf), dated 7 October 2026 — Draft (conditional verification).
 - [Cubic lower bounds for conjugacy separation in nilpotent groups](content/papers/cubic-lower-bounds-conjugacy-separation-nilpotent-groups-draft.pdf), dated 7 October 2026 — Draft (independent review pending).
 - [Rapid Decay and C*-Simplicity: A Supplementary Sunflower Proof](content/papers/rapid-decay-c-star-simplicity-sunflower-proof.pdf), dated 4 October 2026.
@@ -41,7 +41,7 @@ Open <http://localhost:8000>. Use the local server because the article reader lo
 }
 ```
 
-Use the title and authors listed in the paper. A PDF entry needs no Markdown file, publication date, or verification label. Its homepage link opens the PDF directly. If you supply a date or status, the usual date and status rules below apply.
+Use the title and authors listed in the paper. An optional positive integer `version` appears in the metadata as `v2`, for example. Preserve earlier versions as attachments when revising a paper. A PDF entry needs no Markdown file, publication date, or verification label. Its homepage link opens the PDF directly. If you supply a date or status, the usual date and status rules below apply.
 
 Keep the top-level manifest as `{"version": 1, "results": [...]}`. Each entry must have exactly one `pdf` or `markdown` field. Slugs must be unique lowercase words separated by hyphens, and the content filename must match the slug. Any topic can be used.
 

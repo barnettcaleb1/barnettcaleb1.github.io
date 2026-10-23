@@ -124,6 +124,7 @@
     if (result.authors.length) details.push(notebook.element("span", "article-meta-item", result.authors.join(", ")));
     if (result.topic) details.push(notebook.element("span", "article-meta-item", result.topic));
     if (result.pdf) details.push(notebook.element("span", "article-meta-item", "PDF"));
+    if (result.version) details.push(notebook.element("span", "article-meta-item", `v${result.version}`));
     if (result.date) {
       const date = notebook.element("time", "article-meta-item", notebook.formatDate(result.date));
       date.dateTime = result.date;

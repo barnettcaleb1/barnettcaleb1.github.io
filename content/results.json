@@ -4,8 +4,8 @@
     {
       "slug": "hyperrigidity-low-dimensions-dimension-33-counterexample-draft",
       "title": "Hyperrigidity in low dimensions and a dimension-33 counterexample",
-      "summary": "Hyperrigidity for three-dimensional convex bodies with closed extreme boundary under exposedness or C1 assumptions, an explicit commutative counterexample in affine dimension 33, and obstructions to smaller versions of the construction. Working draft, not a published paper or released preprint; independent human mathematical verification is pending.",
-      "date": "2026-10-20",
+      "summary": "Version 2 proves hyperrigidity for every compact convex subset of R3 with closed extreme boundary, retains the explicit affine-dimension-33 counterexample, and establishes the range 4 ≤ d_min ≤ 33. The revised proof uses a dilation replacement and bounded Borel endpoint interpolation, avoiding disintegration. Includes further construction obstructions and a finite-POVM criterion. Working draft, not a published paper or released preprint; independent human mathematical verification is pending.",
+      "date": "2026-10-23",
       "authors": [
         "Caleb Barnett"
       ],
@@ -23,10 +23,19 @@
       ],
       "attachments": [
         {
-          "label": "LaTeX source",
+          "label": "Version 2 — LaTeX source",
           "url": "content/attachments/hyperrigidity-low-dimensions-dimension-33-counterexample-draft.tex"
+        },
+        {
+          "label": "Version 1 — PDF (20 October 2026)",
+          "url": "content/attachments/hyperrigidity-low-dimensions-dimension-33-counterexample-draft-v1.pdf"
+        },
+        {
+          "label": "Version 1 — LaTeX source",
+          "url": "content/attachments/hyperrigidity-low-dimensions-dimension-33-counterexample-draft-v1.tex"
         }
-      ]
+      ],
+      "version": 2
     },
     {
       "slug": "kirchberg-algebras-full-amalgams-stably-finite-draft",

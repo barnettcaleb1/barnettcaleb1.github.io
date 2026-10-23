@@ -1,0 +1,2396 @@
+\documentclass[11pt,letterpaper]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype,booktabs,enumitem,needspace}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black,pdftitle={Hyperrigidity in low dimensions and a dimension-33 counterexample},pdfauthor={Caleb Barnett}}
+\setlist[enumerate]{label=\textup{(\roman*)},leftmargin=2em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{maintheorem}{Theorem}
+\renewcommand{\themaintheorem}{\Alph{maintheorem}}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\numberwithin{equation}{section}
+\DeclareMathOperator{\ex}{ex}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\aff}{aff}
+\DeclareMathOperator{\supp}{supp}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\N}{\mathbb N}
+\newcommand{\ind}{\mathbf 1}
+\newcommand{\B}{\mathcal B}
+\title[Hyperrigidity in low dimensions]{Hyperrigidity in low dimensions\\and a dimension-33 counterexample}
+\author{Caleb Barnett}
+\date{20 October 2026}
+\dedicatory{\normalfont\small\textbf{Working draft}\\
+Not published or released as a preprint.}
+\thanks{Prepared with substantial AI assistance and automated adversarial review. Independent human verification and a complete novelty assessment remain pending; no formal verification is claimed.}
+\keywords{Hyperrigidity, unique extension property, compact convex sets, positive operator-valued measures, Riesz energy.}
+\begin{document}
+\begin{abstract}
+We study the least affine dimension of a commutative counterexample to
+Arveson's hyperrigidity conjecture. A quadratic estimate for supporting
+affine functions relates the unique extension property to inverse-square
+energy. Using the normal lift, we prove hyperrigidity for three-dimensional
+convex bodies with closed extreme boundary when every extreme point is
+exposed or when the boundary is $C^1$. We also modify the Walsh dilation
+of Bilich--Scherer to construct a counterexample in affine dimension $33$,
+with a $34$-dimensional function system and a diffuse representation.
+Finally, we establish two obstructions to smaller versions of that
+construction. For the stationary model considered here, arbitrary vector
+directions do not yield its
+quadratic-distance certificate in horizontal dimension at most four;
+more generally, no finite strictly convex graph can repair the stationary
+construction in affine dimension four. The latter conclusion requires
+no smoothness. The least affine dimension remains between
+$3$ and $33$.
+\end{abstract}
+\maketitle
+
+\section{Introduction}
+\label{sec:introduction}
+
+Let $K\subset\R^d$ be a compact convex set with closed extreme boundary
+$X=\ex K$. We write $A(K)$ for the complex vector space of continuous
+affine functions on $K$ and regard
+\[
+                         A(K)|_X\subset C(X)
+\]
+as a function system. A unital representation $\pi:C(X)\to B(H)$ has
+the \emph{unique extension property} (UEP) if the only unital completely
+positive (UCP) map $\Phi:C(X)\to B(H)$ agreeing with $\pi$ on $A(K)|_X$ is
+$\pi$ itself. By Arveson's characterization, the function system is
+hyperrigid exactly when every unital representation has this property
+\cite{Arv}. We use this formulation throughout.
+
+Each point evaluation at an extreme point has the unique extension
+property: a probability measure with that barycenter is a point mass.
+The question is whether the same uniqueness survives for diffuse
+representations. Bilich and Scherer showed that it need not
+\cite{BS}. Their construction raises a geometric question: how small
+can the affine dimension of a commutative counterexample be?
+
+The present paper gives positive results in dimension three, an explicit
+counterexample in dimension $33$, and structural restrictions on
+attempts to bridge the gap. Its first main result is the following.
+
+\Needspace{8\baselineskip}
+\begin{maintheorem}\label{intro:positive}
+Let $K\subset\R^3$ be a compact convex body with closed extreme
+boundary. Then $A(K)|_{\ex K}$ is hyperrigid if either
+\begin{enumerate}
+\item every extreme point of $K$ is exposed; or
+\item $\partial K$ is $C^1$.
+\end{enumerate}
+In particular, every strictly convex three-dimensional body is covered,
+without any smoothness assumption.
+\end{maintheorem}
+
+The two hypotheses have different roles. Exposedness supplies an affine
+function separating each represented point from every other point.
+Smoothness instead supplies a unique normal, which allows a reduction
+to planar supporting faces. Neither hypothesis is assumed for general
+three-dimensional convex bodies.
+
+The common mechanism is an energy estimate. If $n_x$ and $n_y$ are unit
+outward normals at $x,y\in\partial K$, then
+\begin{equation}\label{intro:eq:lift}
+ 0\le\langle n_x,x-y\rangle
+ \le\frac14\bigl|(x+n_x)-(y+n_y)\bigr|^2.
+\end{equation}
+The normal lift $x\mapsto x+n_x$ takes values on
+$\partial(K+\overline B)$, where $\overline B$ is the closed unit ball.
+In dimension three, every nonzero measure on this parallel surface has
+infinite inverse-square energy. On the other hand, a nonzero separated
+block of an agreeing positive operator-valued measure would produce a
+finite-energy measure. This contradiction proves the required
+separation. For a smooth boundary, we first obtain intertwining over
+the normal space and only then apply planar hyperrigidity to the
+supporting faces. The complete statements and proofs are given in
+Theorems~\ref{lb:thm:exposed} and~\ref{lb:thm:c1}.
+
+Our second main result is constructive.
+
+\begin{maintheorem}\label{intro:example}
+There is a compact convex body $K\subset\R^{33}$ with closed extreme
+boundary $X$, a unital representation $\pi:C(X)\to B(H)$, and a unital
+completely positive map $\Phi:C(X)\to B(H)$ such that
+\[
+                   \Phi|_{A(K)|_X}=\pi|_{A(K)|_X},
+                   \qquad \Phi\ne\pi.
+\]
+The Hilbert space $H$ is separable and infinite dimensional, and the
+spectral measure of $\pi$ has no point atoms. Moreover
+$\dim_{\C}A(K)=34$.
+\end{maintheorem}
+
+The construction is a change of distribution in the Walsh dilation of
+Bilich--Scherer, rather than a new dilation mechanism. Theorem~\ref{thm:main}
+gives the complete data. The operator identities are proved before the
+numerical parameters are chosen; the remaining containment estimate
+is a scalar inequality for every infinite digit sequence. A continuous
+barycentric kernel then gives the extension, and a quadratic function
+provides an explicit positive witness of disagreement.
+
+For comparison, \cite[Corollary 3.3]{BS} proves a construction in
+ambient dimension $129$, states an optimization to dimension $57$, and
+mentions an unverified dimension-$11$ proposal in Remark~3.4.
+Scherer's planar theorem \cite[Theorem 3.8]{planar} excludes dimensions
+at most two. Theorem~\ref{intro:example} therefore gives
+\begin{equation}\label{eq:dimension-range}
+                            3\le d_{\min}\le33,
+\end{equation}
+where $d_{\min}$ denotes the least affine dimension under the
+closed-extreme-boundary hypothesis. The conjectural value four is not
+established here. The positive theorem for compact spectrahedra
+\cite[Theorem 3.7]{spectra} is a further point of comparison; it applies
+to finite self-adjoint affine matrix pencils, not arbitrary projections
+of spectrahedra.
+
+The construction obstructions explain why simply changing its visible
+geometry does not close this gap. A finite-dimensional signing lemma
+rules out the quadratic-distance certificate for every stationary
+three-point distribution and every geometric-norm vector encoding in
+horizontal dimension at most four, under the nonnegative-potential and
+exact-height assumptions of Theorem~\ref{enc:universal}. Thus even arbitrary directions cannot
+make that certificate work in affine dimension four or five.
+A stronger geometric argument rules out \emph{every finite strictly
+convex graph} for the same stationary mechanism in affine dimension
+four (Corollary~\ref{prox:cor:walsh}). It uses positive distance levels
+of the represented set and requires no differentiability of the graph.
+These are obstructions to a specified construction family, not universal
+lower bounds on $d_{\min}$.
+
+The general supporting-gap criterion, Theorem~\ref{bar:thm}, is useful
+beyond these applications. Appendix~\ref{app:capacity} gives a
+source in a four-dimensional convex body whose normal lift supports a
+finite-energy measure, but whose representations still have the unique extension
+property by a sharper metric. Appendices~\ref{app:heterogeneous}
+and~\ref{app:correlated} treat varying and correlated distributions.
+Appendix~\ref{app:direct} records two restrictions on direct operator
+constructions. Exploratory numerical searches and superseded
+certificates are not needed for any proof in this paper.
+
+\section{Representations, measures, and defects}
+\label{sec:preliminaries}
+
+All Hilbert spaces are complex. Representations and completely positive
+maps are unital unless stated otherwise. A convex body has nonempty
+interior in its ambient Euclidean space. We write $\overline B$ for the
+closed unit ball and use $|\cdot|$ for Euclidean norms. For a compact
+convex set $K$, its support function is
+$h_K(u)=\max_{x\in K}\langle u,x\rangle$. An exposed point is the
+unique minimizer of an affine function on $K$. A smooth boundary point has a unique unit outward
+normal. A strictly convex body has no nondegenerate segment in its
+boundary; every boundary point is then exposed.
+
+Whenever $X=\ex K$ is compact, the coordinate functions and the constant
+function generate $C(X)$. If $\aff K=\R^d$, their complex linear span
+is $A(K)|_X$ and has dimension $d+1$. The dimension of a representation
+space is a separate issue.
+
+For a representation $\pi:C(X)\to B(H)$ we write $P$ for its spectral
+measure. A UCP map $\Phi$ has a positive operator-valued measure $E$.
+One may construct its bounded Borel extension from a Stinespring
+representation $\Phi(f)=V^*\rho(f)V$: if $Q$ is the spectral measure of
+$\rho$, set $E(B)=V^*Q(B)V$. All operator-valued measures below are
+countably additive in the strong operator topology. Saying that a
+representation is concentrated on a Borel set $Z$ means $P(Z)=I$;
+this is stronger than an assertion about the closure of that set.
+
+\begin{lemma}[Coordinate defects]\label{lem:defect}
+Suppose $\Phi=V^*\rho(\,\cdot\,)V$ agrees with $\pi$ on the affine
+coordinates $x_1,\ldots,x_d$. Then
+\[
+ D_j:=\Phi(x_j^2)-\pi(x_j)^2
+   =\bigl[(I-VV^*)\rho(x_j)V\bigr]^*
+      \bigl[(I-VV^*)\rho(x_j)V\bigr]\ge0.
+\]
+All $D_j$ vanish if and only if $VH$ reduces $\rho(C(X))$, and this
+is equivalent to $\Phi=\pi$.
+\end{lemma}
+\begin{proof}
+Expand the square and use $V^*\rho(x_j)V=\pi(x_j)$.
+If it vanishes, $VH$ is invariant for the self-adjoint operator
+$\rho(x_j)$ and hence reduces it. The coordinates generate $C(X)$,
+so the compression is a representation agreeing with $\pi$ on a
+generating set. The converse follows from the same identity.
+\end{proof}
+
+\begin{lemma}[Atomic representations]\label{lem:atomic}
+Every Hilbert direct sum of point evaluations at points of $X$,
+with arbitrary multiplicities, has the unique extension property.
+\end{lemma}
+\begin{proof}
+Write $H=\bigoplus_x H_x$, with $\pi(f)|_{H_x}=f(x)I$.
+For a unit vector $h\in H_x$, the scalar measure representing
+$f\mapsto\langle\Phi(f)h,h\rangle$ has barycenter $x$ and is therefore
+$\delta_x$. Indeed, a probability measure with an extreme barycenter
+cannot be split into two parts with different conditional barycenters.
+In a Stinespring representation this gives
+\[
+ \|\rho(f)Vh-f(x)Vh\|^2
+       =\langle\Phi(|f-f(x)|^2)h,h\rangle=0.
+\]
+Thus $\rho(f)V=V\pi(f)$ on each summand and then on their Hilbert direct
+sum. This proves equality, including all off-diagonal coefficients.
+\end{proof}
+
+In particular, finite-dimensional representations cannot witness a
+counterexample. We shall also need a stronger local consequence of
+extremality.
+
+\begin{lemma}[Local vanishing of the defect]\label{het:lem:local}
+Let $\Phi$ agree with $\pi$ on $A(K)|_X$, and let $D_j$ be the defects
+above. If $x$ belongs to the spectral support of $\pi$, then
+\[
+ \lim_{r\downarrow0}
+ \left\|P(B(x,r))\left(\sum_jD_j\right)P(B(x,r))\right\|=0.
+\]
+Consequently no coordinate defect, nor their sum, is bounded below by
+a positive multiple of the identity.
+\end{lemma}
+\begin{proof}
+Any sequence of probability measures on $X$ whose barycenters tend to
+$x$ converges weakly to $\delta_x$: every weak limit has the extreme
+barycenter $x$. By compactness, their second moments about $x$ tend
+to zero uniformly as their barycenters approach $x$.
+For a unit vector $h\in P(B(x,r))H$, the scalar measure of $\Phi$
+at $h$ has barycenter within $r$ of $x$. Affine agreement gives
+\[
+ \left\langle\sum_jD_jh,h\right\rangle
+ =\int_X|y-x|^2\,d\mu_h(y)
+   -\left\langle\pi(|\,\cdot-x|^2)h,h\right\rangle
+ \le\int_X|y-x|^2\,d\mu_h(y).
+\]
+The right side tends to zero uniformly in these unit vectors.
+Positivity gives the norm estimate. Every such spectral neighborhood
+is nonzero, which proves the last assertion.
+\end{proof}
+
+\section{A quadratic affine-barrier criterion}
+\label{paper:pos:barriers}
+
+The positive results in this section rest on a common observation.
+An affine supporting function can bound the amount of a dilation
+that passes from one part of the spectrum to another. If these
+bounds vanish quadratically in a suitable metric, a nonzero
+off-diagonal effect would produce a scalar measure of finite
+inverse-square energy. A critical covering estimate rules out
+such a measure. The metric need not be the ambient Euclidean
+metric, and this flexibility will be useful below.
+
+We retain the notation of Section~\ref{sec:preliminaries}:
+$P$ is the spectral measure of $\pi$, and $E$ is the POVM of
+an affine-agreeing UCP map $\Phi$. Their bounded Borel extensions
+will be used without changing notation.
+
+\begin{theorem}[Quadratic affine barriers]\label{bar:thm}
+Let $\pi:C(X)\to B(H)$ be a unital representation, and let
+$Z\subset X$ be Borel with $P(Z)=I$. Suppose that, for each
+$x\in Z$, an affine function $b_x$ on $K$ is specified so that
+its coefficients depend Borel measurably on $x$ and
+\[
+ b_x(x)=0,\qquad b_x(y)>0\quad(y\in K\setminus\{x\}).
+\]
+Suppose also that there are a compact metric space $(T,d_T)$,
+a Borel map $\theta:Z\to T$, and a finite constant $M$ such that
+\[
+ b_x(y)\le M\,d_T(\theta(x),\theta(y))^2
+ \qquad(x,y\in Z).
+\]
+Assume that every nonzero finite positive Borel measure $\mu$
+on $Z$ satisfies
+\[
+ \iint_{Z\times Z}
+ d_T(\theta(x),\theta(y))^{-2}\,d\mu(x)d\mu(y)=+\infty,
+\]
+where the integrand is $+\infty$ when the distance is zero.
+Then $\pi$ has the unique extension property relative to
+$A(K)|_X$.
+\end{theorem}
+
+We first establish the analytic facts needed for the proof.
+For a finite positive measure $\nu$ on a metric space, write
+\[
+ I_2(\nu)=\iint d(u,v)^{-2}\,d\nu(u)d\nu(v).
+\]
+A Borel set has \emph{zero inverse-square capacity} here if
+every nonzero finite positive measure concentrated on it has
+infinite $I_2$-energy. The formulation in
+Theorem~\ref{bar:thm} is the corresponding statement for the
+pushforwards under $\theta$; it does not require a separate
+measurability assertion about the image of $\theta$.
+
+\subsection{Energy and localization}
+
+\begin{lemma}[Rank-one domination]\label{lb:lem:rankone}
+Let $P$ be a spectral measure on a compact metric space, let
+$w$ be a bounded nonnegative Borel function, and suppose
+\[
+ |\eta\rangle\langle\eta|\le M\int w\,dP.
+\]
+Then, for $\mu_\eta(D)=\langle P(D)\eta,\eta\rangle$,
+\[
+                  \int w^{-1}\,d\mu_\eta\le M,
+\]
+with $w^{-1}=+\infty$ on the zero set of $w$.
+\end{lemma}
+\begin{proof}
+Put $W=\int w\,dP$. For $\epsilon>0$, set
+$h=(W+\epsilon I)^{-1}\eta$ and
+$t=\langle\eta,h\rangle\ge0$. The assumed domination gives
+\[
+ t^2\le M\langle Wh,h\rangle
+       \le M\langle(W+\epsilon I)h,h\rangle=Mt.
+\]
+Thus $t\le M$. The spectral theorem and monotone convergence
+as $\epsilon\downarrow0$ prove the assertion.
+\end{proof}
+
+\begin{lemma}[Critical covering bound]\label{lb:lem:energy}
+Let $T$ be a compact metric space. Suppose that, for every
+sufficiently small $\epsilon>0$, it can be covered by at most
+$M\epsilon^{-2}$ sets of diameter at most $\epsilon$.
+Then $I_2(\nu)=+\infty$ for every nonzero finite positive
+Borel measure $\nu$ on $T$.
+In particular, this conclusion holds for the boundary of
+every compact convex body in $\mathbb R^3$.
+\end{lemma}
+\begin{proof}
+The covering sets may be replaced by their closures and then
+refined to a Borel partition
+$T=\bigsqcup_{j=1}^{N_\epsilon}T_j$, with
+$N_\epsilon\le M\epsilon^{-2}$ and
+$\operatorname{diam}T_j\le\epsilon$.
+If $m=\nu(T)>0$, Cauchy--Schwarz gives
+\[
+ (\nu\times\nu)\{d(u,v)\le\epsilon\}
+ \ge\sum_j\nu(T_j)^2
+ \ge\frac{m^2}{N_\epsilon}
+ \ge\frac{m^2}{M}\epsilon^2.
+\]
+The layer-cake formula and Tonelli's theorem therefore imply
+\[
+ I_2(\nu)
+ \ge2\int_0^{\epsilon_0}t^{-3}
+       (\nu\times\nu)\{d(u,v)\le t\}\,dt
+ \ge\frac{2m^2}{M}\int_0^{\epsilon_0}\frac{dt}{t}
+ =+\infty.
+\]
+
+For the final assertion, translate the convex body so that
+$r\overline B_3\subset K\subset R\overline B_3$ for some
+$r,R>0$. Its Minkowski functional $j_K$ is $1/r$-Lipschitz and
+is at least $1/R$ on $S^2$. Hence the radial map
+$u\mapsto u/j_K(u)$ is Lipschitz from $S^2$ onto $\partial K$.
+The sphere admits the required $O(\epsilon^{-2})$ covers,
+as follows from finitely many Lipschitz coordinate charts.
+The radial map transfers this covering bound to $\partial K$.
+\end{proof}
+
+The next lemma isolates the operator argument. Unlike
+Theorem~\ref{bar:thm}, it does not require each affine function
+to expose a single point.
+
+\begin{lemma}[Local annihilation]\label{paper:pos:localization}
+Suppose $\Phi$ and $\pi$ agree on $A(K)|_X$. Let
+$F,G\subset X$ be Borel. For each $x\in F$, let $b_x$ be
+an affine function nonnegative on $K$. Suppose that
+\[
+ b_x(y)\ge\delta>0\quad(x\in F,\ y\in G),
+ \qquad
+ b_x(y)\le M\,d_T(\theta(x),\theta(y))^2
+       \quad(x,y\in F),
+\]
+where $\theta:F\to T$ is Borel and $T$ is compact metric.
+If every nonzero finite positive measure on $F$ has infinite
+energy in the displayed metric, then $E(G)P(F)=0$.
+\end{lemma}
+\begin{proof}
+Set $A=P(F)E(G)P(F)$. For each fixed $x\in F$, positivity
+and affine agreement imply
+\[
+ 0\le A
+ \le\delta^{-1}P(F)\Phi(b_x)P(F)
+ =\delta^{-1}P(F)\pi(b_x)P(F)
+ \le\frac M\delta\int_F
+           d_T(\theta(x),\theta(y))^2\,dP(y).
+\]
+If $A\ne0$, choose a unit vector $h$ such that
+$\eta=A^{1/2}h\ne0$. Then
+$|\eta\rangle\langle\eta|\le A$ and $\eta\in P(F)H$.
+Lemma~\ref{lb:lem:rankone}, applied on $P(F)H$, gives
+\[
+ \int_Fd_T(\theta(x),\theta(y))^{-2}\,d\mu_\eta(y)
+ \le M/\delta\qquad(x\in F).
+\]
+The same vector $\eta$ works for every $x\in F$. Tonelli's theorem
+therefore gives
+\[
+ \iint_{F\times F}d_T(\theta(x),\theta(y))^{-2}
+       \,d\mu_\eta(y)d\mu_\eta(x)
+ \le (M/\delta)\|\eta\|^2<\infty,
+\]
+contrary to the energy hypothesis. Thus $A=0$.
+Since $A=(E(G)^{1/2}P(F))^*(E(G)^{1/2}P(F))$, it follows that
+$E(G)P(F)=0$.
+\end{proof}
+
+We will also use the following elementary passage from compact
+sets to the full spectral measure.
+
+\begin{lemma}\label{paper:pos:measure-identification}
+Let $P$ be a normalized spectral measure and $E$ a normalized POVM
+on a compact metric space. If $E(B)P(A)=0$ whenever $A,B$ are
+disjoint compact sets, then $E=P$.
+\end{lemma}
+\begin{proof}
+For an open set $O$, choose compact sets $A_j\uparrow O$.
+Applying the hypothesis in both orders to $A_j$ and the
+compact set $X\setminus O$, and taking strong limits, gives
+\[
+ E(X\setminus O)P(O)=0,\qquad
+ E(O)P(X\setminus O)=0.
+\]
+The two effects sum to $I$, so $E(O)P(O)=P(O)$ and
+$E(O)P(X\setminus O)=0$. Hence $E(O)=P(O)$.
+The scalar matrix-coefficient measures are regular and agree
+on open sets; they therefore agree on all Borel sets.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{bar:thm}]
+Let $\Phi$ be an agreeing UCP map. Fix disjoint nonempty
+compact sets $A,B\subset X$, and put
+\[
+ F_m=\left\{x\in A\cap Z:
+                    \min_{y\in B}b_x(y)\ge1/m\right\}.
+\]
+The minimum over $B$ is a continuous function of the affine
+coefficients, so $F_m$ is Borel. Strict positivity away from
+$x$ and compactness of $B$ show that $F_m\uparrow A\cap Z$.
+Lemma~\ref{paper:pos:localization} gives $E(B)P(F_m)=0$.
+Since $P(Z)=I$, strong convergence yields $E(B)P(A)=0$.
+Lemma~\ref{paper:pos:measure-identification} now gives
+$E=P$, and hence $\Phi=\pi$.
+\end{proof}
+
+\subsection{A graph consequence}
+
+The criterion applies to represented subsets, independently of
+the size of the rest of the extreme boundary. The following
+consequence is useful when a construction begins with a
+convex graph.
+
+\begin{corollary}\label{cap:cor:graph}
+Let $B\subset\mathbb R^D$ be compact and convex, and let $g$
+be strictly convex and $C^{1,1}$ on an open convex neighborhood
+of $B$. Put
+\[
+ K=\{(a,z):a\in B,\ g(a)\le z\le h\},
+ \qquad h>\max_B g,
+\]
+and assume $\ex K$ is closed. Let $S\subset B$ be compact
+and admit covers by $O(\epsilon^{-2})$ sets of diameter at
+most $\epsilon$. Every representation concentrated on
+\[
+                 Z=\{(s,g(s)):s\in S\}
+\]
+has the unique extension property.
+\end{corollary}
+\begin{proof}
+For $x=(s,g(s))$, take the affine barrier
+\[
+ b_x(a,z)=z-g(s)-\langle\nabla g(s),a-s\rangle.
+\]
+Strict convexity makes this nonnegative on $K$, with equality
+only at $x$. A Lipschitz bound $L$ for $\nabla g$ on $B$
+gives
+\[
+ b_{(s,g(s))}(t,g(t))\le\tfrac L2|s-t|^2
+ \qquad(s,t\in S).
+\]
+Use $\theta(s,g(s))=s$. Lemma~\ref{lb:lem:energy} and
+Theorem~\ref{bar:thm} give the conclusion.
+\end{proof}
+
+\section{Normal lifts and exposed points in dimension three}
+\label{paper:pos:normal-lifts}
+
+Supporting normals provide a canonical metric for the barrier
+criterion. The useful feature is that they can be added to the
+boundary points: this places the resulting metric space on the
+boundary of a parallel convex body. In dimension three, that
+surface has precisely the critical covering bound of
+Lemma~\ref{lb:lem:energy}.
+
+For $x\in K$, let
+\[
+ N_K(x)=\{u\in\mathbb R^d:
+               \langle u,y-x\rangle\le0\text{ for every }y\in K\}
+\]
+be the outward normal cone. For a unit vector $n_x\in N_K(x)$,
+put $z_x=x+n_x$. The point $z_x$ lies on
+$\partial(K+\overline B_d)$, and its metric projection onto
+$K$ is $x$. Indeed, for $y\in K$,
+\[
+ |x+n_x-y|^2
+ =1+|x-y|^2+2\langle n_x,x-y\rangle\ge1,
+\]
+with equality only when $y=x$. For any two such choices,
+\begin{equation}\label{lb:eq:lift}
+ 0\le\langle n_x,x-y\rangle
+ \le\langle n_x-n_y,x-y\rangle
+ \le\tfrac14|z_x-z_y|^2.
+\end{equation}
+The middle inequality uses the supporting property at $y$;
+the last follows from $4\langle a,b\rangle\le|a+b|^2$.
+
+\begin{corollary}[Normal-lift criterion]\label{cap:thm}
+Let $\pi:C(X)\to B(H)$ have spectral measure concentrated
+on a Borel set $Z\subset X$. Suppose a Borel unit normal
+$n(x)$ exposes $x$ for every $x\in Z$. If every nonzero finite
+positive Borel measure concentrated on
+\[
+                        L=\{x+n(x):x\in Z\}
+\]
+has infinite inverse-square energy, then $\pi$ has the unique
+extension property.
+\end{corollary}
+\begin{proof}
+The map $x\mapsto x+n(x)$ is Borel and injective. Its image
+is Borel as well: if $p_K$ is the continuous metric projection
+onto $K$, then
+\[
+ L=\{z\in\partial(K+\overline B_d):
+        p_K(z)\in Z,\ z-p_K(z)=n(p_K(z))\}.
+\]
+Apply Theorem~\ref{bar:thm} with
+$b_x(y)=\langle n(x),x-y\rangle$ and
+$\theta(x)=x+n(x)$. The quadratic bound is
+\eqref{lb:eq:lift}, and the energy assumption passes to
+pushforward measures.
+\end{proof}
+
+We need a local version in which the normal need not expose
+the source point. This is what allows flat faces in the smooth
+case treated in the next section.
+
+\begin{lemma}[Separated normal selections]\label{lb:lem:sep}
+Let $K\subset\mathbb R^3$ be a compact convex body, and suppose
+$\Phi$ and $\pi$ agree on $A(K)|_X$. Let $F,G\subset X$ be
+Borel. If there is a Borel unit normal selection
+$x\mapsto n_x$ on $F$ such that
+\[
+             \langle n_x,x-y\rangle\ge\delta>0
+             \qquad(x\in F,\ y\in G),
+\]
+then $E(G)P(F)=0$.
+\end{lemma}
+\begin{proof}
+Use the affine functions
+$b_x(y)=\langle n_x,x-y\rangle$ in
+Lemma~\ref{paper:pos:localization}. By \eqref{lb:eq:lift},
+their values on $F$ are bounded by one quarter of the squared
+distance between the normal lifts. Every nonzero pushforward
+measure on these lifts has infinite energy, since the lifts
+lie on $\partial(K+\overline B_3)$ and
+Lemma~\ref{lb:lem:energy} applies to that surface.
+\end{proof}
+
+For exposed points, a separating selection can be made on
+successively larger compact sets. We record the elementary
+selection argument to make the measurability explicit.
+
+\begin{lemma}[Compact-graph selection]\label{lb:lem:selection}
+Let $F,T$ be compact metric spaces, and let
+$\Gamma\subset F\times T$ be compact with every fiber
+$\Gamma_x$ nonempty. There is a Borel map $s:F\to T$ with
+$(x,s(x))\in\Gamma$ for every $x\in F$.
+\end{lemma}
+\begin{proof}
+Fix a countable dense sequence in $T$. At step $j$, choose
+the first closed ball of radius $2^{-j}$ centered in that
+sequence which meets the current nonempty compact fiber, and
+intersect the fiber with that ball. These choices are Borel.
+Indeed, for each fixed finite list of earlier choices, the
+nonemptiness test is the projection of the original compact
+graph intersected with finitely many fixed closed balls;
+this projection is compact. The possible earlier lists form
+a countable Borel partition, so induction proves the claim.
+The remaining fibers are nested nonempty compact sets with
+diameters tending to zero. Their unique intersection point
+is the limit of the selected centers, and hence depends
+Borel measurably on $x$.
+\end{proof}
+
+\begin{theorem}[Exposed extreme boundary]\label{lb:thm:exposed}
+Let $K\subset\mathbb R^3$ be a compact convex body with
+$X=\ex K$ closed. If every point of $X$ is exposed in $K$,
+then $A(K)|_X$ is hyperrigid in $C(X)$.
+\end{theorem}
+\begin{proof}
+Let $\pi$ be a unital representation and $\Phi$ an agreeing
+UCP map. Fix disjoint nonempty compact sets $A,B\subset X$.
+For $m\ge1$, define
+\[
+ \Gamma_m=\left\{(x,u)\in A\times S^2:
+    u\in N_K(x),\quad
+    \min_{y\in B}\langle u,x-y\rangle\ge1/m\right\},
+ \qquad F_m=\operatorname{pr}_A\Gamma_m.
+\]
+The graph of the normal cone is closed, and the minimum is
+continuous in $(x,u)$. Thus $\Gamma_m$ and $F_m$ are compact.
+The sets $F_m$ increase to $A$: an exposing normal at $x$
+has a strictly positive minimum on the disjoint compact set
+$B$. Lemma~\ref{lb:lem:selection} gives a Borel normal
+selection on $F_m$ with gap at least $1/m$ from $B$.
+Lemma~\ref{lb:lem:sep} yields $E(B)P(F_m)=0$.
+Taking strong limits gives $E(B)P(A)=0$, and
+Lemma~\ref{paper:pos:measure-identification} proves
+$\Phi=\pi$.
+\end{proof}
+
+The selection in this proof depends on the compact target
+set $B$. In particular, no continuous choice of exposing
+normals is required. For a nonexposed extreme point, the
+compact exhaustion can fail when $B$ meets every supporting
+face through that point. The next result uses uniqueness of
+the normal to deal with such faces instead of separating
+their individual points.
+
+\section{Smooth normals and reduction to planar faces}
+\label{paper:pos:smooth}
+
+If two smooth boundary points have different normals, the
+supporting plane at either point strictly separates it from
+the other. The normal-lift estimate therefore identifies the
+spectral measure of the normal itself. This is the step that
+permits a direct-integral argument: the normal algebra must
+first be shown to lie in the multiplicative domain. Agreement on
+affine functions alone does not give this. Once the normal is preserved,
+the fiber representations are supported on planar exposed faces, where
+the planar hyperrigidity theorem applies.
+
+\begin{theorem}[Smooth boundary]\label{lb:thm:c1}
+Let $K\subset\mathbb R^3$ be a compact convex body with
+$C^1$ boundary and closed extreme boundary $X=\ex K$.
+Then $A(K)|_X$ is hyperrigid in $C(X)$.
+\end{theorem}
+
+We prove a representation-level statement that also applies
+when only the relevant spectral measures are supported on
+smooth points. Let
+\[
+ S=\{x\in X:N_K(x)\cap S^2\text{ consists of one point}\}.
+\]
+Thus smoothness here refers to uniqueness of the supporting
+hyperplane, with no differentiability assumption away from
+the represented points.
+
+\begin{proposition}\label{lb:prop:smooth-both}
+Let $K\subset\mathbb R^3$ be a compact convex body with
+$X=\ex K$ closed. Let $\pi$ and $\rho$ be unital
+representations with spectral measures $P$ and $Q$, and
+suppose the UCP map $\Phi(f)=V^*\rho(f)V$ agrees with
+$\pi$ on $A(K)|_X$. If $P(S)=I$ and $Q(S)=I$, then
+$\Phi=\pi$.
+\end{proposition}
+\begin{proof}
+There are two steps. First the energy estimate forces the dilation
+isometry to preserve the spectral measure of the normal. This permits
+a decomposition into representations on individual supporting faces.
+We then apply the planar theorem on those faces.
+
+\emph{The smooth locus.}
+The set-valued map $x\mapsto N_K(x)\cap S^2$ has nonempty
+compact values and closed graph on $\partial K$. Compactness
+of $S^2$ implies that the diameter of these values is upper
+semicontinuous. Consequently its singleton locus is Borel,
+being the intersection of the relatively open sets where
+that diameter is less than $1/j$. On this locus the unique
+normal map $n$ is continuous relative to the locus: any
+subsequential limit of normals is a normal at the limiting
+point, and uniqueness determines that limit. In particular,
+$n:S\to S^2$ is Borel.
+
+\emph{Separable reduction.}
+It suffices to treat separable representation spaces. If
+$\Phi\ne\pi$, choose a witness from a countable dense family
+$\{f_j\}\subset C(X)$ and a vector on which the difference
+is nonzero. Close its orbit under $\pi(f_j),\Phi(f_j)$ and
+their adjoints. The resulting separable subspace $H_0$
+reduces both maps and retains the witness. In the given
+Stinespring space, the closed span of
+$\rho(C(X))VH_0$ is separable, reduces $\rho$, and supplies
+a Stinespring representation for the restricted map.
+Both spectral concentration assumptions persist under these
+restrictions. We may therefore assume that $H$ and the
+Stinespring space are separable.
+
+Choose a common scalar control measure $\nu$ for $P$ and $Q$:
+all their scalar spectral measures are absolutely continuous with
+respect to $\nu$. A positive summable weighted sum of the measures of
+countable dense sets of unit vectors gives such a measure. Normalize
+it to be a probability measure. It is concentrated on $S$, and
+\[
+ \nu(B)=0\quad\Longrightarrow\quad P(B)=Q(B)=0.
+\]
+Only this implication is needed; no inequality of the form
+$P(B)\le\nu(B)I$ is asserted.
+
+\emph{Identification of the normal spectral measure.}
+For disjoint compact sets $A,B\subset S^2$, put
+\[
+             S_A=S\cap n^{-1}(A),\qquad
+             S_B=S\cap n^{-1}(B).
+\]
+Inner regularity gives increasing compact sets
+$F_j\subset S_A$ and $G_k\subset S_B$ whose unions have
+full $\nu$-measure in the respective sets. On
+$F_j\times G_k$, the function
+$\langle n(x),x-y\rangle$ is continuous and strictly
+positive. Indeed, equality would make $n(x)$ a normal at
+the smooth point $y$, forcing $n(x)=n(y)$, contrary to the
+disjoint normal ranges. Its minimum is therefore positive
+whenever both compact sets are nonempty.
+Lemma~\ref{lb:lem:sep} gives $E(G_k)P(F_j)=0$.
+The sets $S_A\setminus\bigcup_jF_j$ and
+$S_B\setminus\bigcup_kG_k$ are $\nu$-null, hence null for both
+spectral measures. Consequently
+$P(F_j)\to P(S_A)$ and $E(G_k)\to E(S_B)$ strongly. Passing to the
+limits one at a time gives
+\[
+                         E(S_B)P(S_A)=0.
+\]
+
+Define measures on $S^2$ by
+\[
+ P_n(D)=P(S\cap n^{-1}(D)),\qquad
+ Q_n(D)=Q(S\cap n^{-1}(D)),\qquad
+ E_n(D)=V^*Q_n(D)V.
+\]
+They are normalized because $P(S)=Q(S)=I$.
+The preceding annihilation and
+Lemma~\ref{paper:pos:measure-identification} show that
+$E_n=P_n$. Compression of a projection to a projection
+gives the intertwining relation
+\begin{equation}\label{paper:pos:normal-intertwining}
+                       Q_n(D)V=VP_n(D)
+                       \qquad(D\subset S^2\text{ Borel}).
+\end{equation}
+Indeed, $V^*Q_n(D)V=P_n(D)$ and $V^*V=I$ give
+\[
+                    \|Q_n(D)Vh-VP_n(D)h\|^2=0.
+\]
+Thus the entire normal spectral algebra intertwines through $V$.
+
+\emph{Disintegration.}
+The normal map is defined on the possibly nonclosed Borel set $S$,
+so we use standard Borel disintegration of measures. Let
+$\tau=n_*\nu$, with $\nu$ regarded as a measure on $S$.
+The regular conditional probability measures $\nu_\omega$ satisfy
+\[
+ \nu(B)=\int_{S^2}\nu_\omega(B)\,d\tau(\omega),\qquad
+ \nu_\omega(S\cap n^{-1}(\{\omega\}))=1
+\]
+for $\tau$-almost every $\omega$. These are conditional measures on
+the standard Borel space $S$, extended by zero to $X$.
+To describe the associated representation decomposition
+explicitly, decompose each separable representation into
+countably many cyclic representations on
+$L^2(X,\mu_j)$, with coordinates acting by multiplication.
+Each $\mu_j$ is absolutely continuous with respect to
+$\nu$. Choose a Borel density $d_j=d\mu_j/d\nu$.
+For each such cyclic component, the identity
+\[
+ \int_X|f|^2\,d\mu_j
+ =\int_{S^2}\!\left(\int_X|f|^2d_j\,d\nu_\omega\right)
+       d\tau(\omega)
+\]
+gives its usual disintegration into the spaces
+$L^2(X,d_j\nu_\omega)$. Applying this to $\pi$ and $\rho$
+gives a common base measure $\tau$ and decompositions
+\[
+ H=\int_{S^2}^{\oplus}H_\omega\,d\tau(\omega),\qquad
+ L=\int_{S^2}^{\oplus}L_\omega\,d\tau(\omega),
+ \qquad
+ \pi=\int^{\oplus}\pi_\omega,\quad
+ \rho=\int^{\oplus}\rho_\omega.
+\]
+The countably many conditional measures are finite outside
+one null set. On these fields, the normal projections act
+as multiplication by $\mathbf 1_D(\omega)$.
+Equation~\eqref{paper:pos:normal-intertwining} and the
+standard characterization of decomposable operators give
+$V=\int^{\oplus}V_\omega\,d\tau(\omega)$.
+Uniqueness of decomposable operator fields now turns $V^*V=I$ and
+the three coordinate compression identities into
+\[
+ V_\omega^*V_\omega=I_{H_\omega},\qquad
+ V_\omega^*\rho_\omega(x_j)V_\omega=\pi_\omega(x_j)
+ \quad(j=1,2,3)
+\]
+outside one common null set. Zero fibers of $H$ can be ignored.
+This is a decomposition of the representations and their isometry;
+no pointwise disintegration of an arbitrary UCP map has been assumed.
+
+\emph{Planar fibers.}
+For $\omega\in S^2$, let
+\[
+ F_\omega=\{x\in K:
+                 \langle\omega,x\rangle=h_K(\omega)\}.
+\]
+This exposed face has affine dimension at most two.
+The conditional spectral measures above are concentrated
+on $S\cap n^{-1}(\{\omega\})\subset F_\omega$.
+Consequently, a continuous function vanishing on $X\cap F_\omega$
+acts as zero in both fiber representations. They therefore factor
+through $C(X\cap F_\omega)$; we keep the same notation for these
+factor representations. The face identity
+\[
+                    X\cap F_\omega=\ex(F_\omega)
+\]
+shows that this is the function algebra required by the planar
+theorem. Indeed, any convex decomposition in $K$ of a point of an
+exposed face has both endpoints in that face; extremality in the face
+and in $K$ are therefore equivalent there. Its extreme boundary is
+compact because
+$X$ and $F_\omega$ are closed. There is no need for the
+smooth subset of the fiber itself to be closed.
+
+Ambient affine functions restrict onto all affine
+functions on $F_\omega$. Hence the planar hyperrigidity
+theorem, including its lower-dimensional cases
+\cite[Theorem~3.8]{planar}, gives
+\[
+             V_\omega^*\rho_\omega(f)V_\omega
+                  =\pi_\omega(f)
+             \qquad(f\in C(X\cap F_\omega))
+\]
+for almost every $\omega$. Applying this to the
+restrictions of a countable dense family in $C(X)$ and
+integrating proves $\Phi=\pi$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{lb:thm:c1}]
+On a $C^1$ boundary the supporting unit normal is unique,
+so $S=X$. Every representation and every Stinespring
+representation are then concentrated on $S$.
+Proposition~\ref{lb:prop:smooth-both} applies to every
+agreeing UCP map, proving hyperrigidity.
+\end{proof}
+
+No positive curvature or strict convexity is needed in
+Theorem~\ref{lb:thm:c1}; flat exposed faces are handled by
+the planar reduction. The concentration hypothesis on the
+Stinespring representation in
+Proposition~\ref{lb:prop:smooth-both} is essential to this
+proof. A nonsmooth dilation point can have several supporting
+normals, so equality of the normal spectral measures does
+not follow from the argument above when such points carry
+spectral mass.
+
+\section{An explicit counterexample in affine dimension thirty-three}
+\label{sec:construction}
+
+\begin{theorem}\label{thm:main}
+There is an explicitly specified compact convex body
+\(K\subset\mathbb R^{33}\), with \(\aff K=\mathbb R^{33}\) and
+compact extreme boundary \(X=\ex K\), for which the affine function
+system \(A(K)|_X\) is not hyperrigid in \(C(X)\).
+More precisely, there are a unital representation
+\(\pi:C(X)\to B(H)\) and a UCP map \(\Psi:C(X)\to B(H)\) such that
+\[
+ \Psi|_{A(K)|_X}=\pi|_{A(K)|_X},\qquad \Psi(Q)\ne\pi(Q),
+ \qquad Q(x,z)=|x|^2.
+\]
+The Hilbert space \(H\) is separable and infinite dimensional,
+the spectral measure of \(\pi\) has no point atoms, and
+\(\dim_{\mathbb C}A(K)=34\).
+\end{theorem}
+
+We use the Walsh dilation of Bilich--Scherer \cite[Section 3]{BS},
+with a different three-point distribution. The operator calculation
+is included in full. Its telescoping identity determines the height
+of an encoded dilation point. A uniform scalar estimate places all
+such points in a truncated epigraph with a strongly convex lower graph. An explicit
+boundary kernel then gives the required UCP map.
+
+\subsection{The Walsh compression and its height identity}
+
+Fix \(R>1\) and \(1<b<R^2\), and put
+\[
+ a=b^{-1},\qquad
+ \mu=\frac{b}{2R^2}(\delta_{-R}+\delta_R)
+                  +\left(1-\frac b{R^2}\right)\delta_0.
+\]
+Thus \(\mu\) is symmetric and has second moment \(b\).
+In the discrete alphabet \(\{-1,1,-R,0,R,*\}\), with a separate
+star symbol, define
+\[
+ \begin{split}
+ G&=\{-1,1\}^{\mathbb N},\qquad Y_0=\{-R,0,R\}^{\mathbb N},\\
+ Y_k&=\{-1,1\}^{k-1}\times\{*\}\times
+        \{-R,0,R\}^{\{k+1,k+2,\ldots\}}\quad(k\ge1),\\
+ Y&=G\cup\bigcup_{k\ge0}Y_k.
+ \end{split}
+\]
+The numerical coordinate \(x_n\) sends the star to zero.
+Give \(G\) Haar probability \(m\). Give \(Y_k\) the product
+probability \(\mu_k\) with uniform binary prefix, star at \(k\),
+and \(\mu\)-distributed tail; on \(Y_0\), use
+\(\mu_0=\mu^{\otimes\mathbb N}\).
+The space \(Y\) is compact: unbounded star positions can accumulate
+only in \(G\), and every fixed branch is compact.
+Each coordinate is continuous, and \(Y_0\) is clopen.
+
+Set
+\[
+ H=L^2(G,m),\qquad
+ \mathcal L=\bigoplus_{k\ge0}L^2(Y_k,\mu_k).
+\]
+For a finite \(F\subset\mathbb N\), write
+\(\chi_F=\prod_{n\in F}\varepsilon_n\) and
+\(F_{>k}=F\cap\{k+1,k+2,\ldots\}\).
+For \(k\notin F\), the functions
+\[
+                  \chi_F^{(k)}
+        =b^{-|F_{>k}|/2}\prod_{n\in F}x_n
+\]
+form an orthonormal family in the \(k\)-th summand.
+Define on the Walsh basis
+\begin{equation}\label{eq:V}
+ V\chi_F=a^{|F|/2}\chi_F^{(0)}
+       +\sqrt{1-a}\sum_{k\in F}
+            a^{|F_{>k}|/2}\chi_{F\setminus\{k\}}^{(k)}.
+\end{equation}
+
+\begin{lemma}\label{lem:walsh}
+The map \(V:H\to\mathcal L\) is an isometry. For bounded Borel
+functions on \(Y\), let \(\Phi(f)=V^*M_fV\). Then
+\begin{equation}\label{eq:multilinear}
+ \Phi\left(\prod_{n\in E}x_n\right)
+                  =M_{\prod_{n\in E}\varepsilon_n}
+              \qquad(E\subset\mathbb N\text{ finite}).
+\end{equation}
+Also \(\Phi(\mathbf1_{Y_0})\chi_F=a^{|F|}\chi_F\) and
+\(V1=\mathbf1_{Y_0}\).
+\end{lemma}
+\begin{proof}
+On branch \(k\), symmetry and independence make a matrix coefficient
+of multiplication by \(\prod_{n\in E}x_n\) vanish unless the two
+product labels differ exactly in \(E\) and \(k\notin E\).
+In the nonzero case, its value is \(b^{|E_{>k}|/2}\): a tail
+coordinate in the multiplier contributes its second moment
+divided by \(\sqrt b\), while common coordinates contribute one
+after normalization. On branch zero, the same calculation has no
+star restriction. Consequently, for \(C_0=F\cap F'\),
+\[
+ \left\langle M_{\prod_E x_n}V\chi_F,V\chi_{F'}\right\rangle
+ =\mathbf1_{\{E=F\triangle F'\}}
+ \left(a^{|C_0|}+(1-a)\sum_{k\in C_0}a^{|(C_0)_{>k}|}\right).
+\]
+The parenthesis is the finite geometric sum
+\(a^r+(1-a)\sum_{j=0}^{r-1}a^j=1\).
+Taking \(E=\varnothing\) proves isometry on the dense Walsh span;
+general \(E\) proves \eqref{eq:multilinear}.
+The two final assertions follow by retaining the branch-zero term.
+\end{proof}
+
+Let \(\beta\) be an even nonnegative function on the numerical
+digits, with \(\beta(\pm1)=0\). Define diagonal contractions
+\[
+                  A_n\chi_F=a^{|F_{>n}|}\chi_F\qquad(n\ge0).
+\]
+The parameters \(0<q<1\) and \(c>0\) will be chosen so that
+\begin{equation}\label{eq:conditions}
+ \begin{aligned}
+ \int\bigl(r^2-\beta(r)-1\bigr)\,d\mu(r)
+                                      &=c(q^2-1),\\
+ a\bigl(R^2-\beta(R)-1\bigr)
+       +(1-a)\bigl(-1-\beta(0)\bigr)&=c(q^2-a).
+ \end{aligned}
+\end{equation}
+
+\begin{lemma}\label{lem:tel}
+Under \eqref{eq:conditions},
+\begin{equation}\label{eq:tel}
+       \Phi\bigl(x_n^2-\beta(x_n)\bigr)-I
+                       =c(q^2A_n-A_{n-1})\qquad(n\ge1).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Parity makes the left side diagonal. Fix \(F\) and put
+\(r=|F_{>n}|\). If \(n\notin F\), the squared weights of the
+branches before \(n\) sum to \(a^r\); their expected multiplier
+\(x_n^2-\beta(x_n)-1\) is the first left side of
+\eqref{eq:conditions}. Later branches contribute zero, since their
+\(n\)-th coordinate is binary.
+If \(n\in F\), the earlier weights sum to \(a^{r+1}\).
+Under the normalized \(x_n^2\)-weighted measure, the coordinate
+has magnitude \(R\), so its multiplier is
+\(R^2-\beta(R)-1\). The star branch has weight
+\((1-a)a^r\) and multiplier \(-1-\beta(0)\).
+The two diagonal coefficients are therefore \(a^r\) times the
+respective left sides of \eqref{eq:conditions}. These are exactly
+the coefficients of the right side of \eqref{eq:tel}.
+\end{proof}
+
+Let \(D\) be a positive integer, let
+\(j(n)=1+((n-1)\bmod D)\), and define
+\begin{equation}\label{eq:encoding}
+ \begin{split}
+ w_n&=q^{n-1}e_{j(n)},\qquad
+ t(y)=\sum_{n\ge1}w_nx_n(y),\qquad s=t|_G,\\
+ U(y)&=\sum_{n\ge1}q^{2n-2}\beta(x_n(y)),\\
+ z_Y(y)&=|t(y)|^2-U(y)+c\mathbf1_{Y_0}(y).
+ \end{split}
+\end{equation}
+These series converge uniformly and absolutely. All the displayed
+functions are continuous, and \(U|_G=0\).
+The operator calculation already gives
+\begin{equation}\label{eq:height}
+                  \Phi(t_j)=M_{s_j},\qquad
+                  \Phi(z_Y)=M_{|s|^2}.
+\end{equation}
+Indeed, all mixed terms in the square expansion of \(|t|^2\)
+compress exactly by \eqref{eq:multilinear}. Termwise compression
+is valid because \(\sum_n|w_n|<\infty\).
+For the diagonal terms, multiplying \eqref{eq:tel} by
+\(q^{2n-2}\) gives the norm-convergent telescope
+\[
+ \sum_{n=1}^Nq^{2n-2}
+       \left[\Phi\bigl(x_n^2-\beta(x_n)\bigr)-I\right]
+       =c(q^{2N}A_N-A_0)\longrightarrow-cA_0.
+\]
+This cancels \(c\Phi(\mathbf1_{Y_0})=cA_0\), proving
+\eqref{eq:height}. No orthogonality or cancellation of distinct
+vectors \(w_n\) is used in this calculation.
+
+\subsection{Numerical choices and uniform containment}
+
+The numerical data are collected below; the other
+quantities retain their definitions above.
+\begin{center}
+\begin{tabular}{c@{\quad}c@{\qquad\qquad}c@{\quad}c}
+\toprule
+Quantity & Value & Quantity & Value\\ \midrule
+\(D\) & \(32\) & \(R\) & \(12\)\\
+\(b\) & \(21/2\) & \(q^2\) & \(45026/72405\)\\
+\(\beta(0)\) & \(197/200\) & \(\beta(R)\) & \(2417/20\)\\
+\(c\) & \(14481/24320\) & Distance coefficient & \(1-10^{-5}\)\\
+\bottomrule
+\end{tabular}
+\end{center}
+In particular \(\beta(\pm1)=0\) completes the specification of
+\(\beta\). The two scalar identities \eqref{eq:conditions} are
+verified exactly: their left sides are respectively
+\[
+                 -\frac{1441}{6400}=c(q^2-1),\qquad
+                   \frac{439}{1400}=c(q^2-a).
+\]
+
+For the geometric estimate write \(\rho=q^D\) and
+\[
+ C_\rho=\left\{\sum_{\ell\ge0}\rho^\ell\varepsilon_\ell:
+                              \varepsilon_\ell\in\{-1,1\}\right\}.
+\]
+
+\begin{lemma}[Uniform digit estimate]\label{lem:contain}
+For every sequence \(d_\ell\in\{-R,-1,0,1,R\}\),
+\begin{equation}\label{eq:scalarcontain}
+ (1-10^{-5})\dist\left(\sum_{\ell\ge0}\rho^\ell d_\ell,C_\rho\right)^2
+             \ge\sum_{\ell\ge0}\rho^{2\ell}\beta(d_\ell).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Both sides vanish for an entirely binary sequence. Otherwise let
+\(h\) be its first nonbinary position and put
+\(\delta=\dist(d_h,\{-1,1\})\in\{1,R-1\}\).
+The largest possible difference between a numerical digit and a
+binary digit is \(R+1\). Put
+\[
+ T=\frac{(R+1)\rho}{1-\rho},\qquad
+ E=\frac{\beta(R)\rho^2}{1-\rho^2}.
+\]
+Against any signed expansion, let \(m\le h\) be the first
+mismatch. Its leading term dominates the remaining tail and gives
+a distance at least
+\(\rho^m(|d_m-\varepsilon_m|-T)\).
+If \(m=h\), this is at least \(\rho^h(\delta-T)\).
+If \(m<h\), it is at least \(\rho^h(R-1-T)\), provided
+\(2-T\ge\rho(R-1-T)\). Thus the distance to \(C_\rho\)
+is at least \(\rho^h(\delta-T)\).
+The right side of \eqref{eq:scalarcontain} is at most
+\(\rho^{2h}(\beta(d_h)+E)\), since \(\beta(R)\) is the
+largest digit correction.
+
+Here all the required estimates admit rational verification.
+The integer inequality
+\[
+                  1990\cdot45026^{16}<72405^{16}
+\]
+gives \(\rho<1/1990\), hence
+\[
+ T<\frac{13}{1989}<1,\qquad
+ E<\frac{2417}{20(1990^2-1)}.
+\]
+Also \(2-13/1989>11/1990\), which implies the earlier-mismatch
+comparison \(2-T>\rho(R-1-T)\). Finally, clearing positive
+denominators verifies
+\[
+ \begin{aligned}
+ (1-10^{-5})\left(1-\frac{13}{1989}\right)^2
+ -\frac{197}{200}-\frac{2417}{20(1990^2-1)}
+                                      &>\frac{19}{10000},\\
+ (1-10^{-5})\left(11-\frac{13}{1989}\right)^2
+ -\frac{2417}{20}-\frac{2417}{20(1990^2-1)}
+                                      &>\frac{49}{10000}.
+ \end{aligned}
+\]
+These prove \((1-10^{-5})(\delta-T)^2>\beta(d_h)+E\)
+in both cases. The estimates bound the entire infinite tail.
+\end{proof}
+
+\subsection{The convex body and its whole extreme boundary}
+
+The represented horizontal set is the Cartesian product
+\begin{equation}\label{eq:product}
+                 C=s(G)=\prod_{j=1}^Dq^{j-1}C_\rho.
+\end{equation}
+Define
+\begin{equation}\label{eq:g}
+ \begin{split}
+ g(x)&=|x|^2-(1-10^{-5})\dist(x,C)^2\\
+ &=10^{-5}|x|^2+(1-10^{-5})
+                  \sup_{u\in C}(2\langle x,u\rangle-|u|^2).
+ \end{split}
+\end{equation}
+The second formula proves strong convexity: it is a positive
+quadratic plus a supremum of affine functions.
+With
+\[
+ B=[-R-1,R+1]^D,\qquad M=(R+1)^2D+c+1,
+\]
+let
+\begin{equation}\label{eq:K}
+              K=\{(x,z):x\in B,\quad g(x)\le z\le M\}.
+\end{equation}
+This set is compact and convex. Since
+\(g(x)\le|x|^2\le(R+1)^2D<M\) throughout \(B\),
+it has nonempty interior in \(\mathbb R^{D+1}\).
+
+\begin{lemma}\label{lem:extreme}
+The entire extreme boundary is the compact set
+\begin{equation}\label{eq:X}
+ X=\{(x,g(x)):x\in B\}
+           \cup\{((R+1)\sigma,M):\sigma\in\{-1,1\}^D\}.
+\end{equation}
+Moreover the continuous maps
+\[
+ \iota_G(\varepsilon)=(s(\varepsilon),|s(\varepsilon)|^2),
+ \qquad \iota_Y(y)=(t(y),z_Y(y))
+\]
+take their values in \(X\) and \(K\), respectively.
+\end{lemma}
+\begin{proof}
+In a convex decomposition of a lower-graph point, equality in
+the convexity inequality forces the horizontal coordinates to
+coincide by strict convexity, and then forces the heights to
+coincide. Every lower-graph point is therefore extreme.
+An intermediate-height point is a nontrivial vertical convex
+combination. The top face is a box, whose only extreme points
+are its vertices. This proves \eqref{eq:X}, including the absence
+of any other extreme points. Compactness follows from continuity
+of \(g\) and finiteness of the vertex set.
+
+For the containment assertion,
+\( |t_j(y)|\le Rq^{j-1}/(1-\rho)<R+1\).
+Also \(U\ge0\), so \(z_Y\le|t|^2+c<M\).
+Apply Lemma~\ref{lem:contain} to each residue class of digits
+and multiply by \(q^{2(j-1)}\). Squared distance to the product
+\eqref{eq:product} is the sum of the squared coordinate distances,
+so
+\[
+                 (1-10^{-5})\dist(t(y),C)^2\ge U(y).
+\]
+Consequently \(z_Y(y)\ge g(t(y))\), proving \(\iota_Y(Y)\subset K\).
+Finally \(g=|\cdot|^2\) on \(C\), so \(\iota_G(G)\subset X\).
+\end{proof}
+
+\subsection{The boundary kernel and a positive witness}
+
+For \(w=(x,z)\in K\), put
+\[
+ r(w)=\frac{z-g(x)}{M-g(x)},\qquad
+ p_\sigma(x)=\prod_{j=1}^D\frac{1+\sigma_jx_j/(R+1)}2.
+\]
+The following probability measure on \(X\) has barycenter \(w\):
+\begin{equation}\label{eq:kernel}
+ \nu_w=(1-r(w))\delta_{(x,g(x))}
+       +r(w)\sum_{\sigma\in\{-1,1\}^D}
+                p_\sigma(x)\delta_{((R+1)\sigma,M)}.
+\end{equation}
+Indeed all weights are nonnegative and sum to one, and
+\(\sum_\sigma p_\sigma(x)(R+1)\sigma=x\).
+The denominator \(M-g(x)\) is positive on the whole box.
+For every \(f\in C(X)\), the function
+\(w\mapsto\int f\,d\nu_w\) is continuous.
+
+Define
+\begin{equation}\label{eq:maps}
+ \pi(f)=M_{f\circ\iota_G},\qquad
+ \widehat f(y)=\int_X f\,d\nu_{\iota_Y(y)},\qquad
+ \Psi(f)=V^*M_{\widehat f}V.
+\end{equation}
+The first map is a unital representation. Pointwise integration
+against probability measures preserves positivity at every matrix
+level; multiplication and isometric compression therefore make
+\(\Psi\) UCP. This formula uses the explicit finite kernel
+\eqref{eq:kernel}, with no choice of representing measures.
+
+It also gives a representation dilation directly. Index the terms
+of \eqref{eq:kernel} by \(J=\{0\}\cup\{-1,1\}^D\), writing
+their locations and weights at \(\iota_Y(y)\) as
+\(F_\ell(y)\in X\) and \(\omega_\ell(y)\ge0\).
+On
+\(\widetilde{\mathcal L}
+ =\bigoplus_{k\ge0}\bigoplus_{\ell\in J}L^2(Y_k,\mu_k)\),
+let \(\rho_X(f)\) multiply component \((k,\ell)\) by
+\(f(F_\ell(y))\). The map
+\[
+              (W\xi)_{k,\ell}(y)
+                    =\sqrt{\omega_\ell(y)}\,\xi_k(y)
+\]
+is an isometry, and
+\(\Psi(f)=(WV)^*\rho_X(f)(WV)\).
+
+\begin{proof}[Completion of the proof of Theorem~\ref{thm:main}]
+For an affine function, its integral against \(\nu_w\) is its
+value at \(w\). Thus \eqref{eq:height} gives
+\[
+ \Psi(x_j|_X)=M_{s_j}=\pi(x_j|_X),\qquad
+ \Psi(z|_X)=M_{|s|^2}=\pi(z|_X).
+\]
+Together with constants, these coordinates span \(A(K)|_X\).
+They are linearly independent because \(K\) has full affine
+dimension \(D+1=33\), and restriction to \(X\) is injective
+because \(K=\operatorname{conv}X\). Hence the function system
+has complex dimension \(D+2=34\).
+
+For \(Q(x,z)=|x|^2\), scalar convexity and the barycenter
+property give \(\widehat Q(y)\ge|t(y)|^2\).
+The constant Walsh vector has norm one and
+\(V1=\mathbf1_{Y_0}\). Independence and zero means remove all
+mixed terms from the following scalar integrals:
+\[
+ \begin{split}
+ \langle\Psi(Q)1,1\rangle
+       &\ge\int_{Y_0}|t|^2\,d\mu_0=\frac b{1-q^2},\\
+ \langle\pi(Q)1,1\rangle
+       &=\int_G|s|^2\,dm=\frac1{1-q^2}.
+ \end{split}
+\]
+Consequently
+\[
+              \langle[\Psi(Q)-\pi(Q)]1,1\rangle
+                         \ge\frac{b-1}{1-q^2}>0.
+\]
+The representation therefore fails the unique extension property.
+
+Finally \(q^D=\rho<1/2\) makes each signed expansion in
+\(C_\rho\) injective: the first differing digit exceeds the
+entire remaining difference tail. The product encoding \(s\),
+and hence \(\iota_G\), is injective. A point inverse image under
+\(\iota_G\) is therefore empty or a singleton; Haar measure on
+\(G\) assigns it measure zero. This proves that the spectral
+measure of \(\pi\) has no point atoms. The countably infinite
+Walsh basis proves that \(H\) is separable and infinite dimensional.
+\end{proof}
+
+\section{An obstruction for stationary geometric Walsh encodings}
+\label{enc:sec}
+
+The construction above separates the operator identities from the
+geometric containment problem. We now show that its dimension
+cannot be reduced to four by changing only the fixed three-point
+distribution, the geometric decay rate, or the directions of the
+encoding vectors. The first obstruction concerns the quadratic
+distance envelope. The next section extends it, in affine dimension
+four, to every finite strictly convex lower graph.
+
+\subsection{A signing estimate}
+
+\begin{lemma}[Signed series in finite dimension]\label{enc:signed}
+Let $w_n\in\mathbb R^D$ satisfy $\sum_n|w_n|<\infty$, and let
+$L_D$ be the sum of the $D$ largest numbers among
+$\{|w_n|^2:n\ge1\}$, padding with zeros if necessary.
+There are signs $\varepsilon_n\in\{-1,1\}$ such that
+\[
+ \left|\sum_{n\ge1}\varepsilon_nw_n\right|^2\le L_D.
+\]
+\end{lemma}
+\begin{proof}
+For a finite sequence $w_1,\ldots,w_N$, the polytope
+\[
+ \left\{a\in[-1,1]^N:\sum_{n=1}^N a_nw_n=0\right\}
+\]
+is nonempty. At an extreme point $a$, at most $D$ coordinates
+lie strictly between $-1$ and $1$: otherwise the corresponding
+vectors are linearly dependent and admit a nonzero feasible
+perturbation in both directions. Independently round each of
+these coordinates to a sign with mean $a_n$, leaving the other
+coordinates fixed. Since the centered rounding errors are
+independent,
+\[
+ \mathbb E\left|\sum_{n=1}^N\varepsilon_nw_n\right|^2
+ =\sum_{|a_n|<1}(1-a_n^2)|w_n|^2\le L_D.
+\]
+Some realization therefore has the required bound. Apply this
+argument to finite prefixes and extend their signings arbitrarily.
+The remaining tail has norm at most $\sum_{n>N}|w_n|\to0$.
+Compactness of the sign space and uniform convergence of the
+signed series give the assertion for the infinite sequence.
+\end{proof}
+
+\subsection{Eliminating all fixed three-point parameters}
+
+In this section, $\gamma$ denotes the squared geometric ratio;
+thus $\gamma=q^2$ in the construction above. The numerical tail
+law is supported on $\{0,\pm R\}$, with variance $b$ and masses
+$1-b/R^2,b/(2R^2),b/(2R^2)$. As before, $G$ is the binary source,
+$Y_0$ has only tail coordinates, and $Y_k$ has a binary prefix,
+a zero-valued star at $k$, and tail coordinates thereafter.
+
+\begin{theorem}[No stationary geometric distance encoding in
+horizontal dimension at most four]\label{enc:universal}
+Let
+\[
+ R>1,\qquad 1<b<R^2,\qquad c>0,\qquad 0<\gamma<1,
+ \qquad u,v\ge0.
+\]
+Suppose the exact height equations hold:
+\begin{equation}\label{enc:eq:telescoping}
+\begin{aligned}
+ \frac b{R^2}(R^2-1-v)
+  +\left(1-\frac b{R^2}\right)(-1-u)&=c(\gamma-1),\\
+ \frac1b(R^2-1-v)
+  +\left(1-\frac1b\right)(-1-u)&=c(\gamma-1/b).
+\end{aligned}
+\end{equation}
+Let $w_n\in\mathbb R^D$ have arbitrary directions and satisfy
+$|w_n|^2=\gamma^{n-1}$. Define
+\[
+ t(y)=\sum_{n\ge1}w_nx_n(y),\qquad C=t(G),\qquad
+ U(y)=\sum_{n\ge1}\gamma^{n-1}\beta(x_n(y)),
+\]
+where $\beta(\pm1)=0$, $\beta(0)=u$, and $\beta(\pm R)=v$.
+If $D\le4$, there is no $0<\lambda\le1$ for which
+\begin{equation}\label{enc:eq:containment}
+ \lambda\dist(t(y),C)^2-U(y)+c\mathbf1_{Y_0}(y)\ge0
+ \qquad(y\in Y).
+\end{equation}
+\end{theorem}
+\begin{proof}
+Two consequences of Lemma~\ref{enc:signed} suffice. At a star in
+the first position followed by zero digits, the encoded point is
+zero and $U=u/(1-\gamma)$. Signing the source series bounds its
+distance to $C$. On $Y_0$, take digits $R\varepsilon_n$ and compare
+with the source point having digits $\varepsilon_n$; the difference
+is $(R-1)\sum_n\varepsilon_nw_n$. Thus
+\eqref{enc:eq:containment} implies, after discarding $\lambda\le1$,
+\begin{equation}\label{enc:eq:necessary}
+ u\le1-\gamma^D,\qquad
+ v-c(1-\gamma)\le(R-1)^2(1-\gamma^D).
+\end{equation}
+For $D\le4$ these inequalities remain necessary with $D$ replaced
+by four.
+
+Put $x=\gamma^4$, $h=1+u$, and $\Delta=R^2+u-v$.
+The height equations give
+\begin{equation}\label{enc:eq:elimination}
+ c=\frac{\Delta(R^2-b^2)}{R^2(b-1)},\qquad
+ c(1-\gamma)=h-\frac b{R^2}\Delta.
+\end{equation}
+Using the second equality in the second inequality of
+\eqref{enc:eq:necessary} yields
+\begin{equation}\label{enc:eq:positive-delta}
+ \left(1-\frac b{R^2}\right)\Delta
+ \ge2(R-1)+(R-1)^2x>0.
+\end{equation}
+Hence $\Delta>0$, and the first equality of
+\eqref{enc:eq:elimination}, together with $c>0$, forces $b<R$.
+In particular all subsequent denominators are positive.
+Eliminating $c$ also gives
+\[
+ \frac h\Delta
+ =\frac{R^2-b-\gamma(R^2-b^2)}{R^2(b-1)}>0.
+\]
+Multiply \eqref{enc:eq:positive-delta} by $h/\Delta$ and use
+$h\le2-x$, from the first inequality in
+\eqref{enc:eq:necessary}. After cancellation,
+\begin{equation}\label{enc:eq:reduced}
+ (R-1)(2+(R-1)x)
+ \left(1-\gamma\frac{R^2-b^2}{R^2-b}\right)
+ \le(b-1)(2-x).
+\end{equation}
+
+Set $r=R-1>0$, $\alpha=(b-1)/(R-1)\in(0,1)$, and
+$A=1-\alpha\in(0,1)$. Clearing the positive denominators in
+\eqref{enc:eq:reduced} says that $p(r)\ge0$, where
+\[
+ p(r)=\gamma(1-\alpha)(2+(1+\alpha)r)(2+rx)
+       -(r+2-\alpha)(2(1-\alpha)+(r+\alpha)x).
+\]
+Its quadratic, linear, and constant coefficients are respectively
+\begin{equation}\label{enc:eq:coefficients}
+\begin{aligned}
+ &x\bigl(\gamma(1-\alpha^2)-1\bigr),\\
+ &2\bigl[-\gamma A^2+(2\gamma-1+\gamma x)A-x\bigr],\\
+ &-(2-x)A^2+2(2\gamma-1)A-x.
+\end{aligned}
+\end{equation}
+We prove that all three are strictly negative.
+The first is immediate. For the second put
+$N=2\gamma-1+\gamma^5$. If $N\le0$, negativity is immediate;
+if $N>0$, half the coefficient is at most
+$N^2/(4\gamma)-\gamma^4$. We claim that
+\begin{equation}\label{enc:eq:linear-bound}
+ 2\gamma-1+\gamma^5<2\gamma^{5/2}\qquad(0<\gamma<1).
+\end{equation}
+Indeed, setting $t=\sqrt\gamma$, the difference factors as
+\[
+ t^{10}-2t^5+2t^2-1=(t-1)Q(t),
+\]
+where
+\[
+ Q(t)=t^9+t^8+t^7+t^6+t^5-t^4-t^3-t^2+t+1>0
+ \qquad(0<t<1).
+\]
+For $t\le2/3$, this follows from
+$t^2+t^3+t^4\le76/81<1$. For $t\ge2/3$, use
+\[
+ Q(t)=(1-t^2)(1+t)
+       +t^4(t+t^2+t^3+t^4+t^5-1),
+\]
+whose first term is positive and whose second is nonnegative
+because $t+t^2\ge10/9$. This proves
+\eqref{enc:eq:linear-bound} and negativity of the linear coefficient.
+
+For the constant coefficient in \eqref{enc:eq:coefficients},
+$\gamma\le1/2$ is immediate. If $\gamma>1/2$, its maximum over
+real $A$ is
+\[
+ \frac{(2\gamma-1)^2}{2-\gamma^4}-\gamma^4<0.
+\]
+To verify the strict inequality, factor its numerator as
+\[
+\begin{split}
+ (2\gamma-1)^2-2\gamma^4+\gamma^8
+ ={}&(\gamma-1)\bigl(\gamma^7+\gamma^6+\gamma^5+\gamma^4\\
+ &\hspace{43mm}-\gamma^3-\gamma^2+3\gamma-1\bigr).
+\end{split}
+\]
+The parenthesis is positive, since
+$3\gamma-1-\gamma^2-\gamma^3
+=(1-\gamma)(\gamma^2+2\gamma-1)\ge0$ on this interval and the
+remaining powers are positive. All coefficients of $p$ are
+therefore negative, so $p(r)<0$ for $r>0$, a contradiction.
+\end{proof}
+
+Theorem~\ref{enc:universal} permits arbitrary, nonperiodic directions
+and every fixed symmetric three-point distribution with nonnegative
+potential satisfying the stated height equations. It excludes the distance-envelope realization
+in affine dimensions four and five, but is not a universal lower
+bound for commutative counterexamples. The remaining possibility
+of changing the lower graph requires an operator argument.
+
+\section{Strictly convex graphs in affine dimension four}
+\label{prox:sec}
+
+The quadratic envelope is forced by an injective affine defect
+when the horizontal dimension is at most three. The proof requires
+no smoothness of the lower graph. Away from its quadratic
+tangencies, supporting affine functions admit a metric taking
+values on a positive distance level. Such levels have the critical
+covering bound needed by Theorem~\ref{bar:thm}.
+
+\subsection{Distance levels and supporting affine functions}
+
+\begin{lemma}[Covering a positive distance level]\label{prox:lem:level}
+Let $C\subset\mathbb R^D$ be nonempty and compact, and fix
+$\varepsilon>0$. The compact set
+\[
+ S_\varepsilon=\{z:\dist(z,C)=\varepsilon\}
+\]
+has covers by $O(r^{-(D-1)})$ sets of diameter at most $r$ as
+$r\downarrow0$.
+\end{lemma}
+\begin{proof}
+For $z\in S_\varepsilon$, choose a nearest point $c\in C$ and put
+$v=(z-c)/\varepsilon$. If $z'\in S_\varepsilon$ and $d=z'-z$,
+then $|z'-c|\ge\varepsilon$. Interchanging the two points gives,
+for any nearest-point unit vector $v'$ at $z'$,
+\begin{equation}\label{prox:eq:normal-bounds}
+ v\cdot d\ge-\frac{|d|^2}{2\varepsilon},\qquad
+ v'\cdot d\le\frac{|d|^2}{2\varepsilon}.
+\end{equation}
+Cover $S_\varepsilon$ by finitely many closed spatial sets of
+diameter at most $\varepsilon/4$, and the unit sphere by finitely
+many closed balls of radius $1/8$ with unit centers $e_j$.
+Partition into overlapping patches by requiring membership in
+one spatial set and the existence of a nearest-point vector
+within $1/8$ of one $e_j$. These patches are compact, since they
+are projections of compact sets of nearest-point pairs.
+
+For two points in the same patch, choose witnessing vectors in
+\eqref{prox:eq:normal-bounds}. Then
+\[
+ |e_j\cdot d|\le\frac18|d|+
+           \frac{|d|^2}{2\varepsilon}\le\frac14|d|.
+\]
+Orthogonal projection onto $e_j^\perp$ is therefore injective on
+the patch and has a Lipschitz inverse. A grid in its bounded
+projected subset of $\mathbb R^{D-1}$ gives the stated covering
+bound. Sum over the finitely many patches. For $D=1$, each
+patch contains at most one point. No continuity or uniqueness
+of nearest-point vectors is needed.
+\end{proof}
+
+For a finite convex function $g$ on an open convex set $\Omega$, we
+write
+\[
+ \partial g(s)=\{p:\ g(t)\ge g(s)+\langle p,t-s\rangle
+                         \text{ for all }t\in\Omega\}
+\]
+for its convex subdifferential. The next lemma uses subgradients that
+differ from the gradient $2s$ of the quadratic source graph.
+
+\begin{lemma}[A metric for subgradient barriers]\label{prox:lem:metric}
+Let $g$ be finite and convex on an open convex set
+$\Omega\subset\mathbb R^D$, and let $C\subset\Omega$ be compact
+with $g(s)=|s|^2$ on $C$. Suppose $F\subset C$ is Borel and
+$p_s\in\partial g(s)$ is a Borel selection satisfying
+$0<\delta\le|p_s-2s|\le M<\infty$ on $F$.
+Set
+\[
+ v_s=\frac{p_s-2s}{|p_s-2s|},\qquad
+ \varepsilon=\delta/16,\qquad \theta_s=s+\varepsilon v_s.
+\]
+Then $\theta:F\to S_\varepsilon$ is Borel, with the distance
+level taken relative to the whole set $C$, and for a finite
+constant $L$ depending only on $\delta,M$,
+\begin{equation}\label{prox:eq:barrier-bound}
+ 0\le|t|^2-|s|^2-p_s\cdot(t-s)
+       \le L|\theta_t-\theta_s|^2\qquad(s,t\in F).
+\end{equation}
+\end{lemma}
+\begin{proof}
+The subgradient inequality and $g=|\cdot|^2$ on $C$ give
+\[
+ (p_s-2s)\cdot(t-s)\le|t-s|^2\qquad(s\in F,\ t\in C).
+\]
+Consequently
+\[
+ |\theta_s-t|^2\ge\varepsilon^2+
+       (1-2\varepsilon/\delta)|t-s|^2.
+\]
+Thus $s$ is the unique nearest point in $C$ to $\theta_s$, and
+$\theta_s\in S_\varepsilon$.
+
+For $s,t\in F$ write $d=t-s$ and $w=v_t-v_s$.
+Applying the subgradient inequality in both orders gives
+\[
+ v_s\cdot d\le|d|^2/\delta,\qquad
+ v_t\cdot d\ge-|d|^2/\delta,
+\]
+so $w\cdot d\ge-2|d|^2/\delta$ and
+\begin{equation}\label{prox:eq:metric-control}
+ |\theta_t-\theta_s|^2
+ =|d+\varepsilon w|^2
+ \ge\tfrac34|d|^2+\varepsilon^2|w|^2.
+\end{equation}
+The barrier in \eqref{prox:eq:barrier-bound} is nonnegative by
+convexity. Writing $\alpha_s=|p_s-2s|\le M$, its upper bound is
+\[
+ |d|^2-\alpha_s v_s\cdot d
+ \le(1+M/\delta)|d|^2+M|w|\,|d|.
+\]
+Young's inequality and \eqref{prox:eq:metric-control} bound this
+by $L|\theta_t-\theta_s|^2$ for a finite $L$.
+\end{proof}
+
+\subsection{An injective defect forces the quadratic envelope}
+
+\begin{theorem}[An injective defect forces the quadratic envelope]
+\label{prox:thm:envelope}
+Let $1\le D\le3$, and let $g$ be finite and strictly convex on an
+open convex set $\Omega\subset\mathbb R^D$.
+Let $K\subset\Omega\times\mathbb R$ be compact and convex, with
+$X=\ex K$ compact and $K\subset\{(t,z):z\ge g(t)\}$.
+Suppose $C\subset\Omega$ is nonempty and compact, and
+\[
+ g(s)=|s|^2,\qquad x_s=(s,|s|^2)\in K\qquad(s\in C).
+\]
+The graph points form a set $E=\{x_s:s\in C\}\subset X$.
+Let $\pi:C(X)\to B(H)$ be a unital representation concentrated
+on $E$ and having full spectral support there.
+Suppose a UCP map $\Psi:C(X)\to B(H)$ agrees with $\pi$ on
+affine functions, and for some real affine $h$ the operator
+\[
+ \mathcal D_h=\Psi(h^2)-\pi(h)^2
+\]
+is injective. Then $\pi$ is concentrated on points where
+$\partial g(s)=\{2s\}$, equivalently where $g$ is differentiable
+with $\nabla g(s)=2s$. Moreover,
+\begin{equation}\label{prox:eq:envelope}
+ 2s\in\partial g(s)\quad(s\in C),\qquad
+ g(t)\ge|t|^2-\dist(t,C)^2\quad(t\in\Omega).
+\end{equation}
+\end{theorem}
+\begin{proof}
+Subdifferentials of a finite convex function on an open convex
+domain are nonempty and compact, locally bounded, and have closed
+graph. Local boundedness follows by evaluating the supporting
+inequality a fixed small distance in every direction inside a
+larger compact ball. Hence the subgradient graph over $C$ is
+compact, and $|p-2s|\le M$ there for some finite $M$.
+
+For $m\ge1$ let
+\[
+ \Gamma_m=\{(s,p):s\in C,\ p\in\partial g(s),\
+                    |p-2s|\ge1/m\},\qquad
+ F_m=\operatorname{pr}_C\Gamma_m.
+\]
+These sets are compact. The increasing sets $F_m$ exhaust
+$\{s\in C:\partial g(s)\ne\{2s\}\}$.
+On each nonempty $F_m$, Lemma~\ref{lb:lem:selection} gives a
+Borel selector with $1/m\le|p_s-2s|\le M$.
+For the graph $E_m=\{x_s:s\in F_m\}$ define
+\[
+ b_{x_s}(t,z)=z-|s|^2-p_s\cdot(t-s).
+\]
+The coefficients are Borel, and $b_{x_s}$ is nonnegative on $K$
+and vanishes there only at $x_s$. Indeed strict convexity makes
+the subgradient inequality strict at every $t\ne s$; at $t=s$,
+equality requires $z=g(s)$. This also shows that all graph points
+under consideration are exposed extreme points of $K$.
+
+Lemma~\ref{prox:lem:metric}, with $\delta=1/m$, bounds these
+barriers on $E_m$ by a constant times squared distance after a
+Borel map into $S_{1/(16m)}$. By Lemma~\ref{prox:lem:level}, this
+compact level has $O(r^{-(D-1)})$ covers and hence, since $D\le3$,
+$O(r^{-2})$ covers. Lemma~\ref{lb:lem:energy} gives infinite
+inverse-square energy for every nonzero finite measure pushed
+onto it. Theorem~\ref{bar:thm} therefore gives UEP for every
+representation concentrated on $E_m$.
+
+Write $P$ for the spectral measure of $\pi$ and $P_m=P(E_m)$.
+Restrict $\pi$ and compress $\Psi$ to each nonzero $P_mH$.
+These maps still agree on the affine functions, so the preceding
+UEP assertion makes them equal. Since $P_m$ commutes with
+$\pi(h)$,
+\[
+ P_m\mathcal D_hP_m=0.
+\]
+The operator $\mathcal D_h$ is positive by the Schwarz inequality.
+Thus $\mathcal D_h^{1/2}P_m=0$, and injectivity forces $P_m=0$.
+The Borel set
+\[
+ E_{\mathrm{bad}}=\bigcup_mE_m
+ =\{x_s:s\in C,\ \partial g(s)\ne\{2s\}\}
+\]
+has spectral projection zero. A finite convex function is
+differentiable precisely where its subdifferential is a singleton,
+which proves the concentration assertion.
+
+Full spectral support makes the remaining source points dense
+in $C$. The closed subgradient graph then gives
+$2s\in\partial g(s)$ for every $s\in C$. Finally,
+\[
+ g(t)\ge\sup_{s\in C}
+       \bigl(g(s)+2s\cdot(t-s)\bigr)
+       =|t|^2-\dist(t,C)^2,
+\]
+proving \eqref{prox:eq:envelope}.
+\end{proof}
+
+\begin{corollary}[UEP away from quadratic tangencies]
+\label{prox:cor:source}
+Under the geometric hypotheses of Theorem~\ref{prox:thm:envelope},
+every representation concentrated on
+$E_{\mathrm{bad}}=\{x_s:s\in C,\ \partial g(s)\ne\{2s\}\}$
+has UEP. More generally, for any representation $\pi$ concentrated
+on $E$ and any affine-agreeing UCP map $\Psi$,
+\[
+ \bigl(\Psi(h^2)-\pi(h)^2\bigr)P(E_{\mathrm{bad}})=0
+\]
+for every real affine $h$.
+\end{corollary}
+\begin{proof}
+Use the increasing compact sets $E_m$ in the preceding proof,
+each of which supports only representations with UEP.
+If $P(E_{\mathrm{bad}})=I$, then $P(E_m)\uparrow I$ and UEP on
+the compressed spaces gives
+\[
+ P(E_m)\Psi(f)P(E_m)=P(E_m)\pi(f)P(E_m)\qquad(f\in C(X)).
+\]
+Taking strong limits proves $\Psi=\pi$.
+Without that concentration assumption, compressed equality still
+gives $P(E_m)\mathcal D_hP(E_m)=0$. Positivity yields
+$\mathcal D_hP(E_m)=0$, and the strong limit gives the result.
+\end{proof}
+
+\subsection{Application to the Walsh construction}
+
+\begin{lemma}[Injective horizontal defects]\label{reg:lem:injective}
+For the stationary three-point Walsh compression, assume
+$1<b<R^2$ and write $\Phi(f)=V^*M_fV$.
+Each operator $D_n=\Phi(x_n^2)-I$ is positive and injective.
+If $t_j=\sum_n(w_n)_jx_n$ is a nonzero linear coordinate with
+$\sum_nR|w_n|<\infty$ and $s_j=t_j|_G$, then
+\begin{equation}\label{reg:eq:defect-sum}
+ \Phi(t_j^2)-M_{s_j}^2=\sum_n(w_n)_j^2D_n
+\end{equation}
+is also positive and injective. A positive barycentric-kernel
+realization with horizontal coordinate $t_j$ has an actual
+coordinate defect at least as large as this operator.
+\end{lemma}
+\begin{proof}
+Put $a=1/b$. On the Walsh vector $\chi_F$, let $r=|F_{>n}|$.
+If $n\notin F$, the total squared weight of branches before
+$n$ is $a^r$, and their tail second moment is $b$; later branches
+have binary value squared equal to one. If $n\in F$, the total
+weight before $n$ is $a^{r+1}$, their squarefree-product-weighted
+second moment is $R^2$, and branch $n$ has weight
+$(1-a)a^r$ and value zero. Consequently
+\[
+ D_n\chi_F=a^r
+ \begin{cases}
+ b-1,&n\notin F,\\
+ R^2/b-1,&n\in F.
+ \end{cases}\chi_F.
+\]
+Every diagonal entry is strictly positive, so $D_n$ is injective;
+no uniform positive lower bound is asserted.
+
+Uniform absolute convergence permits expansion of $t_j^2$.
+All mixed terms compress exactly by
+\eqref{eq:multilinear}, leaving the norm-convergent positive sum
+\eqref{reg:eq:defect-sum}. One nonzero coefficient bounds this
+sum below by a positive scalar multiple of an injective $D_n$.
+Finally, scalar Jensen for a probability measure with barycenter
+$(t(y),z(y))$ gives $\int\tau_j^2\,d\nu_y\ge t_j(y)^2$.
+Applying the positive compression shows
+$\Psi(\tau_j^2)\ge\Phi(t_j^2)$, while affine agreement gives
+$\pi(\tau_j)=M_{s_j}$. This proves the last assertion.
+\end{proof}
+
+\begin{corollary}[No strictly convex graph in affine dimension four]
+\label{prox:cor:walsh}
+Take the stationary geometric data of
+Theorem~\ref{enc:universal}. Suppose a compact convex body $K$
+with compact extreme boundary contains every encoded point
+\[
+ (t(y),z_Y(y)),\qquad
+ z_Y(y)=|t(y)|^2-U(y)+c\mathbf1_{Y_0}(y),\qquad y\in Y,
+\]
+and lies in the epigraph of a finite strictly convex function
+$g$ on an open convex horizontal domain containing $t(Y)$.
+Assume $g(s)=|s|^2$ on $C=t(G)$, the signed graph is represented
+on $L^2(G,m)$, and a positive barycentric kernel realizes an
+affine-agreeing UCP map. Then $D\ge4$.
+In particular this mechanism cannot give an affine-dimension-four
+counterexample, with or without differentiability of $g$.
+\end{corollary}
+\begin{proof}
+The continuous surjection $t:G\to C$ sends Haar measure to a
+measure of full support: the preimage of a nonempty relatively
+open set is nonempty and open, and therefore has positive Haar
+measure. This does not require injectivity of the encoding.
+Some horizontal coordinate has a nonzero coefficient, and
+Lemma~\ref{reg:lem:injective} gives an injective defect for the
+actual barycentric map.
+
+If $D\le3$, Theorem~\ref{prox:thm:envelope} gives
+$g(t)\ge|t|^2-\dist(t,C)^2$. Containment of the encoded points
+therefore implies
+\[
+ \dist(t(y),C)^2-U(y)+c\mathbf1_{Y_0}(y)\ge0\qquad(y\in Y),
+\]
+contradicting Theorem~\ref{enc:universal} with $\lambda=1$.
+\end{proof}
+
+\begin{remark}\label{prox:rem:scope}
+Theorem~\ref{prox:thm:envelope} itself does not assume a Walsh
+model, stationarity, or geometric vector norms. It uses one
+injective affine defect and full spectral support on the
+quadratic graph. Its dimension restriction is $D-1\le2$, the
+covering exponent of the auxiliary distance level. Accordingly,
+the strictly convex graph obstruction applies in affine dimension
+four; the stronger affine-dimension-five exclusion in
+Theorem~\ref{enc:universal} applies to the distance-envelope
+certificate. These are construction-family obstructions, not
+universal dimension lower bounds. They leave open constructions
+using a different compression, nongeometric vector norms, other
+height identities, or geometry outside the strictly convex graph
+setting.
+\end{remark}
+
+\section{The remaining low-dimensional questions}
+\label{sec:questions}
+
+The main results leave both parts of the proposed dimension-four
+threshold unresolved. There is no construction here in affine
+dimension four, and the positive three-dimensional theorems do not
+cover every compact convex body with closed extreme boundary.
+
+In dimension three, one unresolved interaction in the smooth-source
+approach is between smooth source points and nonsmooth dilation
+points. Different source normals may have supporting faces containing
+the same dilation point.
+The proof of Proposition~\ref{lb:prop:smooth-both} then gives no
+intertwining over the normal space. Distinct supporting faces in
+$\R^3$ intersect in at most a line and have at most two common extreme points,
+but pointwise affine interpolation on these intersections is not yet
+an operator estimate. In particular, a bounded array of interpolation
+coefficients need not define a bounded Schur multiplier uniformly in
+the number of spectral blocks. If $H_N$ is a symmetric Hadamard matrix
+and $C_N$ agrees with it off the diagonal and vanishes on the diagonal,
+then
+\[
+ \|H_N/\sqrt N\|=1,
+ \qquad C_N\circ(H_N/\sqrt N)=(J_N-I_N)/\sqrt N,
+\]
+whose norm is $(N-1)/\sqrt N$. Any argument along this route must
+use the actual incidence constraints of the supporting faces, not
+only entrywise coefficient bounds.
+
+For dimension four, the signing and proximal arguments rule out the
+most direct ways of modifying the stationary geometric Walsh
+construction. The expectation obstruction in
+Appendix~\ref{app:correlated} rules out the quadratic-distance
+containment certificate for every exact height correction for the
+first correlated distribution. These results identify failures
+of specific mechanisms; they provide no evidence that all
+four-dimensional bodies must be hyperrigid. A successful construction
+must simultaneously preserve exact compression identities, place the
+represented spectrum in the extreme boundary, and retain a nonzero
+coordinate defect. None of these requirements follows from the others.
+
+\subsection*{Preparation and verification}
+This manuscript was developed and edited with substantial language-model
+assistance. Separate automated review tasks rederived the compression
+identities, checked the geometric and measure-theoretic arguments,
+and tested proposed constructions against the stated hypotheses.
+Exact rational arithmetic verifies the numerical certificate in
+Section~\ref{sec:construction}. These checks are not independent human
+mathematical verification and are not a formal proof certification.
+The bibliography identifies the source versions used; the limited
+literature comparison does not establish priority for every subsidiary
+lemma. The presentation separates complete arguments from the open
+questions above.
+
+\appendix
+\section{Normal-lift capacity is not a necessary condition}
+\label{app:capacity}
+
+The normal lift gives a convenient metric for the supporting-gap
+criterion, but it need not give the strongest one. The next example
+separates the two tests. Its represented source has the unique extension
+property even though its normal lift supports a measure of finite
+inverse-square energy.
+
+\begin{theorem}\label{geom:thm}
+There are a compact convex body $K\subset\R^4$ with closed extreme
+boundary and a compact set $Z\subset\ex K$ such that:
+\begin{enumerate}
+\item every point of $Z$ is exposed and has a unique unit outward normal;
+\item the normal lift of $Z$ supports a probability measure of finite
+inverse-square energy;
+\item every representation concentrated on $Z$ has UEP relative to $A(K)|_{\ex K}$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+We construct a thin Cantor set whose normal field records two additional
+independent collections of digits. For signs $\omega_n\in\{-1,1\}$,
+$n\ge0$, put
+\[
+ s(\omega)=\left(\sum_{n\ge0}4^{-n}\omega_n,
+       10^{-3}\sum_{n\ge0}64^{-n}\omega_n,
+       10^{-3}\sum_{n\ge0}128^{-n}\omega_n\right),
+ \qquad C=s(\{-1,1\}^{\N_0}).
+\]
+The first coordinate is an injective Cantor expansion, so $s$ is a
+homeomorphism onto $C$. Its first three vector coefficients are
+linearly independent by the Vandermonde determinant; hence
+$\aff C=\R^3$. Also $C\subset(-2,2)^3$ and $|s|<2$.
+
+If two sequences first differ at index $n$, their first-coordinate
+difference is at least $(4/3)4^{-n}$, whereas their second- and
+third-coordinate differences are at most
+$2\cdot10^{-3}64^{-n}/(1-1/64)$ and
+$2\cdot10^{-3}128^{-n}/(1-1/128)$, respectively. In particular,
+\begin{equation}\label{app:eq:flat}
+ |s_j-t_j|\le\frac{8}{7000}|s_1-t_1|^2
+       \quad(j=2,3),\qquad |s-t|^2\le2|s_1-t_1|^2.
+\end{equation}
+Define continuous functions $a,b:C\to[1,2]$ by
+\[
+ a(s(\omega))=1+\sum_{k\ge0}2^{-(k+1)}\frac{1+\omega_{3k+1}}2,
+ \qquad
+ b(s(\omega))=1+\sum_{k\ge0}2^{-(k+1)}\frac{1+\omega_{3k+2}}2.
+\]
+Set $p(s)=2s+(0,a(s),b(s))$. The preceding estimates imply
+\begin{equation}\label{app:eq:interpolation}
+ \bigl|\langle p(s)-2s,t-s\rangle\bigr|
+       \le\frac{32}{7000}|t-s|^2<\frac12|t-s|^2
+       \qquad(s,t\in C).
+\end{equation}
+Thus the data $g(s)=|s|^2$, $\nabla g(s)=p(s)$ admit the strongly
+convex extension
+\[
+ g(x)=\max_{s\in C}
+       \left\{|s|^2+\langle p(s),x-s\rangle+\tfrac12|x-s|^2\right\}.
+\]
+Indeed, subtracting $|x|^2/2$ leaves a supremum of affine functions.
+For $x\in C$, \eqref{app:eq:interpolation} shows that the unique
+maximizer is $s=x$, and $g(x)=|x|^2$.
+
+For clarity, this uniqueness also proves differentiability at every
+$x\in C$. If $s_h$ maximizes at $x+h$, compactness and continuity
+force $s_h\to x$. Let $Q_s$ denote the quadratic inside the maximum.
+Then
+\[
+ Q_x(x+h)-Q_x(x)\le g(x+h)-g(x)
+      \le Q_{s_h}(x+h)-Q_{s_h}(x).
+\]
+Both bounds are $\langle p(x),h\rangle+o(|h|)$.
+
+Choose $M>\max_{[-2,2]^3}g$ and let
+\[
+ K=\{(x,z):x\in[-2,2]^3,\ g(x)\le z\le M\},
+ \qquad Z=\{P_s=(s,|s|^2):s\in C\}.
+\]
+Strict convexity shows that the full extreme boundary consists of the
+lower graph and the eight vertices of the top face, exactly as in
+Lemma~\ref{lem:extreme}. It is compact, and $K$ has nonempty interior.
+At $P_s$, the supporting plane is strict away from $P_s$, and the unique
+outward unit normal is
+\[
+                         n(s)=\frac{(p(s),-1)}{\sqrt{1+|p(s)|^2}}.
+\]
+
+We next show that the lift $P_s+n(s)$ carries finite energy. The paired
+lift $(P_s,n(s))$ and the sum lift $P_s+n(s)$ are bi-Lipschitz equivalent:
+the supporting-normal inequalities give
+\[
+ |P_s-P_t|^2+|n(s)-n(t)|^2
+ \le |P_s+n(s)-P_t-n(t)|^2
+ \le2\bigl(|P_s-P_t|^2+|n(s)-n(t)|^2\bigr).
+\]
+By \eqref{app:eq:flat}, the paired lift is in turn bi-Lipschitz equivalent
+to the coordinates $(s_1,a(s),b(s))$. In one direction all its components
+are Lipschitz functions of these three coordinates. In the other,
+recover $s$ from the position and then recover $p(s)$ from the normal
+by division by its last coordinate, which is bounded away from zero.
+
+Under product measure on the signs, $a$ and $b$ are independent uniform
+variables on $[1,2]$. Conditional on the digits defining them, the
+remaining contribution to $s_1$ is a translate of
+\[
+                         \sum_{k\ge0}64^{-k}\omega_{3k}.
+\]
+Its probability in an interval of length $2r$ is bounded by a fixed
+multiple of $r^{1/6}$. To verify this, choose $N$ with
+$64^{-N}\le r<64^{-(N-1)}$. An interval of that length meets at most
+two level-$N$ cylinders, each of mass $2^{-N}$; the separation follows
+by comparing the first differing digit with the geometric tail.
+Conditioning and integrating over $a,b$ therefore give a ball bound
+of the form $Cr^{2+1/6}$ for $(s_1,a,b)$, uniformly in the center.
+The same bound holds on the normal lift by bi-Lipschitz equivalence.
+For its pushed-forward probability measure $\nu$, it follows that
+\[
+ \iint |u-v|^{-2}\,d\nu(u)d\nu(v)
+ \le1+2C\int_0^1r^{-3}r^{13/6}\,dr<\infty.
+\]
+
+Finally, consider the actual supporting affine functions
+\[
+ b_{P_s}(x,z)=z-|s|^2-\langle p(s),x-s\rangle.
+\]
+They expose $P_s$, since
+$b_{P_s}(x,z)\ge z-g(x)+|x-s|^2/2$ on $K$. On the represented source,
+\eqref{app:eq:flat}--\eqref{app:eq:interpolation} give
+\[
+                  0\le b_{P_s}(P_t)\le3|s_1-t_1|^2.
+\]
+The first coordinate lies in the compact interval $[-4/3,4/3]$,
+which supports no nonzero measure of finite inverse-square energy.
+Theorem~\ref{bar:thm} proves the unique extension property on $Z$.
+\end{proof}
+
+\section{Varying distributions and uniformly positive defects}
+\label{app:heterogeneous}
+
+The local defect estimate in Lemma~\ref{het:lem:local} imposes a
+restriction independent of the choice of convex graph. Here is its
+consequence for varying three-point distributions.
+
+At coordinate $n$, let the symmetric distribution on $\{0,\pm R_n\}$
+have second moment $b_n$, where $1<b_n<R_n^2$. Put $a_n=b_n^{-1}$.
+Use the branch spaces of the Walsh construction, with these varying
+tail distributions. Replace the formula for $V$ by
+\[
+ \begin{split}
+ V\chi_F={}&\left(\prod_{n\in F}\sqrt{a_n}\right)\chi_F^{(0)}\\
+ &+\sum_{k\in F}\sqrt{1-a_k}
+     \left(\prod_{n\in F_{>k}}\sqrt{a_n}\right)
+       \chi_{F\setminus\{k\}}^{(k)},
+ \end{split}
+\]
+where the normalized branch monomial is
+$\chi_F^{(k)}=(\prod_{n\in F_{>k}}b_n^{-1/2})\prod_{n\in F}x_n$.
+The proof of Lemma~\ref{lem:walsh} remains valid because
+\[
+ \prod_{n\in F}a_n+
+ \sum_{k\in F}(1-a_k)\prod_{n\in F_{>k}}a_n=1.
+\]
+In particular all square-free products compress exactly. For the
+coordinate-square defect, parity and the same branch calculation give
+\begin{equation}\label{het:eq:Dn}
+ \bigl(\Phi(x_n^2)-I\bigr)\chi_F
+ =\left(\prod_{i\in F_{>n}}a_i\right)
+ \begin{cases}
+ b_n-1,&n\notin F,\\
+ R_n^2/b_n-1,&n\in F
+ \end{cases}
+ \chi_F.
+\end{equation}
+
+\begin{theorem}\label{het:thm:obstruction}
+Assume $\sum_n(b_n-1)<\infty$. Let $w_n\in\R^D$ satisfy
+$\sum_n R_n|w_n|<\infty$, with at least one $w_n\ne0$, and put
+\[
+                       t=\sum_n w_nx_n,
+                       \qquad s=\sum_nw_n\varepsilon_n.
+\]
+There is no compact convex body with compact extreme boundary carrying
+an affine-agreeing pair $(\pi,\Psi)$ for which the first $D$ ambient
+coordinate functions $\tau_j$ satisfy $\pi(\tau_j)=M_{s_j}$ and
+\[
+                         \Psi(\tau_j^2)\ge\Phi(t_j^2)
+                         \qquad(1\le j\le D).
+\]
+In particular, no positive barycentric-kernel construction realizes
+these data, regardless of its additional coordinates.
+\end{theorem}
+\begin{proof}
+The product $a_*:=\prod_n a_n$ is positive. Equation~\eqref{het:eq:Dn}
+gives
+\[
+ \Phi(x_n^2)-I\ge
+ a_*\min\{b_n-1,R_n^2/b_n-1\}I>0.
+\]
+Uniform convergence and exact compression of mixed products imply
+\[
+ \Phi(t_j^2)-M_{s_j}^2
+       =\sum_n(w_n)_j^2\bigl(\Phi(x_n^2)-I\bigr).
+\]
+For some $j$, a nonzero summand bounds this defect below by a positive
+multiple of $I$. The asserted inequality for $\Psi$ contradicts
+Lemma~\ref{het:lem:local}. For a barycentric kernel it follows from
+scalar Jensen's inequality for a coordinate square and positivity of
+compression.
+\end{proof}
+
+The same obstruction applies to finite nonlinear coordinates.
+
+\begin{proposition}\label{het:prop:polynomial}
+Under the preceding summability hypothesis, every nonconstant real
+multiaffine polynomial $p$ in finitely many coordinates satisfies
+\[
+                    \Phi(p^2)-M_{p(\varepsilon)}^2\ge c_p I
+\]
+for some $c_p>0$. It therefore cannot be used as an affine coordinate
+of a compact-extreme-boundary barycentric construction.
+\end{proposition}
+\begin{proof}
+Exact square-free compression identifies the defect with $T^*T$, where
+$T=M_pV-VM_{p(\varepsilon)}$. Restrict this error to the initial branch
+$Y_0$. If $p$ involves the first $N$ variables, its tail factor is
+bounded below by the positive product $\prod_{n>N}b_n^{-1/2}$.
+It suffices to prove injectivity of the finite-prefix error.
+
+Identify functions on the binary cube with multiaffine polynomials.
+Let $\mathcal D$ scale a monomial $x_F$ by $\prod_{i\in F}b_i^{-1}$.
+If the error vanishes on a vector represented by $h$, then, with
+$q=\mathcal Dh$,
+\[
+                       p(x)q(x)=\mathcal D(p(\varepsilon)h(\varepsilon))(x)
+\]
+on the full three-point product grid. Both sides have degree at most
+two in each variable, so this is a polynomial identity. The right side
+is multiaffine. Whenever $p=p_0+x_ip_1$ with $p_1\ne0$, write
+$q=q_0+x_iq_1$; comparison of the $x_i^2$ coefficient gives
+$p_1q_1=0$, hence $q_1=0$. Thus $q$ and $h$ are independent of every
+active variable of $p$. The identity reduces to
+\[
+        \bigl[p(x)-p(x_1/b_1,\ldots,x_N/b_N)\bigr]q(x)=0.
+\]
+The first factor is nonzero, because $p$ is nonconstant and every
+$b_i>1$. Hence $q=0$. The finite-prefix error has positive minimum
+singular value; tensoring with the bounded-below tail proves the claim.
+\end{proof}
+
+\section{Correlated magnitudes and an expectation obstruction}
+\label{app:correlated}
+
+Independence of the magnitudes is not essential to the Walsh isometry.
+This observation gives a distinct family of exact compression maps.
+A simple expectation test, however, excludes an entire range of its
+possible geometric realizations.
+
+Fix $b>1$ and $0<\delta<b$. Let $\theta$ be uniform on the circle and
+let $\xi_n$ be independent uniform signs, independent of $\theta$. Put
+\begin{equation}\label{corr:eq:model}
+                   x_n=\xi_n\sqrt{b+\delta\cos(4^n\theta)}.
+\end{equation}
+These coordinates share their angle and are not independent.
+Nevertheless, if $S_n=x_n^2$, then for every finite index set and
+integers $0\le k_n\le3$,
+\begin{equation}\label{corr:eq:moments}
+                   \mathbb E\prod_n S_n^{k_n}
+                      =\prod_n\mathbb E S_n^{k_n}.
+\end{equation}
+Indeed, a nonconstant term in the Fourier expansion has frequency
+$\sum_n j_n4^n$ with $|j_n|\le3$. Its largest nonzero term cannot be
+cancelled, since $4^m>3\sum_{n<m}4^n$. Thus only products of constant
+Fourier coefficients survive. By contrast,
+\[
+ \mathbb E[(S_n-b)^4(S_{n+1}-b)]=\delta^5/16\ne0,
+\]
+as follows from the $\cos4t$ coefficient in $\cos^4t$.
+
+On the initial branch use \eqref{corr:eq:model} at every coordinate;
+on branch $Y_k$ use the binary prefix, the zero-valued star, and the
+same correlated law on its tail. The angle and all prefix and tail
+signs are independent. For compactness, use disjoint tagged copies of
+the binary symbols and of the compact tail intervals, even where their
+numerical values agree. Each fixed branch is a compact image of its
+angle and sign space; branches with stars tending to infinity
+accumulate only on the binary source. Thus the union is compact,
+$Y_0$ is clopen, and every numerical coordinate is continuous.
+
+\begin{proposition}\label{corr:prop:compression}
+With these branch laws and the same formula for $V$ as in
+\eqref{eq:V}, using $a=b^{-1}$, the map $V$ is an isometry and every
+square-free product compresses exactly. Moreover $V1=\ind_{Y_0}$ and
+\begin{equation}\label{corr:eq:defect}
+ \bigl(\Phi(x_n^2)-I\bigr)\chi_F
+  =b^{-|F_{>n}|}
+  \begin{cases}
+   b-1,&n\notin F,\\
+   \delta^2/(2b^2),&n\in F
+  \end{cases}\chi_F.
+\end{equation}
+In particular each coordinate-square defect is positive and injective.
+\end{proposition}
+\begin{proof}
+Independent signs make different monomial labels orthogonal.
+Equation~\eqref{corr:eq:moments} gives the same normalized monomial
+norms as the independent law. A surviving square-free matrix coefficient
+uses only exponents zero and two, so the complete proof of
+Lemma~\ref{lem:walsh} applies.
+For the square defect, $\mathbb E x_n^4=b^2+\delta^2/2$.
+If $n\in F$, the total pre-star branch weight is
+$b^{-|F_{>n}|-1}$ and the weighted second moment is
+$(b^2+\delta^2/2)/b$; the star contributes zero. Subtracting $I$
+gives the second coefficient in \eqref{corr:eq:defect}. If $n\notin F$,
+the calculation uses the ordinary second moment $b$, giving the first.
+\end{proof}
+
+\begin{theorem}[An obstruction independent of the height correction]
+\label{avg:lem:vacuum}
+For the correlated model, let $w_n\in\R^D$ be a nonzero absolutely
+summable sequence and put
+\[
+ t=\sum_nw_nx_n,\qquad s=\sum_nw_n\varepsilon_n,
+ \qquad C=s(G).
+\]
+Suppose a continuous height $z$ satisfies
+\[
+ \Phi(z)=M_{|s|^2},\qquad
+ z(y)\ge|t(y)|^2-\dist(t(y),C)^2\quad(y\in Y_0).
+\]
+Then
+\begin{equation}\label{avg:eq:mean}
+                   \frac1{2\pi}\int_0^{2\pi}
+                     \sqrt{b+\delta\cos\theta}\,d\theta\le1.
+\end{equation}
+No additive form for $z$, and no geometric decay of $|w_n|$, is assumed.
+\end{theorem}
+\begin{proof}
+Let $L=\sum_n|w_n|^2>0$ and denote the mean in
+\eqref{avg:eq:mean} by $m$. Exact height compression and
+$V1=\ind_{Y_0}$ give $\mathbb E_{Y_0}z=L$, whereas independent signs
+give $\mathbb E_{Y_0}|t|^2=bL$.
+For each branch point, compare $t$ with the source point having the
+same signs. Averaging first over signs and then over the angle gives
+\[
+ \mathbb E_{Y_0}\dist(t,C)^2
+ \le\mathbb E\left|\sum_nw_n\xi_n
+           \bigl(\sqrt{b+\delta\cos(4^n\theta)}-1\bigr)\right|^2
+ =(b+1-2m)L.
+\]
+Containment gives the reverse lower bound $(b-1)L$. Dividing by $L$
+proves $m\le1$. Absolute uniform convergence justifies all expansions.
+\end{proof}
+
+\begin{corollary}\label{avg:cor:first}
+The distribution $b=6/5$, $\delta=1$ admits no such exact height in
+any finite horizontal dimension. Suppose a body $K$ satisfies the
+geometric hypotheses of Theorem~\ref{prox:thm:envelope}, contains
+every encoded point $(t(y),z(y))$, and a positive barycentric kernel
+realizes the affine-agreeing map on the signed-source representation.
+Then no finite strictly convex graph can repair this model when
+$D\le3$.
+\end{corollary}
+\begin{proof}
+The two chords of the square-root function on $[b-\delta,b]$ and
+$[b,b+\delta]$ give
+\[
+ m\ge\sqrt b+
+  \frac{\sqrt{b+\delta}+\sqrt{b-\delta}-2\sqrt b}{\pi}
+ >\frac{\sqrt b+\sqrt{b+\delta}+\sqrt{b-\delta}}3.
+\]
+The last inequality uses strict concavity and $\pi>3$. At the stated
+parameters, the three square roots exceed $109/100$, $148/100$, and
+$44/100$, respectively. Thus $m>301/300>1$.
+For the graph assertion, exact mixed products and
+\eqref{corr:eq:defect} give an injective defect in any nonzero
+horizontal coordinate. A positive barycentric kernel preserves that
+lower bound, and the signed source has full spectral support.
+Theorem~\ref{prox:thm:envelope} forces the excluded quadratic envelope.
+\end{proof}
+
+More generally, the mean-radius condition forces
+$1<b<\pi^2/8$ and $\delta^2>4(b-1)$. For the first inequality,
+the mean is strictly decreasing in $\delta$ and its limit at
+$\delta=b$ is $2\sqrt{2b}/\pi$. For the second, its value is strictly
+larger than the endpoint chord average
+$(\sqrt{b+\delta}+\sqrt{b-\delta})/2$.
+These restrictions leave admissible pairs near $(1,1)$; they do not
+exclude the whole correlated family or establish containment for any
+remaining pair.
+
+\section{Restrictions on direct operator constructions}
+\label{app:direct}
+
+We record two short diagnostics that are independent of the Walsh
+construction. They explain why two natural direct constructions cannot
+supply the desired diffuse example. Neither is a universal dimension
+bound.
+
+\begin{proposition}\label{pert:prop:density}
+Suppose an affine-agreeing POVM $E$ satisfies $E(B)\le\nu(B)I$ for
+every Borel $B\subset X$, where $\nu$ is a finite positive scalar measure.
+Then the spectral support of $\pi$ has at most $\lfloor\nu(X)\rfloor$
+points and $E=P$. In particular, an operator-valued density with
+integrable operator norm cannot yield a diffuse counterexample.
+\end{proposition}
+\begin{proof}
+For a spectral-support point $x$, choose unit vectors
+$h_n\in P(B(x,1/n))H$. Their scalar measures for $E$ are probabilities
+dominated by $\nu$, with barycenters tending to $x$. Any weak limit is
+$\delta_x$ by extremality, and remains dominated by $\nu$. Therefore
+$\nu(\{x\})\ge1$. There are at most $\lfloor\nu(X)\rfloor$ such points,
+and Lemma~\ref{lem:atomic} gives equality of the maps.
+For a positive density $F$ relative to a scalar measure $\mu$, take
+$d\nu=\|F\|\,d\mu$.
+\end{proof}
+
+This is an order-domination hypothesis, not merely absolute continuity
+with respect to a scalar control measure. It does not automatically
+apply to a correction of a spectral measure.
+
+\begin{proposition}\label{nonwalsh:prop:toeplitz}
+Let $\rho:C(X)\to L^\infty(\mathbb T)$ be a unital
+$*$-representation, and let $P_+$ be the orthogonal projection from
+$L^2(\mathbb T)$ onto the scalar Hardy space $H^2$. The compression
+\[
+                   \Phi(f)=P_+M_{\rho(f)}|_{H^2}
+\]
+cannot be a nontrivial UCP map agreeing with a representation on
+$A(K)|_X$.
+\end{proposition}
+\begin{proof}
+Let $S$ be the unilateral shift on $H^2$ and let $e_0$ be its first
+basis vector. For self-adjoint Toeplitz operators $A,B$, put
+$u_A=S^*Ae_0$ and $u_B=S^*Be_0$. The identities $S^*AS=A$ and
+$SS^*=I-e_0e_0^*$ give
+\[
+                  S^*[A,B]S-[A,B]=u_Au_B^*-u_Bu_A^*.
+\]
+If $A,B$ commute and $u_A\ne0$, the two rank-one products agree.
+It follows that $u_B=\lambda u_A$ for some real $\lambda$.
+For a real symbol $f$, $u_{T_f}$ consists of its strictly positive
+Fourier coefficients. The negative coefficients are their conjugates.
+Consequently, commuting real scalar Toeplitz symbols are all of the
+form $\lambda_jf+c_j$ for one real symbol $f$, unless all are constant.
+
+In an affine-agreeing compression the compressed coordinates commute,
+because they equal the coordinates of the representation. Their joint
+spectral support therefore lies on an affine line, or is a singleton.
+A line meets $\ex K$ in at most two points: every interior point of
+its intersection segment with $K$ is nonextreme. The represented
+support is thus finite, and Lemma~\ref{lem:atomic} applies.
+\end{proof}
+
+In contrast, small norm and low Kraus rank do not themselves impose
+rigidity. Any counterexample $\Psi(f)=V^*\rho(f)V$ can be amplified
+on $H\oplus L\oplus L\oplus\cdots$ to
+$\widehat\pi=\pi\oplus\rho\oplus\rho\oplus\cdots$. The isometry
+\[
+             W(h,\ell_1,\ell_2,\ldots)=(0,Vh,\ell_1,\ell_2,\ldots)
+\]
+satisfies
+$W^*\widehat\pi(f)W=\Psi(f)\oplus\rho(f)\oplus\rho(f)\oplus\cdots$.
+Mixing this compression with the identity gives a nontrivial two-Kraus
+channel fixing the affine coordinates and arbitrarily close to the
+identity. This is a reformulation of a counterexample, rather than an
+independent construction of one.
+
+\begin{thebibliography}{Arv}
+\bibitem[Arv]{Arv}
+W. Arveson, \emph{The noncommutative Choquet boundary II: Hyperrigidity},
+Israel J. Math. \textbf{184} (2011), 349--385.
+\url{https://arxiv.org/abs/0810.2751}.
+
+\bibitem[BS]{BS}
+B. Bilich and M. Scherer, \emph{Commutative counterexamples to
+Arveson's hyperrigidity conjecture}, arXiv:2610.26556v1, 2026.
+\url{https://arxiv.org/abs/2610.26556v1}.
+
+\bibitem[Sch1]{planar}
+M. Scherer, \emph{The hyperrigidity conjecture for compact convex sets
+in $\R^2$}, arXiv:2411.11709v1, 2024.
+\url{https://arxiv.org/abs/2411.11709v1}.
+
+\bibitem[Sch2]{spectra}
+M. Scherer, \emph{The hyperrigidity conjecture for spectrahedra},
+arXiv:2601.16075v1, 2026.
+\url{https://arxiv.org/abs/2601.16075v1}.
+\end{thebibliography}
+\end{document}

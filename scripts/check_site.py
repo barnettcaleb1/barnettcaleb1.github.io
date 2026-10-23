@@ -154,6 +154,9 @@ def check_manifest():
                 f"{prefix}: authors must be an array of nonempty strings")
         require(isinstance(result.get("isExample", False), bool),
                 f"{prefix}: isExample must be true or false")
+        if "version" in result:
+            require(type(result["version"]) is int and result["version"] > 0,
+                    f"{prefix}: version must be a positive integer")
         minutes = result.get("readingMinutes", 1)
         require(type(minutes) is int and minutes > 0,
                 f"{prefix}: readingMinutes must be a positive integer")
