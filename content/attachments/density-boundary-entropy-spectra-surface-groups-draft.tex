@@ -1,0 +1,2086 @@
+\documentclass[11pt,letterpaper]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage{microtype,booktabs,enumitem,needspace}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,
+ urlcolor=blue!45!black,pdftitle={Density of boundary entropy spectra for surface groups},
+ pdfauthor={}}
+\setlist[enumerate]{label=\textup{(\roman*)},leftmargin=2em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{maintheorem}{Theorem}
+\renewcommand{\themaintheorem}{\Alph{maintheorem}}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{question}[theorem]{Question}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\numberwithin{equation}{section}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\Hom}{Hom}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\HH}{\mathscr H_{\partial}}
+\newcommand{\E}{\mathbb E}
+\title[Boundary entropy spectra for surface groups]{Density of boundary entropy spectra\\for surface groups}
+\date{2 November 2026}
+\keywords{Poisson boundary, Furstenberg entropy, surface group, stationary measure,
+Lyapunov exponent, entropy spectrum}
+\begin{document}
+\begin{abstract}
+Let $\Gamma_g$ be a closed orientable surface group of genus $g\ge2$, and
+let $\vartheta$ be a finitely supported probability measure whose support
+generates $\Gamma_g$ as a semigroup. We prove that its boundary entropy
+spectrum is dense in $[0,h_{\rm RW}(\Gamma_g,\vartheta)]$. The approximants
+are essentially free projective boundaries of faithful representations
+over the fixed field $\mathbb Q(i,\sqrt2)$; their matrix images may be
+chosen dense in $\mathrm{SL}_2(\mathbb C)$, with stationary measures of
+full support and exact dimension two. For the uniform eight-step walk
+on the genus-two group, a comeager set of targets is attained exactly,
+and the entire interval $[0,\frac12\log3]$ is attained. The proofs combine
+an explicit rational representation curve, Galois approximation,
+stationary-measure dimension formulas, and a category argument using
+bifurcation currents. Applications include full realization for
+coordinate products and continuum many nonisomorphic proper boundaries.
+We also give a self-contained relative entropy inequality for joins,
+a complete metric on the boundary lattice, and an explicit discontinuity
+of representation entropy. Full realization for the original genus-two
+walk remains open in this paper.
+\end{abstract}
+\maketitle
+
+\section{Introduction}
+\label{sec:introduction}
+
+A Poisson boundary records the asymptotic information in a random walk.
+Its measurable factors retain different amounts of that information,
+measured by Furstenberg entropy. The boundary entropy realization problem
+asks which amounts can occur. Even when the group and its increment law
+are fixed, the distinction between approximating an entropy value and
+realizing it exactly is substantial.
+
+Let $G$ be a countable group and let $\vartheta$ be a probability measure
+whose support generates $G$ as a semigroup. A $\vartheta$-boundary means a
+measurable $G$-equivariant factor of the Poisson boundary of
+$(G,\vartheta)$, equipped with its stationary probability measure. For a
+stationary $G$-space $(B,\nu)$ we use the convention
+\[
+ h_\vartheta(B,\nu)
+ =\sum_{g\in G}\vartheta(g)D(g_*\nu\Vert\nu),
+ \qquad
+ D(\alpha\Vert\beta)=\int\log\frac{d\alpha}{d\beta}\,d\alpha.
+\]
+This agrees, by change of variables, with
+$-\sum_g\vartheta(g)\int\log(d(g^{-1}_*\nu)/d\nu)\,d\nu$.
+Write
+\[
+ h_{\rm RW}(G,\vartheta)=\lim_{n\to\infty}\frac1nH(\vartheta^{*n}),
+ \qquad
+ \HH(G,\vartheta)=\{h_\vartheta(B,\nu):(B,\nu)\text{ is a }
+ \vartheta\text{-boundary}\}.
+\]
+All logarithms are natural. For finite Shannon entropy, every boundary
+entropy lies between zero and $h_{\rm RW}$, and the trivial and Poisson
+boundaries attain the endpoints; see \cite{KV,Kaimanovich}.
+
+Our principal result concerns the full closure of this spectrum, with
+additional control of the boundaries realizing the approximating values.
+
+\Needspace{13\baselineskip}
+\begin{maintheorem}[Density for surface groups]\label{thm:all-surface-density}
+Let $\Gamma_g$ be the fundamental group of a closed orientable surface of
+genus $g\ge2$, and let $\vartheta$ be a finitely supported probability
+measure whose support generates $\Gamma_g$ as a semigroup. Then
+\[
+ \overline{\HH(\Gamma_g,\vartheta)}
+ =[0,h_{\rm RW}(\Gamma_g,\vartheta)].
+\]
+Every value in this interval can be approximated by the entropies of
+essentially free projective boundaries associated to projectively
+faithful representations
+\[
+ \Gamma_g\longrightarrow\mathrm{SL}_2\bigl(\mathbb Q(i,\sqrt2)\bigr).
+\]
+The representations may be chosen with dense image in
+$\mathrm{SL}_2(\mathbb C)$, and their stationary measures on
+$\CP^1$ may be chosen with full support and exact dimension two.
+\end{maintheorem}
+
+The measure $\vartheta$ remains fixed throughout this approximation.
+The proof interpolates a Lyapunov exponent along a rational
+representation curve connecting the trivial representation to a
+cocompact Fuchsian representation. Galois conjugation supplies a dense
+set of faithful parameters over one fixed number field. At these
+parameters, the dimension theorem of Rapaport--Ren \cite{RR} identifies
+boundary entropy with the smaller of $h_{\rm RW}$ and four times the
+Lyapunov exponent. Finite-index restriction extends the construction
+from genus two to every genus.
+
+For exact realization we specialize to
+\begin{equation}\label{eq:fixed-walk}
+ \Gamma=\langle a_1,b_1,a_2,b_2\mid[a_1,b_1][a_2,b_2]=e\rangle,
+ \qquad
+ \mu=\frac18\sum_{s\in S}\delta_s,
+ \quad S=\{a_1^{\pm1},b_1^{\pm1},a_2^{\pm1},b_2^{\pm1}\}.
+\end{equation}
+Set $h=h_{\rm RW}(\Gamma,\mu)$.
+
+\Needspace{10\baselineskip}
+\begin{maintheorem}[Generic and interval realization]\label{thm:overview-realization}
+The spectrum $\HH(\Gamma,\mu)$ contains a dense $G_\delta$ subset of
+$(0,h)$, all of whose values are attained by essentially free projective
+boundaries. Moreover,
+\begin{equation}\label{eq:main-interval}
+ [0,\tfrac12\log3]\subseteq\HH(\Gamma,\mu).
+\end{equation}
+In particular $[0,c_*h]\subseteq\HH(\Gamma,\mu)$, where
+$c_*=2\log3/(3\log7)=0.376383356\ldots$.
+\end{maintheorem}
+
+The generic statement follows from lower semicontinuity of entropy
+and the support theorem for bifurcation currents of
+Deroin--Dujardin \cite{DD}. A category argument selects points on a
+comeager set of exact Lyapunov levels. The interval assertion then uses
+a quotient onto $F_2\times F_2$ and the actual coordinate-update measure
+induced by \eqref{eq:fixed-walk}. Those quotient boundaries have a
+nontrivial kernel as $\Gamma$-spaces. Theorem~\ref{thm:generic-product-regularization}
+shows more generally that two comeager boundary entropy spectra give
+full realization for a coordinate product.
+
+The normalization in Theorem~\ref{thm:overview-realization} follows from
+\begin{equation}\label{eq:h-bounds}
+ \tfrac12\log3\le h\le\tfrac34\log7.
+\end{equation}
+Indeed $F_4$ maps onto $\Gamma$ preserving the eight labeled increments,
+whereas $(a_1,b_1,a_2,b_2)\mapsto(x,y,y,x)$ maps $\Gamma$ onto $F_2$
+and sends $\mu$ to its simple random walk. Entropy decreases under
+quotients. For the simple random walk on $F_r$, reduced length has speed
+$1-1/r$, and the endpoint conditioned on length is uniform on its
+sphere; hence its entropy is $(1-1/r)\log(2r-1)$.
+
+A separate part of the paper concerns selection of limits in the lattice
+of factors of one Poisson boundary. Its joins and meets are the generated
+and intersected completed invariant $\sigma$-algebras, respectively.
+We write $\mathsf h(A)=h_\mu(A)$ in the following statement.
+
+\Needspace{10\baselineskip}
+\begin{maintheorem}[Relative joins and entropy distance]\label{thm:overview-lattice}
+For the fixed walk \eqref{eq:fixed-walk}, if $D$ is a common factor of
+boundaries $A$ and $C$, then
+\[
+ \mathsf h(A\vee C)+\mathsf h(D)\le\mathsf h(A)+\mathsf h(C).
+\]
+The formula
+\[
+ d(A,C)=2\mathsf h(A\vee C)-\mathsf h(A)-\mathsf h(C)
+\]
+defines a complete metric on the boundary lattice modulo null sets.
+Metric convergence implies strong convergence of conditional expectations.
+If $\mathsf h(A_n)\to t$ and
+$\sum_n[\mathsf h(A_n\vee A_{n+1})-\mathsf h(A_n)]<\infty$, then
+\[
+ \mathsf h\!\left(\bigwedge_N\bigvee_{n\ge N}A_n\right)=t.
+\]
+\end{maintheorem}
+
+The proof of the relative join inequality uses the nonstationary entropy
+functional and convolution identity of Gorodetski--Kleptsyn \cite{GK}.
+We include the argument because the common-factor subtraction is useful
+for the selection criterion. Completeness alone does not establish
+closedness of the scalar entropy spectrum.
+
+\subsection{Relation to previous work}
+Dodds--Furman \cite[Theorem A]{DF} prove a nontrivial interval of boundary
+entropies for surface groups. Their product theorem assumes genus at
+least three \cite[Theorem B]{DF}; their continuity theorem imposes
+$L^2$ conditions on a stationary density and its logarithm
+\cite[Theorem 4.1]{DF}. The latter hypotheses do not cover the
+circle-supported Fuchsian endpoint used here. Hochman--Solomyak
+\cite{HS} and Rapaport--Ren \cite{RR} instead relate entropy to
+stationary-measure dimension under arithmetic separation. We use these
+formulas at dense algebraic parameters and interpolate only the Lyapunov
+exponent, whose continuity follows from Bocker-Neto and Viana \cite{BV}.
+
+The lattice of Poisson-boundary factors and entropy continuity along
+monotone lattice limits are studied by Dodds \cite{Dodds}.
+Tamuz--Zheng \cite[Section 4]{TZ} use ordinary join subadditivity in
+their work on asymptotic entropy spectra. The relative inequality above
+and its metric consequences are presented with self-contained proofs.
+Brieussel--Oppelmayer \cite{BO} prove continuity for Bowen--Poisson
+bundles; membership in that class of stationary actions does not itself
+identify an action as a factor of the fixed Poisson boundary considered
+here. We also distinguish monotone factor convergence from a general
+compactness assertion; the relevant withdrawn claims in \cite{BT,BLT}
+are discussed in Section~\ref{sec:remaining}.
+
+\subsection{Scope and organization}
+Theorem~\ref{thm:all-surface-density} excludes open entropy gaps for all
+walks in its statement. Theorem~\ref{thm:overview-realization} leaves at
+most a meager set of missing values for \eqref{eq:fixed-walk}; it does
+not establish full realization or the interval $[0,h/2]$.
+Theorem~\ref{thm:explicit-jump} gives a discontinuity of entropy on the
+faithful non-elementary representation locus. The level-set results in
+Sections~\ref{sec:level-test} and \ref{sec:saturation-test} explain why
+parameter-space saturation alone does not settle every target.
+
+Section~\ref{sec:curve} constructs the rational family, and
+Section~\ref{sec:density} proves Theorem~\ref{thm:all-surface-density}.
+Sections~\ref{sec:level-test}--\ref{sec:free-generic} establish generic
+realization. The lattice results precede the applications in
+Section~\ref{sec:applications-editorial}, which include
+\eqref{eq:main-interval} and full realization for coordinate products.
+The final sections give the discontinuity example, the remaining
+levelwise obstructions, and precise open selection questions.
+
+\section{A rational family and arithmetic faithfulness}\label{sec:curve}
+
+For $z\in\mathbb C\setminus\{-1/2\}$ set
+\[
+ a(z)=1+2z,\qquad d(z)=\frac{1+2z^2}{1+2z},\qquad
+ A(z)=\begin{pmatrix}a(z)&2z\\z&d(z)\end{pmatrix},\qquad
+ B(z)=\begin{pmatrix}a(z)&-2z\\-z&d(z)\end{pmatrix}.
+\]
+Both matrices have determinant one. Define
+\[
+ K(z)=[A(z),B(z)],\qquad
+ C(z)=(1+14z)I+zK(z),
+\]
+and the parameter domain
+\[
+ D=\{z\in\mathbb C:z\ne-1/2,\ \det C(z)\ne0\}.
+\]
+Since $\det C(z)$ is a rational function that is nonzero at $z=0$,
+its zero set is finite. Thus $D$ is the complex plane minus finitely
+many points and in particular is path connected.
+For every $z\in D$ define a representation by
+\begin{equation}\label{eq:explicit-curve}
+ \rho_z(a_1)=A(z),\quad \rho_z(b_1)=B(z),\quad
+ \rho_z(a_2)=C(z)B(z)C(z)^{-1},\quad
+ \rho_z(b_2)=C(z)A(z)C(z)^{-1}.
+\end{equation}
+This is a rational family defined over $\mathbb Q$. In fact $C(z)$
+commutes with $K(z)$, and hence the relator evaluates to
+\[
+ K(z)\,C(z)[B(z),A(z)]C(z)^{-1}
+ =K(z)C(z)K(z)^{-1}C(z)^{-1}=I.
+\]
+
+\begin{lemma}[Trivial and Fuchsian endpoints]\label{lem:curve-endpoints}
+Both $0,1$ belong to $D$. The representation $\rho_0$ is trivial,
+and the projectivization of $\rho_1$ is a faithful cocompact Fuchsian
+representation of the genus-two surface group.
+\end{lemma}
+\begin{proof}
+At zero all four images equal $I$, and $C(0)=I$.
+At one the exact matrix calculations are
+\[
+ A=\begin{pmatrix}3&2\\1&1\end{pmatrix},\quad
+ B=\begin{pmatrix}3&-2\\-1&1\end{pmatrix},\quad
+ K=\begin{pmatrix}-15&-56\\-4&-15\end{pmatrix},\quad
+ C=\begin{pmatrix}0&-56\\-4&0\end{pmatrix}.
+\]
+In particular $\det C=-224\ne0$ and
+\[
+ (\operatorname{tr}A,\operatorname{tr}B,\operatorname{tr}AB)=(4,4,6),
+ \qquad \operatorname{tr}[A,B]=-30<-2.
+\]
+The Fricke characterization of one-holed-torus holonomy
+\cite[Theorem 4.1.2 and Section 4.4]{GoldmanFricke} says that this pair is the
+holonomy of a hyperbolic one-holed torus with geodesic boundary.
+
+Let $\ell$ be the axis of the hyperbolic element $K$.
+The matrix $C=K-\tfrac12\operatorname{tr}(K)I$ has the same eigenlines
+as $K$, opposite nonzero eigenvalues, and negative real determinant.
+Its projective action, interpreted as an orientation reversing isometry
+of $\mathbb H^2$, is reflection in $\ell$. To check the last assertion,
+conjugate the two eigenlines to $0,\infty$: the projective matrix becomes
+$\operatorname{diag}(1,-1)$, whose orientation reversing extension is
+$w\mapsto-\overline w$, reflection in the imaginary axis.
+
+Double the one-holed torus across its geodesic boundary. Its metric
+extends smoothly across the boundary and gives a closed hyperbolic
+surface of genus two. Developing the second half by reflection in
+$\ell$ gives its two holonomy generators $CBC^{-1}$ and $CAC^{-1}$;
+the reversal of their order makes the boundary commutator $K^{-1}$.
+Consequently the holonomy of the double is exactly the projectivization
+of \eqref{eq:explicit-curve} at $1$, with the prescribed presentation.
+The holonomy of a closed hyperbolic surface is discrete and faithful.
+\end{proof}
+
+By openness of the quasifuchsian locus, there is an ordinary complex
+neighborhood $V\subset D$ of $1$ such that $\rho_w$ is projectively
+faithful for every $w\in V$ \cite[Section 4.3]{GoldmanComplex}.
+
+\begin{lemma}[Galois approximation on the rational curve]\label{lem:curve-galois}
+The set of parameters $z\in D\cap\mathbb Q(i,\sqrt2)$ such that
+$\rho_z$ is projectively faithful and
+\begin{equation}\label{eq:trace-nonreal}
+ \operatorname{Im}\big((\operatorname{tr}A(z))^2\big)\ne0
+\end{equation}
+is dense in $D$.
+\end{lemma}
+\begin{proof}
+Let $\sigma$ be the automorphism of $\mathbb Q(i,\sqrt2)$ fixing
+$i$ and sending $\sqrt2$ to $-\sqrt2$. The map
+\[
+ \mathbb Q(i)^2\longrightarrow\mathbb C^2,\qquad
+ (r,s)\longmapsto(r+s\sqrt2,r-s\sqrt2)
+\]
+has dense image, since it is the restriction of an invertible
+complex-linear map and $\mathbb Q(i)$ is dense in $\mathbb C$.
+Thus, for any nonempty open $U\subset D$, we can choose $z$ with
+$z\in U$ and $\sigma(z)\in V$ simultaneously.
+All matrix entries in \eqref{eq:explicit-curve} are rational functions
+over $\mathbb Q$, so
+\[
+ \sigma(\rho_z(\gamma))=\rho_{\sigma(z)}(\gamma)
+ \qquad(\gamma\in\Gamma).
+\]
+If $\rho_z(\gamma)=\pm I$, applying $\sigma$ gives the same equality
+at $\sigma(z)$. Projective faithfulness there implies $\gamma=e$.
+This proves projective faithfulness at $z$ and, in particular, ordinary
+faithfulness into $\mathrm{SL}_2(\mathbb C)$.
+
+Finally
+\[
+ \operatorname{tr}A(z)=\frac{2+4z+6z^2}{1+2z}
+\]
+is nonconstant holomorphic on $D$. The square of this function is
+also nonconstant. By the open mapping theorem, its real locus has
+empty interior. We may therefore first shrink $U$ to a nonempty
+open subset satisfying \eqref{eq:trace-nonreal}, and then make the
+same simultaneous approximation.
+\end{proof}
+
+For each parameter from Lemma~\ref{lem:curve-galois}, the image group
+has no finite orbit on $\mathbb{CP}^1$: a subgroup with a finite orbit
+is either finite or virtually solvable, whereas $\Gamma$ is neither.
+Condition \eqref{eq:trace-nonreal} implies that $A(z)$ has eigenvalues
+of distinct absolute values and thus is proximal. It also excludes an
+invariant generalized circle. Indeed, after conjugating such a circle
+to $\mathbb{RP}^1$, matrices preserving it have real or purely imaginary
+traces, so all their squared traces are real. These checks verify
+precisely strong irreducibility, proximality, and the circle exclusion
+in Rapaport--Ren's theorem. Algebraic entries verify its Diophantine
+assumption \cite[Lemma 6.1]{HS}; the same number-field norm argument
+applies to complex entries, as recorded after Definition 1.1 in \cite{RR}.
+
+\section{Density of the full entropy spectrum}\label{sec:density}
+
+We first record the entropy identity used in the proof. Let $\pi$ be a
+projectively faithful representation of a finitely supported measured
+group $(G,\vartheta)$ into $\mathrm{SL}_2(\mathbb C)$, where
+$\operatorname{supp}\vartheta$ generates $G$ as a semigroup. Suppose its image
+is strongly irreducible, proximal, and preserves no generalized circle.
+The unique stationary measure $\eta$ on $\CP^1$ defines a genuine
+$\vartheta$-boundary: random translates contract to point masses, and
+the limiting map factors through the Poisson boundary
+\cite[Theorem 2.3]{DF}. This statement also applies to nondiscrete images.
+Write $\chi$ for the top Lyapunov exponent of $\pi_*\vartheta$.
+
+The Ledrappier--Young identity in \cite[Theorem 2.14]{RR} gives
+\begin{equation}\label{eq:ledrappier-young}
+ h_\vartheta(\CP^1,\eta)=2\chi\dim\eta.
+\end{equation}
+To identify its entropy convention, let $X_1$ be the first increment
+and $L$ the limiting projective point. The quantity $H(p)-\Delta$ in
+that theorem is
+\[
+ H(X_1)-H(X_1\mid L)=I(X_1;L)
+ =\sum_g\vartheta(g)D(\pi(g)_*\eta\Vert\eta)
+ =h_\vartheta(\CP^1,\eta).
+\]
+When the matrix entries are algebraic, the Diophantine property follows
+from the number-field norm estimate; see the discussion following
+\cite[Definition 1.1]{RR} and \cite[Lemma 6.1]{HS}.
+Faithfulness preserves the atom weights of every convolution power,
+so the matrix walk has asymptotic discrete entropy
+$h_\vartheta=h_{\rm RW}(G,\vartheta)$. The dimension formula
+\cite[Theorem 1.2]{RR} then reads
+\begin{equation}\label{eq:general-good-entropy}
+ \dim\eta=\min\{2,h_\vartheta/(2\chi)\},
+ \qquad h_\vartheta(\CP^1,\eta)=\min\{h_\vartheta,4\chi\}.
+\end{equation}
+Rapaport--Ren use base-two logarithms; changing both entropy and
+Lyapunov exponent to natural logarithms preserves these identities.
+
+\begin{proof}[Proof of Theorem~\ref{thm:all-surface-density}: density and arithmetic control]
+Put $K_0=\mathbb Q(i,\sqrt2)$ and
+$h_\vartheta=h_{\rm RW}(\Gamma_g,\vartheta)$. Nonamenability of
+$\Gamma_g$ and the entropy criterion imply $h_\vartheta>0$
+\cite{KV}. First take $g=2$ and use the rational family $\rho_z$, $z\in D$,
+from \eqref{eq:explicit-curve}. Let $\mathcal G\subset D\cap K_0$
+be the dense set from Lemma~\ref{lem:curve-galois}. For every
+$z\in\mathcal G$, the representation is projectively faithful and
+its image is strongly irreducible, proximal, and preserves no generalized
+circle. This set of parameters depends on the representations, not on
+the probability weights or the support of $\vartheta$.
+
+We record why these properties remain available in higher genus.
+There is a subgroup $H_g\le\Gamma_2$ of index $g-1$ isomorphic to
+$\Gamma_g$: for $g>2$, take the kernel of an epimorphism
+$\Gamma_2\to\mathbb Z/(g-1)\mathbb Z$, and use the Euler characteristic
+of its covering surface. For $g=2$, set $H_2=\Gamma_2$.
+Fix an identification $\Gamma_g\cong H_g$ and set
+$\pi_z=\rho_z|_{H_g}$. Each matrix entry of $\pi_z(\gamma)$ is a
+rational function over $\mathbb Q$. The representation $\pi_0$ is
+trivial, whereas $\pi_1$ is projectively faithful and cocompact
+Fuchsian. For $z\in\mathcal G$, projective faithfulness and algebraic
+entries are inherited by restriction.
+
+The restricted image has no finite projective orbit: a subgroup of
+$\mathrm{PSL}_2(\mathbb C)$ with a finite orbit is finite or virtually
+solvable, whereas $H_g$ is neither. A positive power of the loxodromic
+matrix $A(z)$ belongs to $\rho_z(H_g)$, so the restricted image is
+proximal. To verify the circle condition, suppose that
+$\rho_z(H_g)$ preserves a generalized circle $C$. The normal core
+$N_g=\bigcap_{\gamma\in\Gamma_2}\gamma H_g\gamma^{-1}$ has finite
+index in $\Gamma_2$ and is contained in $H_g$. Its image is again
+non-elementary and contains loxodromic elements. Such a group can
+preserve at most one generalized circle: the fixed points of its
+loxodromic elements lie on every invariant circle, and non-elementarity
+provides at least three distinct such points. Normality therefore
+implies $\rho_z(\gamma)C=C$ for every $\gamma\in\Gamma_2$, since each
+$\rho_z(\gamma)C$ is another $\rho_z(N_g)$-invariant circle.
+This contradicts the circle exclusion for $\rho_z(\Gamma_2)$.
+Thus the restricted image satisfies all three dynamical hypotheses
+of Rapaport--Ren.
+
+Now keep $g$ and $\vartheta$ fixed, and write
+$\chi_\vartheta(z)$ for the top Lyapunov exponent of
+$\pi_{z*}\vartheta$. Enumerate the finite support of $\vartheta$
+as $\{s_1,\ldots,s_m\}$ and put $p_j=\vartheta(s_j)>0$.
+The matrix tuple
+$(\pi_z(s_1),\ldots,\pi_z(s_m))$ varies continuously in
+$\mathrm{GL}(2,\mathbb C)^m$. Bocker-Neto and Viana's
+Theorem~A~\cite{BV} proves continuity of both extremal Lyapunov
+exponents for arbitrary complex two-dimensional matrix tuples with
+positive probability weights. It applies at every point of $D$,
+including reducible tuples and collisions of labeled matrix values.
+Consequently $\chi_\vartheta$ is continuous on $D$, and
+$\chi_\vartheta(0)=0$. No inversion symmetry is used here.
+
+At $z=1$, the orbit of the cocompact Fuchsian group
+$\pi_1(\Gamma_g)$ satisfies an upper counting bound $Ce^R$ in
+$\mathbb H^2$. Thus, for every $q>1$,
+\[
+ Z_q=\sum_{\gamma\in\Gamma_g}
+       e^{-q d(o,\pi_1(\gamma)o)}<\infty.
+\]
+The relative-entropy inequality against these normalized exponential
+weights gives, for the $\vartheta$-random walk $X_n$,
+\[
+ H(\vartheta^{*n})
+ \le q\,\mathbb E d(o,\pi_1(X_n)o)+\log Z_q.
+\]
+The displacement drift equals $2\chi_\vartheta(1)$. Dividing by $n$
+and then letting $q\downarrow1$ yields
+\[
+ h_\vartheta\le2\chi_\vartheta(1).
+\]
+Since $D$ is path connected, every $t\in[0,h_\vartheta]$ therefore
+has a parameter $z_t\in D$ with $4\chi_\vartheta(z_t)=t$.
+
+For $z\in\mathcal G$, the support of $\pi_{z*}\vartheta$ generates
+$\pi_z(\Gamma_g)$ as a semigroup. Its algebraic entries give the
+Diophantine property, as recorded after Definition~1.1 of~\cite{RR}.
+Faithfulness preserves every atom weight of every convolution power,
+so its random-walk entropy is $h_\vartheta$. The stationary measure
+$\eta_{z,\vartheta}$ on $\mathbb{CP}^1$ is a genuine
+$\vartheta$-boundary by \cite[Theorem~2.3]{DF}; the equivalence in
+\cite[Section~2.9]{RR} gives the required real Zariski density.
+Applying Theorems~1.2 and 2.14 of~\cite{RR},
+with the first-step conditional-entropy identification above,
+gives
+\[
+ h_\vartheta(\mathbb{CP}^1,\eta_{z,\vartheta})
+ =\min\{h_\vartheta,4\chi_\vartheta(z)\}.
+\]
+Approximate $z_t$ by parameters in $\mathcal G$ and use continuity
+of $\chi_\vartheta$ to obtain entropies converging to $t$.
+All boundary entropies are bounded by $h_\vartheta$, proving equality
+of closures. Finally, $\eta_{z,\vartheta}$ is nonatomic, and each
+nonidentity group element fixes at most two projective points.
+Projective faithfulness and countability of $\Gamma_g$ imply essential
+freeness.
+\end{proof}
+
+The following refinement completes the last assertion of
+Theorem~\ref{thm:all-surface-density}.
+
+\begin{corollary}\label{cor:dense-image-full-dimension}
+The approximating boundaries constructed above
+may all be chosen so that the representation has dense image in
+$\mathrm{SL}_2(\mathbb C)$ and the stationary measure has full support
+and exact dimension two on $\mathbb{CP}^1$.
+\end{corollary}
+
+\begin{proof}
+Write $h_\vartheta=h_{\rm RW}(\Gamma_g,\vartheta)>0$.
+It suffices to approximate targets $t\in(0,h_\vartheta)$, since the
+endpoints are limits of interior targets. In the preceding construction,
+choose the good parameters sufficiently close to $z_t$ that
+$4\chi_\vartheta(z)<h_\vartheta$. Rapaport--Ren's dimension formula
+then gives exact dimension two. If the projective image were discrete,
+packing balls in $\mathbb H^3$ would give an orbit bound $Ce^{2R}$.
+The preceding relative-entropy argument, now with $q>2$, would imply
+$h_\vartheta\le4\chi_\vartheta(z)$, a contradiction.
+
+Let $L$ be the closure of $\pi_z(\Gamma_g)$ in
+$\mathrm{SL}_2(\mathbb C)$. Its Lie algebra $\mathfrak l$ is nonzero
+because $L$ is not discrete. The condition that $\operatorname{Ad}(g)$
+preserves the real vector subspace $\mathfrak l$ is a real algebraic
+condition on $g$. Since $\pi_z(\Gamma_g)$ is real Zariski dense,
+$\mathfrak l$ is invariant under all of
+$\operatorname{Ad}(\mathrm{SL}_2(\mathbb C))$. It is therefore a
+nonzero ideal in the simple real Lie algebra $\mathfrak{sl}_2(\mathbb C)$,
+and must equal that Lie algebra. Hence $L$ is open; connectedness gives
+$L=\mathrm{SL}_2(\mathbb C)$.
+
+Finally, stationarity and semigroup generation make the closed support
+of $\eta_{z,\vartheta}$ invariant under $\pi_z(\Gamma_g)$, and then
+under its closure. Transitivity of $\mathrm{SL}_2(\mathbb C)$ on
+$\mathbb{CP}^1$ implies that the support is the entire projective line.
+\end{proof}
+
+\begin{remark}
+Exact dimension two does not imply absolute continuity with respect to
+spherical area. No absolute-continuity assertion is needed for the
+density theorem or its corollary.
+\end{remark}
+\subsection{The fixed genus-two walk}
+For the rest of the paper, unless another measure is specified, use
+$(\Gamma,\mu)$ from \eqref{eq:fixed-walk}. Let $\chi(z)$ denote the top
+Lyapunov exponent of the eight labeled matrices $\rho_z(s)$, each with
+weight $1/8$. Matrix collisions do not change this convention.
+The proof above gives continuity of $\chi$ on $D$, with
+$\chi(0)=0$ and $h\le2\chi(1)$. Write $Y_z=(\CP^1,\eta_z)$ for the
+unique projective stationary boundary whenever the image is strongly
+irreducible and proximal. At the dense algebraic faithful parameters
+from Lemma~\ref{lem:curve-galois},
+\begin{equation}\label{eq:entropy-at-good-parameters}
+ h_\mu(Y_z)=\min\{h,4\chi(z)\}.
+\end{equation}
+This parameter set is countable. The connected parameter domain is
+used to interpolate $\chi$, not to interpolate boundary entropy.
+
+\begin{corollary}\label{thm:full-density}
+For the fixed walk, $\overline{\HH(\Gamma,\mu)}=[0,h]$, with
+approximating boundaries having all the properties in
+Theorem~\ref{thm:all-surface-density}.
+\end{corollary}
+\begin{proof}
+Apply Theorem~\ref{thm:all-surface-density} with $g=2$ and
+$\vartheta=\mu$.
+\end{proof}
+
+\section{Geometry and separation of Lyapunov levels}
+\label{sec:level-test}
+
+Let
+\[
+ Q=\{z\in D:\Re z>0,\ \Im z>0\},\qquad
+ N=\{z\in Q:\rho_z\text{ is not projectively faithful}\},
+\]
+where $D$ is the domain of the rational family. Throughout this section,
+$h=h_{\rm RW}(\Gamma,\mu)$ and $\chi$ denotes its Lyapunov exponent.
+
+\begin{proposition}[Faithful representations on exact Lyapunov levels]
+\label{prop:exact-levels}
+Every representation in $Q$ is non-elementary, proximal, and preserves
+no generalized circle. The set $N$ is countable. For every
+$0<c<\chi(1)$, the level
+\[
+ L_c=\{z\in Q:\chi(z)=c\}
+\]
+satisfies $\dim_H(L_c\setminus N)\ge1$. In particular, for every
+$0<t<h$, the family contains a projectively faithful, real-Zariski-dense
+representation with $\chi=t/4$.
+\end{proposition}
+\begin{proof}
+For each nonidentity $\gamma\in\Gamma$, the equation
+$\rho_z(\gamma)=\pm I$ has finitely many solutions in $D$:
+its entries are rational functions, and neither identity holds
+identically because $\rho_1$ is projectively faithful. Taking the
+union over $\gamma$ proves countability of $N$.
+
+Write
+\[
+ x(z)=\operatorname{tr}A(z)
+ =\frac12+3z+\frac{3}{2(1+2z)}.
+\]
+For $z=u+iv\in Q$,
+\[
+ \Re x(z)=\frac12+3u+
+ \frac{3(1+2u)}{2|1+2z|^2}>0,
+ \qquad
+ \Im x(z)=3v\frac{|1+2z|^2-1}{|1+2z|^2}>0.
+\]
+Thus $x(z)^2$ is nonreal. Consequently $A(z)$ is loxodromic,
+and the image preserves no generalized circle. Moreover,
+\[
+ \operatorname{tr}[A(z),B(z)]
+ =2-\frac{32z^4(z+2)^2}{(1+2z)^2}\ne2
+ \qquad(z\in Q),
+\]
+so the two-generator reducibility criterion excludes a common fixed
+point. If $A$ and $B$ preserved an unordered pair, each would fix
+both points: an element interchanging the pair has trace zero,
+whereas $\operatorname{tr}A=\operatorname{tr}B=x\ne0$.
+This again contradicts irreducibility. A finite invariant set of at
+least three points would give a finite projective image, contradicting
+loxodromicity. Hence the family is non-elementary on $Q$.
+Its real-Zariski density follows from \cite[Lemma~2.11]{RR}.
+
+The set $Q$ is a quadrant with finitely many points removed and is
+connected. Continuity of $\chi$ and the limits at $0$ and $1$ give
+points $p_-,p_+\in Q$ with $\chi(p_-)<c<\chi(p_+)$.
+A smooth embedded arc joining these points has a sufficiently narrow
+tubular neighborhood, giving a bi-Lipschitz embedding
+\[
+ F:[0,1]\times[-\varepsilon,\varepsilon]\longrightarrow Q
+\]
+with $\chi(F(0,s))<c<\chi(F(1,s))$ for every $s$.
+Each arc $F([0,1]\times\{s\})$ meets $L_c$. Therefore the
+Lipschitz map obtained from $F^{-1}$ by projection onto its second
+coordinate maps $L_c\cap\operatorname{im}F$ onto
+$[-\varepsilon,\varepsilon]$. It follows that $\dim_H L_c\ge1$.
+Removing the countable set $N$ preserves this lower bound.
+Finally, $h\le2\chi(1)$ implies $t/4<\chi(1)$ for $0<t<h$.
+\end{proof}
+
+\paragraph{Open problem: separation on individual levels.}
+Let $E\subset Q$ consist of the parameters for which $\rho_z(S)$
+fails the weak Diophantine condition of \cite[Definition~1.1]{RR}.
+Does
+\begin{equation}\label{eq:open-level-separation}
+ L_{t/4}\setminus(N\cup E)\ne\varnothing
+ \qquad\text{for every }0<t<h?
+\end{equation}
+An affirmative answer, together with the dimension formula, would
+prove full entropy realization. The estimate $\dim_H E<1$ would
+suffice by Proposition~\ref{prop:exact-levels}. In contrast, density
+or full planar measure of $Q\setminus E$ does not imply
+\eqref{eq:open-level-separation}, since a prescribed level may lie
+in an exceptional null set. The arithmetic construction supplies a
+countable dense set of parameters outside $E$.
+
+\subsection{Parametric separation and symmetric generating sets}
+
+Solomyak--Takahashi \cite[Theorem~2.10]{ST} establishes a
+zero-dimensional exceptional parameter set for real-analytic families
+of contracting projective iterated function systems satisfying the
+infinite-word nondegeneracy condition of their Definition~2.9.
+Their Lemmas~2.13 and 2.15 obtain a uniform derivative order from
+compactness of the analytic coding maps and then deduce the dimension
+bound. Strict invariance of an open set supplies the required
+contraction.
+
+Symmetric matrix sets do not satisfy this strict-invariance hypothesis
+\cite[Remark~1.3(1)]{ST}. In addition, the strong Diophantine condition
+in that theorem separates distinct formal words, whereas symmetric
+surface-group tuples have cancellations and the defining relation at
+every parameter. Indexing matrices by distinct group elements removes
+those permanent equalities but leaves the contraction and coding
+hypotheses unverified. Rapaport--Ren \cite[Section~1.2]{RR} treats
+parametric exceptional-set estimates as an open direction; its
+pointwise theorem supplies no such estimate for this family.
+
+\subsection{Kernel parameters and order of contact}
+
+\begin{proposition}[Unbounded order of contact with the identity]
+\label{prop:unbounded-contact}
+If $z_0\in D$ is not projectively faithful, then for every integer
+$k\ge0$ there is a nontrivial $w\in\Gamma$ such that
+\[
+ \rho_z(w)-I=O((z-z_0)^{k+1}),
+ \qquad \rho_z(w)\not\equiv I.
+\]
+At $z_0=0$, iterated commutators of the first two standard generators
+have this property.
+\end{proposition}
+\begin{proof}
+The nontrivial normal subgroup $\ker\bar\rho_{z_0}$ contains a
+free subgroup of rank two. Indeed, in a faithful Fuchsian realization,
+conjugate a nontrivial kernel element by an element moving its fixed
+point pair. Suitable powers of these independent hyperbolic elements
+generate a free subgroup by ping-pong. Taking further squares gives
+free generators $u,v$ with $\rho_{z_0}(u)=\rho_{z_0}(v)=I$.
+Set $w_1=[u,v]$ and $w_{j+1}=[u,w_j]$. These words are nontrivial.
+The elementary estimate
+\[
+ U(z)=I+O((z-z_0)^a),\quad V(z)=I+O((z-z_0)^b)
+ \ \Longrightarrow\ [U(z),V(z)]=I+O((z-z_0)^{a+b})
+\]
+gives $\rho_z(w_j)-I=O((z-z_0)^{j+1})$.
+Projective faithfulness at $1$ excludes an identically trivial word
+matrix. At zero one can take $u=a_1,v=b_1$.
+\end{proof}
+
+\begin{proposition}[Density of kernel parameters]
+\label{prop:dense-kernels}
+The nonfaithful set $N$ is dense in
+\[
+ U_{\rm low}=\{z\in Q:\chi(z)<h/4\}.
+\]
+On no nonempty open subset of $U_{\rm low}$ can a fixed finite
+number of derivatives separate every nontrivial word matrix from
+the identity with positive lower bounds uniform in the parameter.
+\end{proposition}
+\begin{proof}
+The family on $Q$ is non-elementary, generally faithful, and
+nontrivial: countability of $N$ gives general faithfulness, and
+$\operatorname{tr}^2A$ is nonconstant. The Sullivan--Bers stability
+theorem, in the form of \cite[Theorem~2.6]{DD}, implies that any
+open set consisting of faithful representations consists of discrete
+faithful representations.
+
+For a discrete faithful representation into $\mathrm{PSL}_2(\mathbb C)$,
+its orbit in $\mathbb H^3$ is uniformly separated. Ball packing gives
+\[
+ \#\{\gamma:d(o,\rho(\gamma)o)\le R\}\le Ce^{2R}.
+\]
+The Gibbs entropy inequality with comparison weights proportional
+to $e^{-q d(o,\rho(\gamma)o)}$, $q>2$, and the displacement drift
+$2\chi$ imply $h\le2q\chi$. Letting $q\downarrow2$ gives
+$h\le4\chi$. Thus no nonempty open subset of $U_{\rm low}$ can
+consist entirely of faithful representations, proving density of $N$.
+
+Given such an open subset and an integer $k$, choose $z_0\in N$
+there. Proposition~\ref{prop:unbounded-contact} supplies a nontrivial
+word for which
+\[
+ \partial_z^j(\rho_z(w)-I)\big|_{z=z_0}=0
+ \qquad(0\le j\le k).
+\]
+This excludes even word-dependent positive lower bounds for the
+maximum of these derivatives, uniform in the parameter. Restricting
+the estimate to faithful parameters does not restore a positive
+lower bound: faithful parameters approach $z_0$, and the derivatives
+are continuous.
+\end{proof}
+
+\begin{corollary}[Nonharmonicity in the subcritical region]
+\label{cor:no-flat-patches}
+The function $\chi$ is harmonic on no nonempty open subset of
+$U_{\rm low}$. In particular it is nowhere locally constant there.
+\end{corollary}
+\begin{proof}
+Deroin--Dujardin \cite[Definition~3.2 and Theorem~3.9]{DD} identifies
+the support of $dd^c\chi$ with the bifurcation locus. The admissibility
+conditions in their Section~3 hold here: the family is holomorphic,
+generally faithful, nontrivial, and everywhere non-elementary.
+The fixed finitely supported generating measure satisfies their
+exponential moment condition (8). The stability locus is the interior
+of the discrete-faithful locus \cite[Theorem~2.6]{DD}, so the packing
+inequality in the preceding proof excludes every stable point of
+$U_{\rm low}$. Hence
+$U_{\rm low}\subset\operatorname{supp}(dd^c\chi)$, which excludes
+harmonicity on any nonempty open subset.
+\end{proof}
+
+The derivative obstruction concerns estimates uniform on complex open
+sets. Equation~\eqref{eq:open-level-separation} asks instead for one
+weakly Diophantine parameter on each prescribed level. Density of
+kernel parameters in the ambient domain does not resolve that question.
+
+\section{Generic exact realization}\label{sec:category}
+
+Lower semicontinuity of entropy and the absence of constant Lyapunov
+patches give exact realization for a comeager set of target values.
+
+\begin{lemma}[Generic fibers of a continuous scalar map]
+\label{lem:category-levels}
+Let $X\subset\mathbb R^2$ be open, let $I$ be an open interval,
+and let $p:X\to I$ be a continuous surjection which is constant
+on no nonempty open subset. If $G\subset X$ is dense $G_\delta$,
+there is a dense $G_\delta$ set $R\subset I$ such that, for each
+$t\in R$, $G\cap p^{-1}(t)$ is a dense $G_\delta$ subset of the
+nonempty perfect Polish space $p^{-1}(t)$. In particular this
+intersection has cardinality continuum.
+\end{lemma}
+\begin{proof}
+Let $E$ consist of the values attained at local extrema of $p$.
+A countable base shows that $E$ is countable: every such value is
+the supremum or infimum of $p$ on a basis element. Since every
+level is closed and nowhere dense, $X'=X\setminus p^{-1}(E)$ is
+dense $G_\delta$, and $I'=I\setminus E$ is dense $G_\delta$.
+The restricted map $p:X'\to I'$ is a continuous open surjection.
+Indeed a connected ball about a point of $X'$ contains values on
+both sides of its value, and its image therefore contains an interval
+about that value. Deleting $E$ preserves this neighborhood statement
+in the relative topology.
+
+Write $G\cap X'=\bigcap_nU_n$ with each $U_n$ open dense in $X'$,
+and take a countable open base $(V_j)$ for $X'$. For each $n,j$,
+$p(V_j\cap U_n)$ is open dense in the open set $p(V_j)$.
+To check density, any nonempty relatively open set
+$W\subset p(V_j)$ has a nonempty open inverse image in $V_j$,
+which meets $U_n$. It follows that
+$p(V_j)\setminus p(V_j\cap U_n)$ is nowhere dense in $I'$:
+its closure has empty interior in $p(V_j)$ and can add only
+points on the boundary of that open set. Remove the countable union
+of these closures. The remaining set $R$ is dense $G_\delta$ in
+$I'$ and hence in $I$. For $t\in R$, every $U_n$ meets every
+nonempty basic open subset of $p^{-1}(t)$, so it is dense in that
+fiber. The fiber is closed in the Polish space $X'$, and is therefore
+Baire; this proves the dense $G_\delta$ conclusion.
+
+Finally, the fiber has no isolated points. Otherwise a sufficiently
+small punctured disk about an isolated fiber point would be connected
+and contain no other point of the same level. The continuous function
+$p-t$ would have constant sign there, making its center a local
+extremum, contrary to $t\notin E$. A nonempty perfect Polish space
+and each of its dense $G_\delta$ subsets have cardinality continuum.
+\end{proof}
+
+
+\begin{lemma}[Entropy saturation is residual in parameter space]
+\label{lem:residual-saturation}
+For the surface-group family, put
+\[
+ X=\{z\in Q:0<4\chi(z)<h\},\qquad
+ e(z)=h_\mu(\CP^1,\eta_z),
+\]
+where $\eta_z$ is the unique stationary measure. There is a dense
+$G_\delta$ subset $G\subset X$ on which $\rho_z$ is projectively
+faithful and $e(z)=4\chi(z)$.
+\end{lemma}
+\begin{proof}
+Non-elementarity throughout $Q$ gives weak continuity of $\eta_z$:
+any weak limit along convergent parameters is stationary for the
+limit tuple and hence equals its unique stationary measure.
+Write $D_{\rm KL}$ for relative entropy of probability measures.
+The change-of-variables form of Furstenberg entropy is
+\[
+ e(z)=\frac18\sum_{s\in S}
+ D_{\rm KL}\bigl(\rho_z(s)_*\eta_z\,\|\,\eta_z\bigr).
+\]
+Each summand is lower semicontinuous in $z$. One can see this directly
+from the variational identity, for probability measures $\alpha,\beta$
+on the compact space $\CP^1$,
+\[
+ D_{\rm KL}(\alpha\|\beta)
+ =\sup_{f\in C(\CP^1)}
+ \left(\int f\,d\alpha-\log\int e^f\,d\beta\right).
+\]
+Thus $e$ is lower semicontinuous. The Ledrappier--Young identity
+$e(z)=2\chi(z)\dim\eta_z$ gives $e(z)\le4\chi(z)$ without
+any separation assumption. The dense faithful algebraic parameters
+from Lemma~\ref{lem:curve-galois} satisfy equality on $X$, by
+\eqref{eq:entropy-at-good-parameters}.
+
+It follows that, for every $n\ge1$,
+\[
+ O_n=\{z\in X:e(z)>4\chi(z)-1/n\}
+\]
+is open and dense. Intersect these sets and remove the countable
+nonfaithful set $N$. The result is a dense $G_\delta$ set $G$ with
+the asserted properties. Notice that this argument does not assert
+weak Diophantinity on $G$; it proves the entropy conclusion directly.
+\end{proof}
+
+\begin{theorem}[Generic exact realization throughout the full range]
+\label{thm:generic-realization}
+There is a dense $G_\delta$ set $R_\Gamma\subset(0,h)$ such that every
+$t\in R_\Gamma$ is the entropy of an essentially free boundary of the
+fixed $(\Gamma,\mu)$. Consequently
+\[
+ (0,h)\setminus\HH(\Gamma,\mu)\quad\text{is meager}.
+\]
+\end{theorem}
+\begin{proof}
+Use $X$ and $G$ from Lemma~\ref{lem:residual-saturation}, and set
+$p(z)=4\chi(z)$. Proposition~\ref{prop:exact-levels} shows $p(X)=(0,h)$.
+Corollary~\ref{cor:no-flat-patches}, based on the support theorem for
+the bifurcation current, verifies the remaining hypothesis of
+Lemma~\ref{lem:category-levels}. For $t$ in its dense $G_\delta$
+set, select $z\in G$ with $p(z)=t$. Then $e(z)=t$.
+The stationary projective space is a genuine boundary, as before.
+Its measure is nonatomic, and projective faithfulness implies
+essential freeness because a nonidentity M\"obius transformation
+fixes at most two points.
+\end{proof}
+
+The exceptional target set is meager. This gives no assertion about its
+Lebesgue measure, and a particular prescribed value can still
+belong to it. A second construction will turn the corresponding
+generic statement for a free group into a complete numerical interval
+for the surface group.
+
+\section{Generic realization for the free group}\label{sec:free-generic}
+
+Write $F=\langle x,y\rangle$, let
+\[
+ \sigma=\tfrac14(\delta_x+\delta_{x^{-1}}+\delta_y+\delta_{y^{-1}}),
+ \qquad h_2=h_{\mathrm{RW}}(F,\sigma)=\tfrac12\log3.
+\]
+
+\begin{proposition}\label{prop:free-generic}
+There is a comeager set $R\subset(0,h_2)$ such that every $r\in R$
+is the entropy of a genuine $\sigma$-boundary of $F$.  These boundaries
+can be chosen to be essentially free projective boundaries of faithful
+representations $F\longrightarrow\mathrm{SL}_2(\mathbb C)$.
+\end{proposition}
+
+\begin{proof}
+Use the two matrices $A(z),B(z)$ already defined in the explicit curve,
+now as the images of the two free generators.  Denote this representation
+by $\pi_z$ and its top Lyapunov exponent for the four equally weighted
+matrices by $\chi_F(z)$.  This is a separate exponent from the eight-step
+surface-group exponent.
+
+At $z=0$ the representation is trivial.  At $z=1$ it is the faithful
+convex cocompact one-holed-torus representation checked above.
+The faithful neighborhood $V$ for the surface-group family also gives
+faithfulness for this free subgroup throughout $V$.  The same
+$\mathbb Q(i,\sqrt2)$ Galois approximation proves that faithful
+algebraic parameters are dense.  Every transcendental parameter is
+faithful as well: a nontrivial word equal to $\pm I$ there would make
+the corresponding rational-function identity hold identically,
+contradicting projective faithfulness at $1$.
+
+Use the same punctured first quadrant $Q$ as in
+Proposition~\ref{prop:exact-levels}. Its trace and commutator calculations
+involve only $A,B$, so they prove that $\pi_z$ is strongly irreducible,
+proximal, and preserves no generalized circle throughout $Q$.
+
+The function $\chi_F$ is continuous.  Its values approach zero as
+$z\to0$ in $Q$, whereas $\chi_F(1)\ge h_2/2$ by the same
+hyperbolic-plane orbit-counting argument used at the surface-group
+endpoint.  Since a quadrant minus finitely many points is path
+connected, every value in $(0,h_2/4)$ occurs.  Let
+\[
+ X=\{z\in Q:0<4\chi_F(z)<h_2\}.
+\]
+Then $X$ is open and the range of $4\chi_F$ on $X$ is $(0,h_2)$.
+
+We check the absence of locally constant exponent patches, which is
+essential for selection of entropy values rather than just parameters.
+On every connected open subset of $X$, the family $\pi_z$ is an
+admissible holomorphic family in Deroin--Dujardin's terminology: it
+is nonelementary throughout, generally faithful, and nontrivial
+because the squared trace $(\operatorname{tr}A(z))^2$ is nonconstant.  The finitely
+supported generating measure $\sigma$ satisfies all their moment
+conditions.  By \cite[Theorems 2.6 and 3.9]{DD}, the support of
+$dd^c\chi_F$ is the bifurcation locus, and a stable open patch would
+consist of discrete faithful representations.  For any such
+representation, packing in $\mathbb H^3$ gives
+\[
+ h_2\le 4\chi_F.
+\]
+Indeed its discrete faithful orbit has at most $Ce^{2R}$ points in
+an $R$-ball; the relative-entropy comparison with the weights
+$e^{-q d(o,go)}$, $q>2$, gives $h_2\le2q\chi_F$, and then let
+$q\downarrow2$.  This contradicts the definition of $X$.
+Thus $\chi_F$ is not harmonic, and in particular not constant, on
+any nonempty open subset of $X$.
+
+For $z\in X$ let $e_F(z)$ be the Furstenberg entropy of the unique
+stationary probability on $\mathbb{CP}^1$.  The stationary measures
+vary weakly continuously.  The relative-entropy formula makes
+$e_F$ lower semicontinuous, and the dimension formula gives
+$e_F(z)\le4\chi_F(z)$.  At the dense faithful algebraic parameters,
+Rapaport--Ren gives equality, since $4\chi_F<h_2$.
+It follows that
+\[
+ G=\{z\in X:e_F(z)=4\chi_F(z)\}
+\]
+is a dense $G_\delta$ subset of $X$.  Intersecting it with the
+comeager set of faithful parameters preserves this property.
+Lemma~\ref{lem:category-levels}, applied to the continuous
+nowhere locally constant function $4\chi_F:X\to(0,h_2)$ and this
+comeager set, gives a comeager set $R$ of realized values.
+
+The projective stationary spaces are genuine boundaries because
+strong irreducibility and proximality give almost-sure convergence
+of the random translates of their stationary measures to point
+masses.  Their measures are nonatomic.  Faithfulness then makes
+the $F$-actions essentially free, since each nonidentity projective
+transformation fixes at most two points.
+\end{proof}
+
+\section{Boundary factors and entropy limits}\label{sec:remaining}
+
+The results in this and the next two sections apply to any countable
+group $G$ equipped with a finitely supported probability measure $\mu$
+whose support generates $G$ as a semigroup. Let $(B,\nu)$ be its Poisson
+boundary and put $H=h_\mu(B,\nu)$. We identify boundary factors with
+complete $G$-invariant sub-$\sigma$-algebras of $B$, modulo null sets.
+For such an algebra $A$, write $P_A$ for conditional expectation on
+$L^2(B,\nu)$ and $h(A)$ for its Furstenberg entropy. Joins and meets
+are taken in this lattice.
+
+\subsection{Conditional derivatives and monotone limits}
+
+For $g\in G$, put $r_g=d(g_*\nu)/d\nu$. If
+$\mu^{*k}(g)>0$, stationarity gives
+\[
+ r_g\le \frac{1}{\mu^{*k}(g)}.
+\]
+An analogous bound for $g^{-1}$, together with the Radon--Nikodym
+cocycle identity, gives a strictly positive lower bound for $r_g$.
+Semigroup generation ensures that both bounds exist for every $g$.
+In particular there are constants $0<c\le C<\infty$ such that
+$c\le r_s\le C$ for every $s\in\operatorname{supp}\mu$.
+
+The derivative on a factor pulls back to $P_A r_g$. With
+$\phi(u)=u\log u$, the change-of-variables form of entropy is therefore
+\begin{equation}\label{eq:conditional-entropy}
+ h(A)=\sum_s\mu(s)\int_B\phi(P_A r_s)\,d\nu.
+\end{equation}
+Consequently, strong convergence $P_{A_n}\to P_A$ implies
+$h(A_n)\to h(A)$, since $\phi$ is Lipschitz on $[c,C]$.
+For the uniform eight-generator surface walk one can take
+$c=1/8$ and $C=8$; symmetry also gives the equivalent formula
+\[
+ h(A)=-\frac18\sum_{s\in S}\int_B\log(P_A r_s)\,d\nu.
+\]
+
+Martingale convergence now proves continuity of entropy along
+increasing joins and decreasing meets:
+\[
+ A_n\uparrow A\ \Longrightarrow\ h(A_n)\uparrow h(A),
+ \qquad
+ A_n\downarrow A\ \Longrightarrow\ h(A_n)\downarrow h(A).
+\]
+These are the monotone continuity statements in
+\cite[Theorem C]{Dodds}. They concern factors of a fixed Poisson
+boundary and do not assert entropy continuity for arbitrary convergent
+representations. Theorem~\ref{thm:explicit-jump} exhibits precisely
+that distinction.
+
+\subsection{Compactness and scalar closedness}
+
+Scalar density alone does not provide a convergent sequence of factors.
+The compactness argument in \cite[Section 4, Theorem D]{Dodds} invokes
+compactness of the space of all sub-$\sigma$-algebras in the strong
+conditional-expectation topology, citing Beissner--T\"olle. That source
+was withdrawn after a gap was identified in its compactness proof
+\cite{BT}.
+
+The general compactness assertion fails. On a standard product
+probability space, let $X,Z_1,Z_2,\ldots$ be independent signs, with
+$X$ fair and $\mathbb E Z_n=a\in(0,1)$. For
+$\mathcal A_n=\sigma(XZ_n)$ one has
+\[
+ \mathbb E[X\mid\mathcal A_n]=aXZ_n,
+ \qquad
+ \bigl\|\mathbb E[X\mid\mathcal A_n]
+       -\mathbb E[X\mid\mathcal A_m]\bigr\|_2^2
+ =2a^2(1-a^2)\quad(m\ne n).
+\]
+Thus the corresponding conditional expectations have no strongly
+convergent subsequence. This example concerns arbitrary subalgebras;
+it does not disprove compactness for invariant subalgebras of a
+particular Poisson boundary. It does show that the general compactness
+argument cannot establish that specialized conclusion.
+
+Burton--Lupini--Tamuz likewise withdrew the compactness claim in
+Theorem 4.6 of the first version of their paper after finding a gap
+in its proof \cite{BLT}. Their retained results on weak equivalence
+and entropy continuity do not establish compactness of the boundary
+entropy spectrum. None of these compactness claims is used below.
+
+\section{Submodularity and a complete entropy metric}\label{sec:submodular}
+
+Ordinary join-subadditivity appears in
+\cite[Section 4, proof of Theorem 1.3]{TZ}. We give a relative form
+with a common-factor correction. The proof uses nonstationary entropy;
+the initial relatively independent joining need not be stationary,
+and the limiting canonical joining need not be absolutely continuous
+with respect to it.
+
+\subsection{Nonstationary entropy and relative joins}
+
+For a probability measure $m$ on a compact metrizable $G$-space define
+\[
+ \Phi_\mu(m)=\sum_g\mu(g)D(g_*m\Vert\mu*m).
+\]
+This is the nonstationary entropy of
+\cite[Definition 2.3]{GK}. It is weakly lower semicontinuous,
+satisfies $0\le\Phi_\mu(m)\le H(\mu)$, and agrees with Furstenberg
+entropy when $m$ is stationary. The mixture identity
+\[
+ \sum_i p_iD(m_i\Vert q)
+ =\sum_i p_iD(m_i\Vert\overline m)+D(\overline m\Vert q),
+ \qquad \overline m=\sum_i p_i m_i,
+\]
+implies the nonstationary convolution identity
+\begin{equation}\label{eq:Phi-cocycle}
+ \Phi_{\mu*\kappa}(m)
+ =\Phi_\mu(\kappa*m)+\Phi_\kappa(m).
+\end{equation}
+These identities are \cite[Lemma 2.8 and Proposition 2.10]{GK}.
+Their proofs use only mixtures and invertibility, so apply to the
+compact models used here. Indeed, condition on $g$ in the average of
+$D(g_*h_*m\Vert\mu*\kappa*m)$ and use the intermediate mixture
+$g_*(\kappa*m)$. The within-mixture term is $\Phi_\kappa(m)$ by
+invariance of relative entropy under $g$; the remaining term is
+$\Phi_\mu(\kappa*m)$. In particular,
+\[
+ \Phi_{\mu^{*n}}(m)
+ =\sum_{k=0}^{n-1}\Phi_\mu(\mu^{*k}*m),
+ \qquad h_{\mu^{*n}}(A)=n h(A).
+\]
+
+\begin{proposition}[Submodularity of boundary entropy]
+\label{prop:boundary-submodularity}
+If $A,C$ are $\mu$-boundaries and $D$ is a common boundary factor, then
+\[
+ h(A\vee C)+h(D)\le h(A)+h(C).
+\]
+In particular, this holds for $D=A\wedge C$.
+\end{proposition}
+\begin{proof}
+Choose simultaneous compact metrizable models in which the actions and
+the maps $A\to D$ and $C\to D$ are continuous. Such models can be
+obtained by taking countable families of bounded Borel functions
+separating points, closing these families under group translates and
+pullbacks from $D$, and embedding the spaces by their coordinates in
+countable products of compact intervals. The closures carry continuous
+actions and factor maps; the measures are concentrated on the original
+Borel images. Measurable actions may first be restricted to invariant
+conull sets so that the group laws hold everywhere.
+
+Disintegrate the stationary measures over $D$ and set
+\[
+ m_0=\int_D\nu^A_d\otimes\nu^C_d\,d\nu^D(d),
+ \qquad m_n=\mu^{*n}*m_0.
+\]
+These are measures on the compact fiber product $A\times_D C$.
+Writing $r_E(g,\cdot)=d(g_*\nu^E)/d\nu^E$ for $E=A,C,D$,
+the conditional derivative in each fiber is the total-space derivative
+divided by the base derivative. Hence
+\[
+ \frac{d(g_*m_0)}{dm_0}(a,c)
+ =\frac{r_A(g,a)r_C(g,c)}{r_D(g,d)},
+ \qquad d=\pi_A(a)=\pi_C(c).
+\]
+For each fixed word these derivatives are bounded above and away from
+zero, as in Section~\ref{sec:remaining}. All logarithms in the finite
+sums below are therefore integrable. Integrating against $g_*m_0$
+and using its marginals gives
+\[
+ \sum_g\mu^{*n}(g)D(g_*m_0\Vert m_0)
+ =n\bigl(h(A)+h(C)-h(D)\bigr).
+\]
+The mixture identity then yields
+\begin{align*}
+ \Phi_{\mu^{*n}}(m_0)
+ &=n\bigl(h(A)+h(C)-h(D)\bigr)-D(m_n\Vert m_0)\\
+ &\le n\bigl(h(A)+h(C)-h(D)\bigr).
+\end{align*}
+
+Along almost every random-walk path, the two marginals of the translate
+of $m_0$ converge to point masses, since $A$ and $C$ are boundaries.
+Every coupling of those marginals converges to the point mass on the
+corresponding pair. Taking expectations shows that $m_n$ converges
+weakly to the canonical boundary joining $\lambda$. Thus
+\[
+ h(A\vee C)=\Phi_\mu(\lambda)
+ \le\liminf_{k\to\infty}\Phi_\mu(m_k).
+\]
+Cesaro averaging and \eqref{eq:Phi-cocycle} prove the assertion.
+\end{proof}
+
+\subsection{The entropy metric and summable perturbations}
+
+\begin{proposition}[A complete metric on the boundary lattice]
+\label{prop:boundary-entropy-metric}
+On the boundary lattice modulo null sets,
+\[
+ d(A,C)=2h(A\vee C)-h(A)-h(C)
+\]
+is a complete metric. For every boundary $Z$,
+\[
+ d(A\vee Z,C\vee Z)\le d(A,C),
+ \qquad |h(A)-h(C)|\le d(A,C).
+\]
+\end{proposition}
+\begin{proof}
+Monotonicity gives nonnegativity. If $d(A,C)=0$, then
+$h(A\vee C)=h(A)=h(C)$, and strict entropy monotonicity between
+boundary factors gives $A=C$. For completeness, strictness follows
+from Lemma~\ref{lem:conditional-derivative-control} below: zero entropy
+deficit between nested factors makes their projections agree on the
+dense span of the derivatives, and hence on $L^2$. Submodularity over the common factor
+$B$ gives
+\[
+ h(A\vee C)\le h(A\vee B\vee C)
+ \le h(A\vee B)+h(B\vee C)-h(B),
+\]
+which is the triangle inequality. Applying submodularity over $A$
+to $A\vee C$ and $A\vee Z$ gives
+\[
+ h(A\vee C\vee Z)-h(A\vee Z)
+ \le h(A\vee C)-h(A).
+\]
+Add the analogous inequality with $C$ in place of $A$ to obtain
+join contraction. The entropy estimate follows from
+$h(A\vee C)\ge\max\{h(A),h(C)\}$.
+
+Suppose first that $\sum_n d(A_n,A_{n+1})<\infty$. Put
+\[
+ T_N=\bigvee_{n\ge N}A_n,
+ \qquad
+ \epsilon_N=\sum_{n\ge N}
+ \bigl(h(A_n\vee A_{n+1})-h(A_n)\bigr).
+\]
+These tails tend to zero. Submodularity bounds the entropy increment
+from adding $A_{j+1}$ to $A_N\vee\cdots\vee A_j$ by
+$h(A_j\vee A_{j+1})-h(A_j)$. Increasing-join continuity therefore gives
+\begin{equation}\label{eq:tail-join-bound}
+ 0\le h(T_N)-h(A_N)\le\epsilon_N.
+\end{equation}
+Let $A=\bigwedge_N T_N$. Decreasing-meet continuity implies
+$h(T_N)\to h(A)$, and $A\vee A_N\le T_N$ gives
+\[
+ d(A,A_N)
+ \le h(T_N)-h(A)+h(T_N)-h(A_N)\longrightarrow0.
+\]
+Every Cauchy sequence has a subsequence with summable adjacent
+distances. The preceding argument gives its limit, and the triangle
+inequality gives the same limit for the original sequence.
+\end{proof}
+
+\begin{corollary}[Exact entropy from summable join costs]
+\label{cor:summable-join-selection}
+For any sequence of boundaries $(A_n)$, the following conditions
+are equivalent:
+\[
+ \sum_n\bigl(h(A_n\vee A_{n+1})-h(A_n)\bigr)<\infty,
+ \qquad
+ \sum_n d(A_n,A_{n+1})<\infty.
+\]
+Under either condition, $A_n$ converges in $d$ to the genuine boundary
+\[
+ A=\bigwedge_{N=1}^{\infty}\bigvee_{n\ge N}A_n.
+\]
+In particular, if $h(A_n)\to t$, then $h(A)=t$.
+\end{corollary}
+\begin{proof}
+Writing $c_n=h(A_n\vee A_{n+1})-h(A_n)$, we have $0\le c_n\le d(A_n,A_{n+1})$
+and the telescoping identity
+\[
+ \sum_{n=1}^N d(A_n,A_{n+1})
+ =2\sum_{n=1}^N c_n+h(A_1)-h(A_{N+1}).
+\]
+Nonnegativity of entropy proves equivalence. The tail-join argument
+above proves convergence to the displayed $A$, and entropy is
+$1$-Lipschitz for $d$.
+\end{proof}
+
+Completeness does not imply compactness or closedness of the scalar
+entropy image. Further metric consequences are collected in
+Corollary~\ref{cor:metric-applications}.
+
+\section{Quantitative factor selection and relative extensions}
+\label{sec:join-selection}
+
+\subsection{Entropy deficit and conditional expectations}
+
+The next estimate relates the entropy metric to the realization of
+factors as conditional-expectation operators. It also gives explicit
+constants for the eight-generator surface walk.
+
+\begin{lemma}[Nested entropy deficit controls conditional derivatives]
+\label{lem:conditional-derivative-control}
+Suppose $A\subseteq C$, put $\Delta=h(C)-h(A)$, and choose $k\ge1$
+such that $\mu^{*k}(g)>0$. Then
+\[
+ \|(P_C-P_A)r_g\|_2
+ \le\frac{\sqrt{2k}}{\mu^{*k}(g)}\sqrt\Delta.
+\]
+For the uniform eight-generator walk, this implies
+\[
+ \|(P_C-P_A)r_g\|_2
+ \le\sqrt{2\ell}\,8^\ell\sqrt\Delta
+ \qquad(|g|=\ell\ge1).
+\]
+Moreover, the linear span of $\{r_g:g\in G\}$ is dense in
+$L^2(B,\nu)$. For every $f\in L^2(B,\nu)$ there is consequently
+a modulus $\omega_f(\delta)\to0$ as $\delta\downarrow0$, independent
+of the nested pair, such that
+\[
+ \|(P_C-P_A)f\|_2\le\omega_f(\Delta).
+\]
+\end{lemma}
+\begin{proof}
+Set $p=\mu^{*k}(g)$. Since $r_g\le p^{-1}$, the function
+$\phi(u)=u\log u$ satisfies $\phi''(u)\ge p$ on the range of
+$u=P_A r_g$ and $v=P_C r_g$. Also $P_Av=u$, so the linear term
+in Taylor's formula integrates to zero. Hence
+\[
+ \int\bigl(\phi(v)-\phi(u)\bigr)\,d\nu
+ \ge\frac p2\|v-u\|_2^2.
+\]
+All the other terms in the entropy deficit for $\mu^{*k}$ are
+nonnegative by conditional Jensen. The $g$ term alone therefore gives
+$k\Delta\ge(p^2/2)\|v-u\|_2^2$. For the uniform surface walk,
+$\mu^{*\ell}(g)\ge8^{-\ell}$.
+
+For density of the derivative span, suppose $f$ is orthogonal to every
+$r_g$. Let $\beta$ be the boundary map on the random-walk increment
+space, and let $X_n$ be the product of the first $n$ increments.
+The conditional law of $\beta$ given those increments is $(X_n)_*\nu$,
+and thus
+\[
+ \mathbb E[f(\beta)\mid\omega_1,\ldots,\omega_n]
+ =\int f r_{X_n}\,d\nu=0.
+\]
+Martingale convergence gives $f(\beta)=0$ and hence $f=0$.
+Finally, approximate $f$ by a finite linear combination
+$F=\sum_j b_jr_{g_j}$. The difference of nested orthogonal projections
+has norm at most one, so the derivative estimates imply
+\[
+ \|(P_C-P_A)f\|_2
+ \le\|f-F\|_2+
+ \sum_j |b_j|\frac{\sqrt{2k_j}}{\mu^{*k_j}(g_j)}\sqrt\Delta,
+\]
+where $\mu^{*k_j}(g_j)>0$; constant terms contribute zero.
+This proves the asserted uniform modulus.
+\end{proof}
+
+For arbitrary factors $A,C$, applying the lemma through $A\vee C$
+and using $\sqrt{x}+\sqrt{y}\le\sqrt{2(x+y)}$ gives
+\begin{equation}\label{eq:metric-derivative-control}
+ \|(P_A-P_C)r_g\|_2
+ \le\frac{2\sqrt{k}}{\mu^{*k}(g)}\sqrt{d(A,C)}.
+\end{equation}
+For the prescribed surface walk the right-hand constant is at most
+$2\sqrt\ell\,8^\ell$. Density of the derivative span implies that
+$d$-convergence entails strong convergence of conditional expectations.
+No converse or continuity of the meet operation is asserted.
+
+\begin{proposition}[Selection by controlled canonical joins]
+Suppose $h(A_n)\to t$ and
+\[
+ \lim_{N\to\infty}\sup_{m,n\ge N}h(A_m\vee A_n)=t.
+\]
+Then $A_n$ converges in $d$ to a boundary $A$ with $h(A)=t$,
+and $P_{A_n}\to P_A$ strongly. The same conclusions hold if
+$\sum_n d(A_n,A_{n+1})<\infty$, equivalently if the one-sided
+join costs in Corollary~\ref{cor:summable-join-selection} are summable.
+\end{proposition}
+\begin{proof}
+The first hypothesis and $h(A_n)\to t$ imply
+$\sup_{m,n\ge N}d(A_m,A_n)\to0$. Apply completeness and the
+$1$-Lipschitz property of entropy, followed by
+\eqref{eq:metric-derivative-control}. The summability assertion is
+Corollary~\ref{cor:summable-join-selection}.
+\end{proof}
+
+For comparison, the operator estimate alone already proves selection
+under the stronger condition $\sum_n\sqrt{d(A_n,A_{n+1})}<\infty$.
+It makes the projections strongly Cauchy on the derivative span and
+hence on $L^2$. A strong limit $P$ of conditional expectations is
+self-adjoint, positive, unital and idempotent. If a bounded real $f$
+lies in its range, Jensen gives $P(f^2)\ge f^2$; equality of integrals
+gives equality. Polarization and bounded functional calculus show that
+the bounded range is an algebra. It is dense in the full range, by
+applying $P$ to bounded truncations, so $P$ is conditional expectation
+onto a complete subalgebra. Composition $T_g$ by $g$ is bounded on
+$L^2$ because $r_g$ is bounded; passing to the limit in
+$(I-P_{A_n})T_gP_{A_n}=0$ proves invariance. Formula
+\eqref{eq:conditional-entropy} then proves entropy convergence.
+Submodularity replaces this square-root summability requirement by
+the equivalent summable-cost conditions above.
+
+\subsection{Relative extension and exact realization}
+
+An alternative to a Cauchy selection is to extend factors by arbitrarily
+small entropy increments. The relative entropy difference used below
+is consistent with the fiber-entropy decomposition in
+\cite[eqs.~(2.5)--(2.6)]{HT}; submodularity bounds the cost of adjoining
+a factor by its entropy over the common factor.
+
+\begin{proposition}[A relative extension criterion]\label{prop:relative-extension}
+For factors $A,C$, put $r_A(C)=h(C)-h(A\wedge C)$.
+Fix $T\in(0,H]$. If, for every $A$ with $h(A)<T$, there are
+$C\not\le A$ with arbitrarily small $r_A(C)$, then
+\[
+ [0,T]\subseteq\HH(G,\mu).
+\]
+More precisely, if $t\in(0,H]$ is not realized, there is a factor
+$A$ with $a=h(A)<t$ such that
+\begin{equation}\label{eq:relative-obstruction}
+ C\not\le A\quad\Longrightarrow\quad
+ h(C)-h(A\wedge C)>t-a.
+\end{equation}
+In particular, $A$ contains every $C$ with $r_A(C)\le t-a$,
+and therefore every $C$ with $h(C)\le t-a$.
+\end{proposition}
+\begin{proof}
+Let $\mathcal P_t$ be the factors of entropy at most $t$. For any
+nonempty chain $\mathcal C\subseteq\mathcal P_t$, put
+$s=\sup_{E\in\mathcal C}h(E)$ and choose an increasing sequence
+$E_n\in\mathcal C$ with $h(E_n)\to s$. Set $E=\bigvee_n E_n$.
+For each $F\in\mathcal C$, comparability gives
+\[
+ h(F\vee E_n)=\max\{h(F),h(E_n)\}\longrightarrow s.
+\]
+Increasing-join continuity implies $h(F\vee E)=h(E)=s$, and
+strict entropy monotonicity gives $F\le E$. Thus $E$ is an upper
+bound in $\mathcal P_t$. The empty chain is bounded by the trivial
+factor, so Zorn's lemma gives a maximal $A\in\mathcal P_t$.
+
+If $t$ is not realized, then $a=h(A)<t$. For $C\not\le A$,
+maximality implies $h(A\vee C)>t$. Submodularity yields
+\[
+ t<h(A\vee C)\le a+h(C)-h(A\wedge C),
+\]
+proving \eqref{eq:relative-obstruction}. Arbitrarily small relative
+costs contradict this inequality for every unrealized $t\le T$.
+The trivial boundary realizes zero.
+\end{proof}
+
+The same Zorn argument proves full realization if every proper factor
+has strict extensions with arbitrarily small entropy increments.
+Proposition~\ref{prop:relative-extension} gives a sufficient condition
+for constructing such extensions through canonical joins. In particular,
+taking $T=H/2$ reduces realization of the lower half-interval to small
+relative costs outside every $A$ with $h(A)<H/2$. This allows candidates
+of substantial absolute entropy when most of that entropy already
+belongs to the common factor.
+
+Neither scalar density nor the generic realization theorem verifies
+this extension condition. The small-extension theorem of
+Tamuz--Zheng \cite[Theorem 1.3]{TZ} applies to non-essentially-free
+free-group boundaries and does not provide it for arbitrary faithful
+surface-group boundaries. The selection and extension criteria above
+are sufficient conditions for further exact realization, not additional
+claims about the attained interval.
+
+\section{Applications}\label{sec:applications-editorial}
+
+We apply generic realization first to products and then to the prescribed
+genus-two walk. The product theorem keeps the increment distribution
+explicit: each step acts on one coordinate, so boundary entropy is a
+weighted sum of the two coordinate entropies.
+
+\subsection{Full realization for coordinate products}
+
+\begin{theorem}[Exact realization for coordinate products]
+\label{thm:generic-product-regularization}
+For $i=1,2$, let $G_i$ be a countable group with a semigroup-generating
+probability measure $\mu_i$ of finite Shannon entropy, and suppose
+$0<h_i:=h_{\rm RW}(G_i,\mu_i)<\infty$. Assume that the boundary
+entropy spectrum of $(G_i,\mu_i)$ contains a comeager subset
+$R_i\subset(0,h_i)$. For $0<p<1$, define
+\[
+ \lambda_p=p(\mu_1\otimes\delta_e)
+          +(1-p)(\delta_e\otimes\mu_2)
+ \quad\text{on }G_1\times G_2.
+\]
+Then
+\[
+ h_{\rm RW}(G_1\times G_2,\lambda_p)=ph_1+(1-p)h_2,
+ \qquad
+ \mathscr H_\partial(G_1\times G_2,\lambda_p)
+      =[0,ph_1+(1-p)h_2].
+\]
+If the values in $R_i$ are realized by essentially free boundaries,
+then every value in the open interval is realized by an essentially
+free boundary of $G_1\times G_2$.
+\end{theorem}
+\begin{proof}
+Let $(B_i,\eta_i)$ be a $\mu_i$-boundary. The product measure
+$\eta_1\otimes\eta_2$ is $\lambda_p$-stationary. Realize the walk
+by independent coordinate choices, with probabilities $p,1-p$,
+and independent increment streams of laws $\mu_1,\mu_2$.
+Both coordinates are updated infinitely often almost surely. Along
+the resulting sample path, the translates of each $\eta_i$ converge
+to a point mass. Hence the translates of the product measure also
+converge to a point mass. This proves that the stationary product
+is a genuine boundary. The entropy formula is
+\begin{equation}\label{eq:weighted-coordinate-product}
+ h_{\lambda_p}(B_1\times B_2,\eta_1\otimes\eta_2)
+ =p h_{\mu_1}(B_1,\eta_1)+(1-p)h_{\mu_2}(B_2,\eta_2),
+\end{equation}
+since the Radon--Nikodym derivative of a step is the derivative on
+its active coordinate. The product action is essentially free if
+both coordinate actions are essentially free.
+
+For completeness, the random-walk entropy has the same weighted
+formula. Let $N_n$ be the number of updates of the first coordinate
+by time $n$, and let $Z_n$ be the position of the product walk.
+Conditional on $N_n=k$, its two coordinates are independent with
+laws $\mu_1^{*k}$ and $\mu_2^{*(n-k)}$. Therefore
+\[
+ H(Z_n\mid N_n)
+ =\mathbb E\bigl[H(\mu_1^{*N_n})
+                  +H(\mu_2^{*(n-N_n)})\bigr],
+ \qquad
+ 0\le H(Z_n)-H(Z_n\mid N_n)\le\log(n+1).
+\]
+The law of large numbers, the definition of $h_i$, and the bounds
+$H(\mu_i^{*k})\le kH(\mu_i)$ show that the conditional entropy
+divided by $n$ converges to $ph_1+(1-p)h_2$. Thus this is the
+random-walk entropy and bounds every boundary entropy from above.
+
+Fix $0<t<ph_1+(1-p)h_2$. The interval
+\[
+ J_t=\left(\max\left\{0,\frac{t-(1-p)h_2}{p}\right\},
+           \min\left\{h_1,\frac{t}{p}\right\}\right)
+\]
+is nonempty. On $J_t$, both $R_1$ and the inverse image of $R_2$
+under $r\mapsto(t-pr)/(1-p)$ are comeager. Their intersection is
+nonempty by the Baire category theorem. Selecting $r_1$ there and
+setting $r_2=(t-pr_1)/(1-p)$ gives
+$t=pr_1+(1-p)r_2$. Choose the corresponding boundaries and use
+\eqref{eq:weighted-coordinate-product}. The trivial boundaries
+realize zero, and the two Poisson boundaries realize the upper
+endpoint.
+\end{proof}
+
+\begin{corollary}[Full realization on products of surface groups]
+\label{cor:surface-product-full}
+For the fixed $(\Gamma,\mu)$ and any $0<p<1$,
+\[
+ \mathscr H_\partial\!\left(\Gamma\times\Gamma,
+       p(\mu\otimes\delta_e)+(1-p)(\delta_e\otimes\mu)\right)
+ =[0,h].
+\]
+Every $t\in(0,h)$ is realized by an essentially free boundary.
+Likewise, the coordinate product of two simple random walks on $F_2$
+has boundary entropy spectrum $[0,\frac12\log3]$.
+\end{corollary}
+\begin{proof}
+Apply Theorem~\ref{thm:generic-product-regularization} to
+Theorem~\ref{thm:generic-realization} and
+Proposition~\ref{prop:free-generic}, respectively.
+\end{proof}
+
+\subsection{An explicit interval for the genus-two walk}\label{sec:product-interval}
+
+\begin{theorem}\label{thm:explicit-product-interval}
+For the walk \eqref{eq:fixed-walk},
+\[
+ [0,\tfrac12\log3]\subseteq\HH(\Gamma,\mu).
+\]
+Consequently $[0,c_*h]\subseteq\HH(\Gamma,\mu)$, where
+$c_*=2\log3/(3\log7)$. The boundaries in this interval construction
+factor through $F_2\times F_2$ and are not essentially free as
+$\Gamma$-spaces.
+\end{theorem}
+\begin{proof}
+With $F=\langle x,y\rangle$ and its simple random walk $\sigma$, define
+\[
+ q:\Gamma\longrightarrow F\times F,\qquad
+ a_1\mapsto(x,e),\quad a_2\mapsto(y,e),\quad
+ b_1\mapsto(e,x),\quad b_2\mapsto(e,y).
+\]
+Both commutators in the defining relation map to the identity, and
+$q$ is surjective. The push-forward measure is exactly
+\[
+ q_*\mu=\tfrac12(\sigma\otimes\delta_e)
+              +\tfrac12(\delta_e\otimes\sigma).
+\]
+Proposition~\ref{prop:free-generic} and
+Theorem~\ref{thm:generic-product-regularization} give every entropy in
+$[0,h_2]$, where $h_2=\frac12\log3$. Pulling a boundary back along
+$q$ preserves stationarity, the point-mass contraction property, and
+entropy. In particular,
+\begin{equation}\label{eq:coordinate-product-entropy}
+ h_\mu(B_1\times B_2,\eta_1\otimes\eta_2)
+ =\tfrac12h_\sigma(B_1,\eta_1)+\tfrac12h_\sigma(B_2,\eta_2).
+\end{equation}
+This proves the interval assertion for the prescribed measure.
+The estimate $c_*h\le\frac12\log3$ follows from \eqref{eq:h-bounds}.
+Finally $[a_1,b_1]$ is nontrivial in $\Gamma$ and lies in $\ker q$,
+so all these pulled-back actions have a nontrivial kernel.
+\end{proof}
+
+The maximal entropy of this quotient walk is $h_2$. Thus this particular
+construction cannot yield an entropy larger than $\frac12\log3$;
+it imposes no upper bound on other boundary constructions for $\Gamma$.
+
+\subsection{Abundance of proper boundaries}
+
+\begin{corollary}[Abundance of proper, essentially free boundaries]
+\label{cor:continuum-proper-boundaries}
+Every nonempty open interval $J\subset(0,h)$ contains the entropy
+values of continuum many pairwise nonisomorphic, essentially free
+proper $\mu$-boundaries of $\Gamma$. They may all be realized on
+$\mathbb{CP}^1$ with nonatomic, exact-dimensional stationary measures
+of dimension $2$.
+\end{corollary}
+\begin{proof}
+Let $R_\Gamma$ be the dense $G_\delta$ set in
+Theorem~\ref{thm:generic-realization}. The set $R_\Gamma\cap J$ has
+cardinality continuum. For each $t$ in this set, the theorem selects
+a faithful projective representation with $4\chi=t$ and boundary
+entropy $t$. The stationary measure is exact dimensional, and the
+Ledrappier--Young identity
+$h_\mu=2\chi\dim\eta$ gives $\dim\eta=2$
+\cite[Theorem~2.14 and Appendix~A]{RR}.
+Different values of $t$ give nonisomorphic measured $\Gamma$-spaces,
+since Furstenberg entropy is preserved by equivariant
+measure-preserving isomorphisms. Each boundary is proper because
+its entropy is strictly smaller than $h$.
+\end{proof}
+
+The same conclusion holds for the simple random walk on $F_2$, with
+$h$ replaced by $\frac12\log3$. The assertion concerns different
+entropy values; it makes no claim that distinct representations on
+one Lyapunov level yield nonisomorphic measured boundaries.
+
+\subsection{Stable joins and endpoint convergence}
+
+The entropy metric gives quantitative consequences for canonical factor
+operations. In this subsection write $\mathsf h$ for entropy, let
+$P$ be the full Poisson boundary, and let $\mathbf0$ be the trivial factor.
+
+\begin{corollary}\label{cor:metric-applications}
+The following hold for boundary factors of the fixed walk.
+\begin{enumerate}
+\item If $\sum_n\mathsf h(C_n)<\infty$, $J_N=\bigvee_{n\le N}C_n$,
+and $J=\bigvee_{n\ge1}C_n$, then
+\[
+ d(J_N,J)\le\sum_{n>N}\mathsf h(C_n).
+\]
+\item Joins satisfy
+\[
+ d(A\vee C,A'\vee C')\le d(A,A')+d(C,C').
+\]
+\item $d(A,P)=h-\mathsf h(A)$ and $d(A,\mathbf0)=\mathsf h(A)$.
+Thus entropy convergence to either endpoint implies convergence to that
+endpoint in the entropy metric and strongly for conditional expectations.
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+For (i), subadditivity bounds the entropy increase in every finite tail
+by its total entropy; increasing-join continuity gives the same bound
+for $J$. Since $J_N\le J$, their distance is the entropy difference.
+For (ii), use the triangle inequality and contraction under joining a
+fixed factor. The identities in (iii) follow from $A\vee P=P$ and
+$A\vee\mathbf0=A$; the operator conclusion follows from
+\eqref{eq:metric-derivative-control}.
+\end{proof}
+
+Corollary~\ref{cor:summable-join-selection} supplies a further application:
+a scalar entropy approximation becomes exact whenever its successive
+join costs are summable. The density theorem provides scalar
+approximations, but does not by itself provide this additional control.
+
+\section{An explicit failure of representation-entropy continuity}\label{sec:jump}
+
+The same rational family gives an explicit obstruction to extending
+entropy continuously across the real locus.
+
+\begin{theorem}[Exact doubling in a convergent sequence]\label{thm:explicit-jump}
+Let
+\[
+ z_* =\frac12-\frac7{20}\sqrt2,\qquad
+ s_* =\frac12+\frac7{20}\sqrt2=1-z_*.
+\]
+For the fixed uniform measure \eqref{eq:fixed-walk}, $\rho_{z_*}$ is a faithful
+algebraic representation into $\mathrm{SL}_2(\mathbb R)$. Write
+$\chi_*:=\chi(\rho_{z_*})$. Then $\chi_*>0$, and there is a sequence
+of faithful algebraic representations $\rho_{\zeta_n}$ converging to
+$\rho_{z_*}$, with real-Zariski-dense images in
+$\mathrm{SL}_2(\mathbb C)$, such that
+\[
+ h_\mu(Y_{z_*})=2\chi_*,\qquad
+ \lim_{n\to\infty}h_\mu(Y_{\zeta_n})=4\chi_*.
+\]
+In particular, the boundary entropy is not continuous on the locus of
+faithful non-elementary complex representations.
+\end{theorem}
+
+\begin{proof}
+First, $7/5<\sqrt2<10/7$ gives $0<z_*<1/100$ and
+$99/100<s_*<1$. For a real parameter $s\in(99/100,1)$, direct matrix
+identities give
+\[
+ x(s):=\operatorname{tr}A(s)=\operatorname{tr}B(s)
+       =2+\frac{6s^2}{1+2s}>2,
+\]
+\[
+ Z(s):=\operatorname{tr}(A(s)B(s))
+       =2+\frac{4s^2(s+2)^2}{(1+2s)^2}>2,
+\]
+and
+\[
+ \kappa(s):=\operatorname{tr}K(s)
+       =2-\frac{32s^4(s+2)^2}{(1+2s)^2}<-28.
+\]
+For the last bound, $(s+2)/(1+2s)>1$ and
+$32(99/100)^4>30$. The Fricke criterion \cite[Theorem 4.1.2]{GoldmanFricke} for a marked hyperbolic
+one-holed torus applies to the positive trace triple
+$(x(s),x(s),Z(s))$, since its commutator trace is below $-2$.
+Consequently $\langle A(s),B(s)\rangle$ is the holonomy of a marked
+one-holed torus with geodesic boundary corresponding to $K(s)$.
+
+Writing $a=1+14s$ and using $\det K(s)=1$ gives
+\[
+ \det C(s)=a^2+as\kappa(s)+s^2
+ <226-28\left(\frac{743}{50}\right)\left(\frac{99}{100}\right)<0.
+\]
+Thus the real projective transformation $C(s)$ is an
+orientation-reversing isometry of $\mathbb H^2$ that centralizes the
+hyperbolic element $K(s)$. It fixes the two endpoints of the boundary
+axis individually. Such an isometry is the reflection across that axis
+composed with a translation along it. The displayed representation
+therefore doubles the one-holed torus across its geodesic boundary,
+with an allowed twist. The resulting closed hyperbolic surface has
+genus two, so $\rho_s$ is projectively discrete and faithful.
+This is equivalently the standard Fuchsian combination theorem for
+gluing two geodesic-boundary surfaces.
+
+In particular $\rho_{s_*}$ is faithful. All entries of the family are
+rational functions with rational coefficients. The automorphism
+$\sqrt2\mapsto-\sqrt2$ sends $s_*$ to $z_*$. It preserves all matrix
+relations, and therefore preserves faithfulness, including projective
+faithfulness. It also shows that $C(z_*)$ is invertible. Thus
+$\rho_{z_*}$ is faithful and algebraic. Its image is non-elementary:
+faithfulness excludes a finite projective orbit, and
+$\operatorname{tr}A(z_*)>2$ gives an unbounded element. Furstenberg's
+positivity theorem gives $\chi_*>0$.
+
+We next verify a uniform upper bound. For $0<z<1/100$,
+\[
+ \|A(z)-I\|_{\rm op}\le\|A(z)-I\|_{\rm F}
+ \le\sqrt{13}\,z<\frac1{25}.
+\]
+Here the lower-right entry of $A-I$ is
+$-2z(1-z)/(1+2z)$, whose absolute value is at most $2z$.
+The same estimate applies to $B$. Since these matrices have determinant
+one, their inverse operator norms equal their operator norms. Hence
+\[
+ \|A^{\pm1}\|,\|B^{\pm1}\|<\frac{26}{25},\qquad
+ \|K\|<\left(\frac{26}{25}\right)^4<\frac65.
+\]
+Write $C=(1+14z)(I+uK)$ with $u=z/(1+14z)<1/100$. A Neumann-series
+bound gives
+\[
+ \|C\|\,\|C^{-1}\|
+ \le\frac{1+u\|K\|}{1-u\|K\|}<\frac{253}{247}.
+\]
+Each of the eight generator matrices consequently has norm below
+\[
+ \frac{26}{25}\frac{253}{247}<\frac{11}{10}.
+\]
+It follows by submultiplicativity that
+$\chi_*\le\log(11/10)$.
+
+The quotient
+$a_1\mapsto x,b_1\mapsto y,a_2\mapsto y,b_2\mapsto x$
+maps the fixed walk to the simple symmetric walk on $F_2$.
+Therefore
+\[
+ h:=h_{\rm RW}(\Gamma,\mu)\ge\frac12\log3
+ >4\log(11/10)\ge4\chi_*.
+\]
+The strict numerical comparison follows, without approximation, from
+$11^8<3\cdot10^8$.
+
+It remains to produce the approximating sequence. Let $V$ be a complex
+neighborhood of $s_*$ in $D$ on which the family remains projectively
+faithful, using openness of convex cocompact representations. For any
+small complex open set $U$ near $z_*$, choose $u\in U$ and $v\in V$.
+Approximate $(u+v)/2$ and $(u-v)/(2\sqrt2)$ by
+$a,b\in\mathbb Q(i)$, respectively. Then
+$\zeta=a+b\sqrt2\in U$ and its conjugate
+$\sigma\zeta=a-b\sqrt2\in V$. Thus $\rho_\zeta$ is faithful and
+algebraic. We can additionally arrange
+$\operatorname{Im}(\operatorname{tr}A(\zeta))^2\ne0$, because this
+is an open dense condition on the complex parameter domain.
+Faithfulness excludes finite projective orbits; the nonreal squared
+trace excludes compact image and invariant generalized circles.
+The representations so obtained satisfy all dynamical hypotheses of
+Rapaport--Ren, Theorem~1.2.
+
+Choose $\zeta_n\to z_*$. Continuity of the Lyapunov exponent at the
+non-elementary limit follows from weak convergence of the unique
+stationary measures and Furstenberg's continuous norm-cocycle formula.
+The algebraic Diophantine property and the dimension formulas give
+\[
+ h_\mu(Y_{z_*})=\min\{h,2\chi_*\}=2\chi_*,
+\qquad
+ h_\mu(Y_{\zeta_n})=\min\{h,4\chi(\rho_{\zeta_n})\}.
+\]
+The real formula uses \cite[Theorems 1.1 and 3.4]{HS}.
+The complex formula uses \cite[Theorems 1.2 and 2.14]{RR},
+together with the identity of Furstenberg entropy and the first-step
+mutual information $H(p)-H(\omega_0\mid L)$. Since $4\chi_*<h$,
+the second expression converges to $4\chi_*$, as claimed.
+\end{proof}
+
+
+The limiting representation preserves a generalized circle. Thus this
+example disproves entropy continuity on the faithful non-elementary
+locus; it does not assert a discontinuity with both the sequence and its
+limit inside the real-Zariski-dense locus. All the stationary spaces here
+are genuine boundary factors. Weak convergence of their stationary
+measures follows from uniqueness at the non-elementary limit, so the
+example directly separates weak convergence from entropy convergence.
+
+\section{Levelwise saturation and holomorphic rigidity}
+\label{sec:saturation-test}
+
+\subsection{A limitation of semicontinuity and bifurcation support}
+
+Full realization by the projective family would follow from finding,
+for each $0<t<h$, a parameter with $4\chi=t$ and a stationary measure
+of dimension $2$. The generic realization theorem establishes this
+for a comeager set of targets. The following example shows that
+lower semicontinuity, dense saturation, and full bifurcation support
+alone do not imply saturation on every level.
+
+Let $\Omega=\{r<|z|<R\}$, where $0<r<R<\sqrt h$, and put
+$p(z)=|z|^2$. Given any countable dense set $A\subset\Omega$,
+choose $c\in p(\Omega)\setminus p(A)$ and $0<\varepsilon<c$.
+Define
+\[
+ F(z)=p(z)-\varepsilon\mathbf1_{\{p(z)=c\}}.
+\]
+Then $0\le F\le p$, $F$ is lower semicontinuous, and $p-F$ is
+upper semicontinuous. Equality $F=p$ holds on $A$ and on an open
+dense set of full planar measure. Moreover, $p$ is smooth and strictly
+subharmonic, and $dd^cp$ has full support. Nevertheless, equality
+fails everywhere on the level circle $\{p=c\}$, which has positive
+logarithmic capacity. Thus these properties neither ensure saturation
+on each level nor force the exceptional set to have zero capacity.
+The example concerns the logical strength of the stated hypotheses;
+it does not assert that this defect occurs for Furstenberg entropy.
+
+\subsection{Holomorphic families with constant Lyapunov exponent}
+
+\begin{proposition}[Rigidity on a subcritical constant-Lyapunov disk]
+\label{prop:constant-lyapunov-disk}
+Let $(\rho_w)_{w\in\Delta}$ be a holomorphic family of representations
+of $\Gamma$ into $\mathrm{PSL}_2(\mathbb C)$, with $\rho_0$
+faithful and non-elementary. If
+\[
+ \chi(\rho_w)=c<h/4\qquad(w\in\Delta),
+\]
+then, after shrinking $\Delta$, all representations in the family
+are conjugate.
+\end{proposition}
+\begin{proof}
+Shrink the disk so that every representation is non-elementary.
+Faithfulness at zero implies general faithfulness: for each nontrivial
+word, its identity locus is a proper analytic subset. If the family
+were nontrivial up to conjugacy, it would be admissible for
+\cite[Theorem~3.9]{DD}; finite support of $\mu$ supplies the
+exponential moment condition. Constancy of $\chi$ makes $dd^c\chi$
+vanish. The support theorem and \cite[Theorem~2.6]{DD} would then
+make the family discrete and faithful. The packing inequality
+$h\le4\chi=4c$ contradicts the hypothesis.
+\end{proof}
+
+The proposition applies to holomorphic curves in multiparameter
+representation spaces as well. Thus a holomorphic deformation through
+a faithful subcritical representation that stays on one Lyapunov level
+can vary only by conjugacy, which preserves boundary entropy.
+The existence and regularity of real paths within such levels remain
+separate questions: continuity or H\"older continuity of $\chi$ alone
+does not supply an analytic implicit-function theorem.
+
+\section{Open realization questions}\label{sec:open-problems}
+
+For the fixed genus-two walk, the established exact interval is
+$[0,\frac12\log3]$, and the complement of the boundary entropy spectrum
+in $(0,h)$ is meager. Two further selection statements would resolve
+individual missing values.
+
+\begin{question}[Saturation on each Lyapunov level]
+For every $0<t<h$, does there exist a projectively faithful parameter
+$z\in Q$ with
+\[
+ 4\chi(z)=t,\qquad \dim\eta_z=2?
+\]
+\end{question}
+
+An affirmative answer would give full realization by
+\eqref{eq:ledrappier-young}. Proposition~\ref{prop:exact-levels} supplies
+faithful points on every required level, while
+Lemma~\ref{lem:residual-saturation} supplies dimension-two saturation
+on a residual set of parameters. The missing assertion is their
+intersection on every level. The example in Section~\ref{sec:saturation-test}
+shows that lower semicontinuity, dense saturation, and full support of
+the bifurcation current do not alone prove it. Dense kernel
+specializations and unbounded word contact also prevent a uniform
+finite-order transversality argument on the subcritical region.
+
+The boundary lattice gives a different formulation. For a factor $A$,
+set $r_A(C)=\mathsf h(C)-\mathsf h(A\wedge C)$, where $\mathsf h$
+denotes boundary entropy.
+
+\begin{question}[Arbitrarily small relative extensions]
+Does every factor $A$ with $\mathsf h(A)<h/2$ satisfy
+\[
+ \inf_{C\not\le A}r_A(C)=0?
+\]
+Does the same assertion hold for every proper factor $A$?
+\end{question}
+
+Proposition~\ref{prop:relative-extension} proves that the first assertion
+would give $[0,h/2]\subseteq\HH(\Gamma,\mu)$; the second would give
+full realization. The common-factor term allows $C$ to have substantial
+absolute entropy if most of it is already present in $A$. Neither the
+density theorem nor completeness of the entropy metric currently
+provides such an extension. The metric criterion instead asks for a
+choice of approximants whose joins introduce a summable amount of
+additional entropy. These are precise remaining requirements, rather
+than consequences of scalar density.
+
+\appendix
+\section{An elementary continuity argument for symmetric walks}\label{sec:elementary-continuity}
+For a finitely supported symmetric measure in $\mathrm{SL}_2(\mathbb C)$,
+$\chi\ge0$ and
+\[
+ \chi=\inf_{n\ge1}\frac1n\sum_{s_1,\ldots,s_n}
+ \mu(s_1)\cdots\mu(s_n)
+ \log\|\rho(s_1\cdots s_n)\|.
+\]
+The right-hand side is an infimum of continuous functions of the
+matrix tuple, proving upper semicontinuity. At a non-elementary
+noncompact image, uniqueness of the stationary projective measure
+implies its weak continuity: any subsequential limit remains
+stationary for the limiting tuple. The Furstenberg integral formula,
+whose integrand is jointly continuous on the compact projective space,
+then gives continuity of $\chi$ at that tuple.
+At a relatively compact image, $\chi=0$. At an image fixing one
+projective point, conjugate to upper triangular matrices. The two
+diagonal exponents are the averages of opposite log-modulus
+characters; inversion symmetry makes both zero. The Lyapunov
+exponents of a triangular cocycle are its diagonal exponents, so
+$\chi=0$. If precisely a two-point set is preserved, conjugate to
+monomial matrices. If the two points are not interchanged, the same
+argument applies. Otherwise the sign process on the two coordinate
+axes is a finite irreducible Markov chain with uniform stationary
+law; the two opposite logarithmic increments have zero averaged
+drift, again giving $\chi=0$. A finite orbit of size at least three
+forces a finite projective image and hence $\chi=0$.
+Upper semicontinuity and nonnegativity now give continuity at all
+remaining tuples. This proof uses no entropy regularity assertion.
+
+\begin{thebibliography}{99}
+
+\bibitem{BT}
+P. Beissner and J. M. T\"olle,
+\emph{A compact topology for $\sigma$-algebra convergence},
+preprint, 2018, \href{https://arxiv.org/abs/1802.05920}{arXiv:1802.05920}.
+Withdrawn in version~3, 19 May 2021, because of a gap in the proof of
+Theorem~2.6, Claim~3.
+
+\bibitem{BV}
+C. Bocker-Neto and M. Viana,
+\emph{Continuity of Lyapunov exponents for random two-dimensional matrices},
+Ergodic Theory Dynam. Systems \textbf{37} (2017), no.~5, 1413--1442.
+\href{https://doi.org/10.1017/etds.2015.116}{doi:10.1017/etds.2015.116}.
+
+\bibitem{BO}
+J. Brieussel and H. Oppelmayer,
+\emph{Continuity of Furstenberg entropy on Bowen Poisson bundles},
+preprint, 2026,
+\href{https://arxiv.org/abs/2610.29561v1}{arXiv:2610.29561v1}.
+
+\bibitem{BLT}
+P. Burton, M. Lupini, and O. Tamuz,
+\emph{Weak equivalence of stationary actions and the entropy realization problem},
+preprint, 2016,
+\href{https://arxiv.org/abs/1603.05013v2}{arXiv:1603.05013v2}.
+Version~2, 2 November 2016, withdraws Theorem~4.6 of version~1.
+
+\bibitem{DD}
+B. Deroin and R. Dujardin,
+\emph{Random walks, Kleinian groups, and bifurcation currents},
+Invent. Math. \textbf{190} (2012), no.~1, 57--118.
+\href{https://doi.org/10.1007/s00222-012-0376-5}{doi:10.1007/s00222-012-0376-5}.
+
+\bibitem{Dodds}
+S. Dodds,
+\emph{On the lattice of boundaries and the entropy spectrum of hyperbolic groups},
+preprint, 2022,
+\href{https://arxiv.org/abs/2211.04554v3}{arXiv:2211.04554v3}.
+
+\bibitem{DF}
+S. Dodds and A. Furman,
+\emph{Quotients of Poisson boundaries, entropy, and spectral gap},
+preprint, 2025,
+\href{https://arxiv.org/abs/2504.09926v1}{arXiv:2504.09926v1}.
+
+\bibitem{GoldmanComplex}
+W. M. Goldman,
+\emph{The complex-symplectic geometry of $\mathrm{SL}(2,\mathbb C)$-characters
+over surfaces},
+in \emph{Algebraic groups and arithmetic}, Tata Inst. Fund. Res.,
+Mumbai, 2004, pp.~375--407.
+\href{https://arxiv.org/abs/math/0304307v2}{arXiv:math/0304307v2}.
+
+\bibitem{GoldmanFricke}
+W. M. Goldman,
+\emph{Trace coordinates on Fricke spaces of some simple hyperbolic surfaces},
+in \emph{Handbook of Teichm\"uller theory}, Vol.~II,
+IRMA Lect. Math. Theor. Phys., vol.~13, Eur. Math. Soc.,
+Z\"urich, 2009, pp.~611--684.
+\href{https://doi.org/10.4171/055-1/16}{doi:10.4171/055-1/16}.
+
+\bibitem{GK}
+A. Gorodetski and V. Kleptsyn,
+\emph{Non-stationary version of Furstenberg's theorem on random matrix products},
+J. Assoc. Math. Res. \textbf{4} (2026), no.~1, 1--41.
+\href{https://doi.org/10.56994/JAMR.004.001.001}{doi:10.56994/JAMR.004.001.001}.
+
+\bibitem{HT}
+Y. Hartman and O. Tamuz,
+\emph{Furstenberg entropy realizations for virtually free groups and lamplighter groups},
+J. Anal. Math. \textbf{126} (2015), no.~1, 227--257.
+\href{https://doi.org/10.1007/s11854-015-0016-2}{doi:10.1007/s11854-015-0016-2}.
+
+\bibitem{HS}
+M. Hochman and B. Solomyak,
+\emph{On the dimension of Furstenberg measure for
+$\mathrm{SL}_2(\mathbb R)$ random matrix products},
+Invent. Math. \textbf{210} (2017), no.~3, 815--875.
+\href{https://doi.org/10.1007/s00222-017-0740-6}{doi:10.1007/s00222-017-0740-6}.
+
+\bibitem{Kaimanovich}
+V. A. Kaimanovich,
+\emph{The Poisson formula for groups with hyperbolic properties},
+Ann. of Math. (2) \textbf{152} (2000), no.~3, 659--692.
+\href{https://doi.org/10.2307/2661351}{doi:10.2307/2661351}.
+
+\bibitem{KV}
+V. A. Kaimanovich and A. M. Vershik,
+\emph{Random walks on discrete groups: boundary and entropy},
+Ann. Probab. \textbf{11} (1983), no.~3, 457--490.
+\href{https://doi.org/10.1214/aop/1176993497}{doi:10.1214/aop/1176993497}.
+
+\bibitem{RR}
+A. Rapaport and H. Ren,
+\emph{Dimension of Furstenberg measures on $\mathbb{CP}^1$},
+preprint, 2025,
+\href{https://arxiv.org/abs/2511.00729v2}{arXiv:2511.00729v2}.
+
+\bibitem{ST}
+B. Solomyak and Y. Takahashi,
+\emph{Diophantine property of matrices and attractors of projective
+iterated function systems in $\mathbb{RP}^1$},
+Int. Math. Res. Not. IMRN \textbf{2021}, no.~16, 12639--12669.
+\href{https://doi.org/10.1093/imrn/rnz309}{doi:10.1093/imrn/rnz309}.
+
+\bibitem{TZ}
+O. Tamuz and T. Zheng,
+\emph{On the spectrum of asymptotic entropies of random walks},
+Groups Geom. Dyn. \textbf{19} (2025), no.~3, 879--897.
+\href{https://doi.org/10.4171/GGD/798}{doi:10.4171/GGD/798}.
+
+\end{thebibliography}
+
+\end{document}
+

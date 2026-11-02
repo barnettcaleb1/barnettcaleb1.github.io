@@ -2,6 +2,29 @@
   "version": 1,
   "results": [
     {
+      "slug": "density-boundary-entropy-spectra-surface-groups-draft",
+      "title": "Density of boundary entropy spectra for surface groups",
+      "summary": "Boundary entropy spectra are dense throughout the full entropy range for every closed orientable surface group of genus at least two and every finitely supported semigroup-generating measure. Faithful arithmetic projective representations give essentially free approximants with dense image and full-dimensional stationary measures. For the uniform genus-two walk, the paper gives generic exact realization and the interval [0, ½ log 3], with applications to coordinate products and boundary-lattice limits. Full realization for the original walk remains unresolved.",
+      "date": "2026-11-02",
+      "authors": [],
+      "topic": "Ergodic theory",
+      "isExample": false,
+      "pdf": "content/papers/density-boundary-entropy-spectra-surface-groups-draft.pdf",
+      "tags": [
+        "Poisson boundaries",
+        "Furstenberg entropy",
+        "surface groups",
+        "Lyapunov exponents",
+        "entropy realization"
+      ],
+      "attachments": [
+        {
+          "label": "LaTeX source",
+          "url": "content/attachments/density-boundary-entropy-spectra-surface-groups-draft.tex"
+        }
+      ]
+    },
+    {
       "slug": "invariant-random-c-star-subalgebras-hyperbolic-products-draft",
       "title": "Invariant random C*-subalgebras of products of hyperbolic groups",
       "summary": "An extension of boomerang subalgebra rigidity to finite products of torsion-free nonamenable hyperbolic groups and countable restricted direct sums. The proposed classification identifies every invariant random C*-subalgebra with a unique invariant random subgroup. The proof combines selective tensor averaging, coordinatewise centering, and mixed Fourier-coefficient extraction.",

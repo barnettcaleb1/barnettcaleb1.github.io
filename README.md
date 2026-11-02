@@ -2,10 +2,11 @@
 
 A plain HTML research page for AI-assisted mathematics, ready for GitHub Pages. Publish papers directly as PDFs or write results in Markdown with rendered LaTeX. A JSON index controls their metadata. The site has no build step, package manager, or backend.
 
-The archive currently contains six papers. Caleb Barnett is attributed as author only on the Rapid Decay paper.
+The archive currently contains seven papers. Caleb Barnett is attributed as author only on the Rapid Decay paper.
 
 Except for Rapid Decay and C*-Simplicity, the papers in this archive were prepared with AI assistance and have not been reviewed by Caleb Barnett or independently verified. No independent review is planned. Hosting these papers does not imply Caleb Barnett’s authorship or endorsement. Any formal verification is limited to the scope and assumptions stated in the paper.
 
+- [Density of boundary entropy spectra for surface groups](content/papers/density-boundary-entropy-spectra-surface-groups-draft.pdf), dated 2 November 2026. Proves full-range density of boundary entropy spectra for closed orientable surface groups and finitely supported generating walks, with generic and interval realization for the fixed genus-two walk and applications to coordinate products. Full realization for that original walk remains unresolved. [LaTeX source](content/attachments/density-boundary-entropy-spectra-surface-groups-draft.tex).
 - [Invariant random C*-subalgebras of products of hyperbolic groups](content/papers/invariant-random-c-star-subalgebras-hyperbolic-products-draft.pdf), dated 23 October 2026. Extends boomerang and invariant-random subalgebra rigidity to products of torsion-free nonamenable hyperbolic groups and restricted direct sums. [LaTeX source](content/attachments/invariant-random-c-star-subalgebras-hyperbolic-products-draft.tex).
 - [Countable strongly Choquet–Deny groups are precisely the virtually FC groups](content/papers/strongly-choquet-deny-groups-fc-center-draft.pdf), dated 23 October 2026. Adapts the methods of Dantas and Doucha to the countable classification. [LaTeX source](content/attachments/strongly-choquet-deny-groups-fc-center-draft.tex).
 - [Hyperrigidity in low dimensions and a dimension-33 counterexample](content/papers/hyperrigidity-low-dimensions-dimension-33-counterexample-draft.pdf), version 2, dated 23 October 2026. [LaTeX source](content/attachments/hyperrigidity-low-dimensions-dimension-33-counterexample-draft.tex).
