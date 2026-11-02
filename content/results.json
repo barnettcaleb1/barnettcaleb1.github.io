@@ -30,7 +30,7 @@
     },
     {
       "slug": "strongly-choquet-deny-groups-fc-center-draft",
-      "title": "Strongly Choquet–Deny groups and the FC-center",
+      "title": "Countable strongly Choquet–Deny groups are precisely the virtually FC groups",
       "summary": "A note extending the finitely generated classification of Dantas and Doucha to countable groups: the strongly Choquet–Deny groups are precisely the virtually FC groups, with the same characterization for the positive condition. The argument adapts their renorming criterion and analytic obstruction, adding finite conjugacy averaging and a sequence construction when the FC-center has infinite index. AI-assisted draft for discussion; independent mathematical review is pending.",
       "date": "2026-10-23",
       "authors": [
