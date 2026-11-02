@@ -1,0 +1,1056 @@
+\documentclass[11pt,letterpaper]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue,
+ pdftitle={Strongly Choquet--Deny groups and the FC-center},
+ pdfauthor={Caleb Barnett}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\F}{\mathbb F}
+\DeclareMathOperator{\co}{co}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\Prob}{Prob}
+\DeclareMathOperator{\Meas}{Meas}
+\DeclareMathOperator{\ran}{ran}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\FC}{FC}
+\DeclareMathOperator{\supp}{supp}
+\title[Strongly Choquet--Deny groups and the FC-center]{Strongly
+Choquet--Deny groups and the FC-center}
+\author{Caleb Barnett}
+\date{Draft of October 23, 2026}
+\begin{document}
+\begin{abstract}
+We show that the countable strongly Choquet--Deny groups are precisely
+the virtually FC groups, extending the finitely generated classification
+of Dantas and Doucha. The proof uses their criterion for invariant
+strictly convex renormability and the analytic construction in their
+Heisenberg example. The positive direction replaces commutativity by
+finite conjugacy averaging. For the converse, we construct the sequence
+required by their obstruction whenever the FC-center has infinite index.
+The same characterization holds for their positive strongly
+Choquet--Deny condition.
+\end{abstract}
+\maketitle
+\begin{center}
+\small
+\textit{Draft for discussion.} AI assistance was used in developing and
+revising the arguments and exposition. Independent mathematical review is pending.
+\end{center}
+
+\section{Introduction}
+Dantas and Doucha introduced strongly Choquet--Deny groups and proved
+that a countable group has this property if and only if every uniformly
+bounded representation on a separable real Banach space admits an
+equivalent invariant strictly convex norm \cite[Theorem~4.2]{DD}.
+Their work follows the study of invariant renormings in \cite{D};
+the connection between harmonic vectors and strict convexity also
+appears in Jaworski--Neufang \cite[Proposition~2.5]{JN}.
+Dantas--Doucha classified the finitely generated strongly Choquet--Deny
+groups as the virtually abelian groups \cite[Theorem~5.6]{DD}.
+This note extends their classification to arbitrary countable groups.
+
+Recall that a group is \emph{FC} if all its conjugacy classes are finite,
+and \emph{virtually FC} if it has an FC subgroup of finite index.
+Its FC-center $\FC(G)$ is the subgroup of elements with finite conjugacy
+class in $G$. The strong Choquet--Deny conditions in the following
+statement are those of \cite[Definition~2.4]{DD}, recalled in
+Section~\ref{sec:prelim}.
+
+\begin{theorem}\label{thm:classification}
+For a countable group $G$, the following conditions are equivalent:
+\begin{enumerate}
+\item $G$ is virtually FC.
+\item Every uniformly bounded representation of $G$ on a separable real
+Banach space admits an equivalent $G$-invariant strictly convex norm.
+\item $G$ is strongly Choquet--Deny.
+\item $G$ is positively strongly Choquet--Deny.
+\end{enumerate}
+\end{theorem}
+
+A finitely generated FC group has a finite-index center: intersect
+the centralizers of a finite generating set. Since a finite-index
+subgroup of a finitely generated group is finitely generated, virtual
+FC and virtual abelianness coincide in that setting. They differ for
+general countable groups; for example, $\bigoplus_{n\geq1}S_3$ is FC
+but not virtually abelian (Example~\ref{ex:finite-sum}).
+
+\subsection{Proof and relation to earlier work}
+We use two extensions of the methods of \cite{DD}.
+For the positive direction, finite conjugacy averages show that a
+midpoint decomposition in an absolutely convex orbit hull preserves
+all norms and linear relations in the cyclic representation. This
+produces two contractions whose average is the identity, extending
+the abelian operator argument of \cite[Theorem~5.3]{DD}. Kakutani's
+extremality theorem gives orbit extremality, and the criterion in
+\cite[Theorem~3.1]{DD} supplies the invariant strictly convex norm.
+Finite-index extension then treats virtually FC groups.
+
+For the converse, \cite[Example~5.5, Claim~2]{DD} constructs an
+obstruction from a sequence satisfying the three product conditions
+in Claim~1 of that example. Proposition~\ref{thm:certificate} records
+this implication, with a minor change to the damping function.
+The additional group-theoretic argument is
+Theorem~\ref{thm:sequence}, which constructs such a sequence whenever
+$[G:\FC(G)]=\infty$. It is a finite extension argument using
+centralizer cosets and the equation-avoidance lemma
+(Lemma~\ref{lem:avoid}). Its relation to the rewritability theorem of
+Blyth--Rhemtulla \cite{BR} and the switching constructions of
+\cite{FTVF,FHTVF,EK} is explained in Section~\ref{sec:sequence}.
+
+For comparison, a countable group is \emph{Choquet--Deny} if every
+bounded $\mu$-harmonic function is constant on left cosets of the
+subgroup generated by $\supp(\mu)$, for every probability measure
+$\mu$ \cite[Definition~2.2]{DD}. These are precisely the groups
+with no nontrivial ICC quotient \cite[Theorem~1]{FHTVF}, or
+equivalently the hyper-FC-central groups. Here ICC means nontrivial
+with every nonidentity conjugacy class infinite; hyper-FC-central
+means that iterating FC-centers in successive quotients, with unions
+at limit stages, exhausts the group. The positive direction of this
+ordinary classification goes back to \cite[Theorems~4.5 and~4.8]{J}.
+Theorem~\ref{thm:classification} requires finite index already at the
+first FC-center. The examples in Section~\ref{sec:examples} show that
+this is a strictly stronger requirement.
+
+The equivalence of the positive and signed strong conditions for the
+same countable group is a consequence of the classification.
+The earlier relation in \cite[Proposition~2.6]{DD} identifies the
+signed condition for $G$ with the positive condition for
+$G\times\Z_2$.
+
+\section{Preliminaries}\label{sec:prelim}
+All groups are discrete, and all Banach spaces and function spaces are
+over $\R$. All convex hull closures are taken in norm. A representation
+$\pi:G\to\mathrm{GL}(X)$ is \emph{uniformly bounded} if
+$M=\sup_{g\in G}\|\pi(g)\|<\infty$. In this case
+\[
+ \|x\|_0=\sup_{g\in G}\|\pi(g)x\|
+\]
+is an equivalent invariant norm, with
+$\|x\|\leq\|x\|_0\leq M\|x\|$. Thus it suffices to treat isometric
+representations. A norm $N$ is \emph{strictly convex} if
+$N((x+y)/2)<1$ whenever $x\ne y$ and $N(x)=N(y)=1$.
+
+\subsection{Measures and translations}
+We follow \cite[Section~2.2]{DD} in writing $\Prob(G)$ for the
+probability measures and $\Meas(G)=B_{\ell^1(G)}$ for the real signed
+measures of total variation at most one. For $\mu\in\ell^1(G)$ set
+$\mu^*(h)=\mu(h^{-1})$. Their convolution convention is
+\[
+ (f*\mu)(g)=\sum_{h\in G}f(gh)\mu(h^{-1}),\qquad
+ (f*\mu^*)(g)=\sum_{h\in G}\mu(h)f(gh).
+\]
+We also write $(R_hf)(g)=f(gh)$ for right translation. Thus
+$R_hR_k=R_{hk}$ and $f*\mu^*=\sum_h\mu(h)R_hf$, with convergence
+in supremum norm. In particular, right convolution preserves the
+closed span of the right translates of $f$. A bounded function is
+$\mu$-harmonic if $f*\mu^*=f$. The symbol $\delta_g$ denotes a point
+mass or the indicator of $\{g\}$, according to the ambient space.
+
+\begin{definition}[{\cite[Definition~2.4]{DD}}]\label{def:strong}
+A countable group $G$ is \emph{strongly Choquet--Deny} if the following
+implication holds. Let
+$\mu_n,\nu_n,\nu_n'\in\Meas(G)$ with $\mu_n=(\nu_n+\nu_n')/2$,
+and let $f\in\ell^\infty(G)$ be fixed. If
+\begin{equation}\label{eq:hypotheses}
+ \|f*\mu_n^*-f\|_\infty\longrightarrow0,
+ \qquad
+ \sum_{n=1}^\infty\|d_{n+1}-d_n\|_\infty<\infty,
+ \quad d_n=f*(\nu_n^*-(\nu_n')^*),
+\end{equation}
+then $\|d_n\|_\infty\to0$. The group is \emph{positively strongly
+Choquet--Deny} if the same implication holds with all measures in
+$\Prob(G)$.
+\end{definition}
+
+The summability in \eqref{eq:hypotheses} makes $(d_n)$ converge in
+supremum norm, so this is equivalent to the subsequence conclusion in
+\cite[Definition~2.4]{DD}. Restricting the measures shows that the
+signed condition implies the positive one \cite[Proposition~2.5]{DD}.
+
+\subsection{Orbit hulls and the FC-center}
+Write $\Orb_G(x)=\{\pi(g)x:g\in G\}$ and
+$\Orb_G(x,-x)=\Orb_G(x)\cup\Orb_G(-x)$, as in
+\cite[Section~2.1]{DD}. Its closed convex hull is the closed absolutely
+convex hull of $\Orb_G(x)$. We use the following criterion.
+
+\begin{theorem}[{Dantas--Doucha, \cite[Theorem~3.1]{DD}}]
+\label{thm:criterion}
+An isometric representation of a group $G$ on a separable real Banach
+space $X$ admits an equivalent invariant strictly convex norm if and
+only if every $x\in X$ is an extreme point of
+$\overline{\co}(\Orb_G(x,-x))$.
+\end{theorem}
+
+For countable groups, \cite[Theorem~4.2]{DD} further identifies the
+strongly Choquet--Deny property with the existence of such a norm in
+every separable uniformly bounded representation. We use this
+equivalence in the proof of Theorem~\ref{thm:classification}.
+
+Necessity in Theorem~\ref{thm:criterion} holds without separability:
+all points of this hull have
+invariant norm at most that of $x$, so strict convexity excludes a
+nontrivial midpoint at $x$. In our converse the endpoints will even
+lie in $\overline{\co}(\Orb_G(x))$.
+
+For $g\in G$ let $C_G(g)=\{h\in G:hg=gh\}$ be its centralizer.
+The FC-center is
+\[
+ \FC(G)=\{g\in G:[G:C_G(g)]<\infty\}.
+\]
+The index equals the cardinality of the conjugacy class of $g$.
+The FC-center is a characteristic subgroup: conjugates of a product
+belong to the product of the conjugacy classes of its factors, and
+inversion and automorphisms preserve finiteness of conjugacy classes.
+See also \cite[Section~5.B]{EK}. Moreover,
+\begin{equation}\label{eq:fc-index}
+ G\text{ is virtually FC}\quad\Longleftrightarrow\quad
+ [G:\FC(G)]<\infty.
+\end{equation}
+For the nontrivial implication, let $H\leq G$ be FC of finite index.
+The $G$-conjugacy class of $h\in H$ is a finite union of conjugates
+of its finite $H$-conjugacy class. Thus $H\subseteq\FC(G)$.
+
+\section{Invariant renormings for virtually FC groups}\label{sec:positive}
+We prove the positive direction of Theorem~\ref{thm:classification}.
+No countability assumption on the group is needed in this section.
+The proof follows the contractive-operator strategy of
+\cite[Theorem~5.3]{DD}. Finite conjugacy averaging also appears in
+Jaworski's unitary-representation argument \cite[proof of Theorem~4.4]{J}.
+Here we average squared norms of group-algebra translates to preserve
+all linear relations in a cyclic Banach representation.
+
+\begin{lemma}[{Kakutani; see \cite[Theorem~8.28]{EFHN}}]\label{lem:identity}
+For every real Banach space $E$, the identity is an extreme point of
+the closed unit ball of $\mathcal B(E)$.
+\end{lemma}
+\begin{proof}
+We use the geometric proof in \cite[Theorem~8.28]{EFHN}.
+Suppose $A,B:E\to E$ are contractions with $(A+B)/2=I$.
+For every extreme point $\varphi$ of the dual unit ball $B_{E^*}$,
+\[
+ \varphi=\frac{A^*\varphi+B^*\varphi}{2},\qquad
+ A^*\varphi,B^*\varphi\in B_{E^*}.
+\]
+Extremality gives $A^*\varphi=B^*\varphi=\varphi$.
+By the Kre\u{\i}n--Milman theorem, $B_{E^*}$ is the weak-star closed
+convex hull of its extreme points. Since adjoint operators are
+weak-star continuous, $A^*$ and $B^*$ fix the whole dual unit ball.
+Thus $A=B=I$.
+\end{proof}
+
+\begin{theorem}[FC orbit extremality]\label{thm:fc}
+Let $G$ be an FC group. In every real isometric Banach representation,
+without a separability assumption, every vector $x$ is extreme in its
+closed absolutely convex orbit hull $\overline{\co}(\Orb_G(x,-x))$. Consequently
+every uniformly bounded representation of $G$ on a separable real
+Banach space admits an equivalent invariant strictly convex norm.
+\end{theorem}
+\begin{proof}
+Fix $x=(y+z)/2$ with $y,z\in \overline{\co}(\Orb_G(x,-x))$. For a finitely supported element
+$a=\sum_g a_g g$ of the real group algebra, write
+$\pi(a)=\sum_g a_g\pi(g)$ and let
+\[
+ \mathcal O(a)=\{h^{-1}ah:h\in G\}.
+\]
+This set is finite: the support of $a$ is finite, and every element of
+that support has finitely many conjugates. Define
+\[
+ \Phi_a(v)=\frac1{|\mathcal O(a)|}
+                  \sum_{b\in\mathcal O(a)}\|\pi(b)v\|^2.
+\]
+This function is continuous, even, convex, and $G$-invariant. Indeed,
+$\pi(b)\pi(h)=\pi(h)\pi(h^{-1}bh)$, the first factor is an isometry,
+and conjugation permutes $\mathcal O(a)$.
+
+Since $y,z\in \overline{\co}(\Orb_G(x,-x))$, continuity, convexity, and invariance give
+$\Phi_a(y),\Phi_a(z)\leq\Phi_a(x)$. Thus
+\[
+ \Phi_a(x)\leq\frac{\Phi_a(y)+\Phi_a(z)}2\leq\Phi_a(x).
+\]
+All the individual squared-norm Jensen gaps in this finite average are
+nonnegative, so they all vanish. Indeed, the triangle inequality gives
+$\|\pi(b)x\|\leq(\|\pi(b)y\|+\|\pi(b)z\|)/2$, and hence
+for each $b\in\mathcal O(a)$,
+\[
+ \frac{\|\pi(b)y\|^2+\|\pi(b)z\|^2}{2}-\|\pi(b)x\|^2
+ \geq\frac14\bigl(\|\pi(b)y\|-\|\pi(b)z\|\bigr)^2.
+\]
+In particular, because $a\in\mathcal O(a)$,
+\begin{equation}\label{eq:all-a}
+ \|\pi(a)y\|=\|\pi(a)z\|=\|\pi(a)x\|
+ \quad\text{for every finitely supported real }a.
+\end{equation}
+
+Put $E=\overline{\Span}\{\pi(g)x:g\in G\}$. Both $y$ and $z$ lie
+in $E$. On its dense algebraic cyclic subspace define
+\[
+ A(\pi(a)x)=\pi(a)y,\qquad B(\pi(a)x)=\pi(a)z.
+\]
+In particular, \eqref{eq:all-a} gives
+$\pi(a)x=0\Rightarrow\pi(a)y=\pi(a)z=0$. Applying this to the
+difference of two group-algebra elements shows that the definitions
+respect every linear relation. The maps are therefore well-defined
+linear isometries. They extend to contractions $A,B:E\to E$, and
+$(A+B)/2=I_E$ because $y+z=2x$. Lemma~\ref{lem:identity} gives
+$A=B=I_E$, whence $y=z=x$.
+
+The final assertion follows by first making the representation isometric
+and then applying Theorem~\ref{thm:criterion}.
+\end{proof}
+
+\begin{corollary}[Finite-index extension]\label{cor:virtual}
+Every uniformly bounded representation of a virtually FC group on a
+separable real Banach space admits an equivalent invariant strictly convex norm.
+\end{corollary}
+\begin{proof}
+This is the finite-index case of \cite[Lemma~3.2 and
+Proposition~5.1]{DD}; we give a direct proof by averaging.
+Let $H\leq G$ be FC with finite index $d$, and first make the given
+representation isometric using $\|\cdot\|_0$.
+Theorem~\ref{thm:fc} gives an equivalent $H$-invariant strictly convex norm $N_H$.
+Choose representatives $r_1,\ldots,r_d$ for the right cosets
+$H\backslash G$ and set
+\[
+ N_G(v)=\frac1d\sum_{j=1}^d N_H(\pi(r_j)v).
+\]
+Right multiplication permutes the right cosets, so the
+$H$-invariance of $N_H$ makes $N_G$ invariant under $G$.
+Each summand is an equivalent strictly convex norm, and their finite
+average has the same properties. Normality of $H$ is not required.
+\end{proof}
+
+\section{The Dantas--Doucha obstruction}\label{sec:obstruction}
+We first explain the analytic target of the converse. It is enough to
+find $f$ and two sequences of probability measures such that
+\begin{equation}\label{eq:target}
+ f*\nu_n^*\longrightarrow f+\delta_e,\qquad
+ f*(\nu_n')^*\longrightarrow f-\delta_e
+\end{equation}
+in supremum norm, with summable errors. Their average makes $f$
+approximately harmonic, but their difference has a nonzero limit.
+Equally, \eqref{eq:target} places $f$ at a nontrivial midpoint of its
+closed convex orbit hull. This is the construction of Dantas--Doucha
+in \cite[Example~5.5, Claim~2]{DD}.
+
+\subsection{The three product properties}
+We retain the notation of \cite[Example~5.5]{DD}. Let $\mathcal F$
+be the set of finite sequences of distinct positive integers, including
+the empty sequence $\varnothing$. Write $|v|$ for the length of $v$,
+$v(i)$ for its $i$th entry, and $\ran(v)$ for its set of entries.
+Given $(s_i)_{i\geq1}\subseteq G$, put
+\[
+ s_v=s_{v(1)}\cdots s_{v(|v|)},\qquad
+ s_\varnothing=e,\qquad \mathcal S=\{s_v:v\in\mathcal F\}.
+\]
+Concatenation is denoted by juxtaposition; it belongs to $\mathcal F$
+only when no entry is repeated. Equalities of sequences mean equality
+as ordered strings, while equalities of their evaluations hold in $G$.
+
+The hypotheses below are exactly the three properties in
+\cite[Example~5.5, Claim~1]{DD}. Their roles can be seen before any
+estimate. Injectivity makes the first entry of a nonempty product
+well-defined. Appending an unused entry preserves that first entry;
+appending an entry already used leaves $\mathcal S$. Finally, a point
+outside $\mathcal S$ has at most one right successor in $\mathcal S$,
+so averages over large blocks are small there. Thus a sign assigned to
+the first entry is almost preserved by right averaging, except at the
+empty sequence, where the first sign is created.
+
+The needed approximation is uniform over all products. A fixed product
+uses finitely many entries, but products of arbitrarily large length
+can exhaust an entire averaging block. Give each letter a small
+positive cost and let $w$ be the total cost of a word. We damp its
+first-letter sign by $1/(1+w)$. A word that has used many letters from
+one block has a large cost, and therefore a small value. This is the
+uniformity mechanism in the proof below.
+
+\begin{proposition}[{Dantas--Doucha obstruction, extracted from
+\cite[Example~5.5, Claim~2]{DD}}]\label{thm:certificate}
+Let $G$ be countable and $(s_i)_{i\geq1}\subseteq G$. Assume that:
+\begin{enumerate}
+\item the map $v\mapsto s_v$ on $\mathcal F$ is injective;
+\item if $i\in\ran(v)$, then $s_vs_i\notin\mathcal S$;
+\item if $g\notin\mathcal S$, at most one index $i$ satisfies
+$gs_i\in\mathcal S$.
+\end{enumerate}
+There are $f\in\ell^\infty(G)$ and
+$\mu_n,\nu_n,\nu_n'\in\Prob(G)$ with $\mu_n=(\nu_n+\nu_n')/2$ such that
+\begin{equation}\label{eq:endpoint-estimates}
+ \begin{aligned}
+ \|f*\nu_n^*-(f+\delta_e)\|_\infty&\leq3\cdot2^{-n},\\
+ \|f*(\nu_n')^*-(f-\delta_e)\|_\infty&\leq3\cdot2^{-n}.
+ \end{aligned}
+\end{equation}
+Consequently $G$ is not positively strongly Choquet--Deny. The
+right-translation representation on the separable cyclic space
+\[
+ X_f=\overline{\Span}\{R_gf:g\in G\}\subseteq\ell^\infty(G)
+\]
+has no equivalent invariant strictly convex norm; more precisely,
+$f+\delta_e,f-\delta_e\in\overline{\co}(\Orb_G(f))$.
+\end{proposition}
+\begin{proof}
+We adapt the argument of \cite[Example~5.5, Claim~2]{DD}. We retain
+their blocks, signs, and additive weight, but use reciprocal damping
+in place of their truncated affine factor. Blocks of size $2^{2n}$
+suffice in place of $2^{2^n}$.
+Partition $\N$ into consecutive blocks $N_n$ with $|N_n|=2^{2n}$,
+and put $S_n=\{s_i:i\in N_n\}$. Split $S_n$ into two equally sized
+sets $S_n^+,S_n^-$. Let $\mu_n,\nu_n,\nu_n'$ be uniform on
+$S_n,S_n^+,S_n^-$, respectively. These are probability measures and
+$\mu_n=(\nu_n+\nu_n')/2$.
+
+Set $\sigma(s_i)=1$ on $S_n^+$ and $\sigma(s_i)=-1$ on $S_n^-$.
+Following the notation of \cite{DD}, define the additive weight
+$f':\mathcal S\to[0,\infty)$ by
+\[
+ f'(s_v)=\sum_{k\geq1}2^{-k}|N_k\cap\ran(v)|.
+\]
+The sum has finitely many nonzero terms, and the first hypothesis
+makes it well-defined. Define
+\[
+ f(s_v)=\frac{\sigma(s_{v(1)})}{1+f'(s_v)}
+   \quad(v\ne\varnothing),\qquad
+ f(e)=0,\qquad
+ f(g)=0\quad(g\notin\mathcal S).
+\]
+Then $\|f\|_\infty=1$, since $|f(s_i)|=(1+2^{-n})^{-1}$ for $s_i\in S_n$.
+Fix $n$, and put $\varepsilon=2^{-n}$ and
+$L=|S_n^+|=|S_n^-|=2^{2n-1}$. We estimate the two averages in
+\eqref{eq:endpoint-estimates} by the same argument.
+At $e$ their values are $(1+\varepsilon)^{-1}$ and
+$-(1+\varepsilon)^{-1}$, so each has error at most $\varepsilon$
+from its target. Outside $\mathcal S$,
+at most one successor contributes, and the error is at most
+$L^{-1}=2\varepsilon^2\leq\varepsilon$.
+
+Let $g=s_v\ne e$, write $w=f'(s_v)$, and consider either half-block.
+Let $r$ be the number of its entries already used in $v$. Then
+$r\varepsilon\leq w$. Each used entry gives a zero successor by the
+second hypothesis. Every unused entry preserves the first letter and
+adds $\varepsilon$ to the weight. Writing
+$\sigma=\sigma(s_{v(1)})$, the half-block average is therefore
+\[
+ \frac{(1-r/L)\sigma}{1+w+\varepsilon}.
+\]
+Its error from $f(g)=\sigma/(1+w)$ is exactly
+\[
+ \frac{\varepsilon}{(1+w)(1+w+\varepsilon)}
+ +\frac{r}{L(1+w+\varepsilon)}
+ \leq\varepsilon+\frac1{L\varepsilon}=3\varepsilon,
+\]
+where we used $r\varepsilon\leq w\leq1+w+\varepsilon$.
+This single estimate covers all word lengths and both half-blocks,
+and proves \eqref{eq:endpoint-estimates}.
+
+Taking the average and difference now gives
+\begin{align}
+ \|f*\mu_n^*-f\|_\infty&\leq3\cdot2^{-n},\label{eq:main-approx}\\
+ \|d_n-2\delta_e\|_\infty&\leq6\cdot2^{-n},
+ \qquad d_n=f*(\nu_n^*-(\nu_n')^*).\label{eq:main-split}
+\end{align}
+In particular,
+\[
+ \sum_{n\geq1}\|d_{n+1}-d_n\|_\infty
+ \leq6\sum_{n\geq1}(2^{-(n+1)}+2^{-n})<\infty,
+ \qquad d_n\longrightarrow2\delta_e\ne0.
+\]
+This disproves the positive strong condition.
+
+The endpoint estimates also give the geometric conclusion directly.
+The space $X_f$ is separable because $G$ is countable, and is invariant
+under the isometries $R_g$. Each probability average is a convex
+combination of right translates of $f$. Hence \eqref{eq:endpoint-estimates}
+places the two distinct limits $f+\delta_e,f-\delta_e$ in
+$\overline{\co}(\Orb_G(f))$. Their midpoint is $f$, which precludes
+an invariant strictly convex norm.
+\end{proof}
+
+\section{Realizing the product conditions}\label{sec:sequence}
+It remains to produce a sequence satisfying the three hypotheses of
+Proposition~\ref{thm:certificate} when $[G:\FC(G)]=\infty$.
+Throughout this section put $F=\FC(G)$. The group need not be countable.
+
+\subsection{Rewritability and the product conditions}
+Finite index of the FC-center forces collisions among products.
+The following observation uses the prefix-coset argument in
+\cite[Lemmas~3.1--3.2]{BR}.
+
+\begin{lemma}\label{lem:block-commutation}
+If $[G:\FC(G)]<\infty$, every infinite sequence in $G$ has two
+disjoint nonempty finite consecutive blocks whose products commute.
+In particular, its products of distinct-index words cannot all be
+distinct.
+\end{lemma}
+\begin{proof}
+Write the sequence as $(s_i)$ and its prefix products as
+$p_k=s_1\cdots s_k$, with $p_0=e$. Two prefixes lie in the same
+coset of $F$, say $p_aF=p_bF$ with $a<b$. Hence the nonempty block
+product
+\[
+ u=p_a^{-1}p_b=s_{a+1}\cdots s_b
+\]
+belongs to $F$. Now $C_G(u)$ has finite index. Apply the same
+pigeonhole argument to prefixes $q_k=s_{b+1}\cdots s_{b+k}$ of the
+remaining tail. Equality $q_cC_G(u)=q_dC_G(u)$, with $c<d$, gives
+\[
+ v=q_c^{-1}q_d=s_{b+c+1}\cdots s_{b+d}\in C_G(u).
+\]
+Thus $uv=vu$, while the two corresponding concatenations of the
+disjoint blocks are different words with no repeated index.
+\end{proof}
+
+Blyth--Rhemtulla call a group \emph{eventually rewritable}, or a
+$\mathcal Q_\infty$-group, if every sequence $(x_i)_{i\geq1}$ admits $n\geq2$
+and distinct permutations $\sigma,\tau$ of $\{1,\ldots,n\}$ such that
+\[
+ x_{\sigma(1)}\cdots x_{\sigma(n)}
+ =x_{\tau(1)}\cdots x_{\tau(n)}.
+\]
+They prove that this is equivalent to being FC-by-finite, that is,
+virtually FC \cite[Proposition~2]{BR}. Consequently, outside this
+class there is a sequence whose products distinguish every ordering
+of each finite initial segment. They also distinguish orderings of
+any fixed finite subset: append its complement in an initial segment
+and cancel. This explains why products that retain their order are
+natural here. It does not yet distinguish different supports, exclude
+repeated appends, or control right successors outside the product set.
+Those are the extra requirements of Proposition~\ref{thm:certificate}.
+
+Neither extra requirement follows merely from distinguishing ordered
+words. The standard generators of the free product
+$\ast_{i\geq1}\Z_2$ distinguish all words with distinct indices, but
+$s_i^2=e$ violates the repeated-append condition. Passing to a
+subsequence does not fix this.
+
+The exterior-successor condition is also independent of unique decoding.
+For example, in the free group on $a,b,t,c_1,c_2,\ldots$, the sequence
+\[
+ a,\ b,\ ta,\ tb,\ c_1,\ c_2,\ldots
+\]
+has distinct values for all positive words, even when indices repeat:
+read a symbol $t$ together with the following $a$ or $b$, and every
+other symbol separately. This uniquely decodes a product into the
+displayed generators, and also gives the repeated-append exclusion.
+Nevertheless, $t$ is outside their positive
+product set and has the two successors $ta,tb$ in it. Thus even
+unique decoding of all positive words would not by itself supply
+the analytic obstruction.
+
+The basic induction is also suggested by the proof of
+\cite[Lemma~3.3]{BR}. If a new element $x$ is inserted into two old
+products, a collision takes the form
+\[
+ axb=cxd\quad\Longleftrightarrow\quad
+ x(bd^{-1})x^{-1}=a^{-1}c.
+\]
+When $bd^{-1}\notin F$, this excludes at most one coset of an
+infinite-index centralizer. When $bd^{-1}\in F$, its centralizer has
+finite index; we instead choose $x$ in that centralizer. The equation
+then reduces to an equality among old products. The induction must
+retain enough information to prove that each such surviving equality
+is harmless. The finite extension lemma below uses two necessary
+features of an infinite sequence with the desired predecessor
+property: nonempty products avoid $F$, and different letters lie in
+different cosets of $F$.
+
+This use of centralizer cosets is shared with the switching literature.
+The ordinary switching argument is explicit in
+\cite[Claim~3.3]{FTVF}; super-switching adds equations of the form
+$xax=b$ in \cite[Definition~2.3 and Proposition~2.5]{FHTVF}.
+Erschler--Kaimanovich organize these arguments using negligible sets
+and prove super-switching existence for all ICC groups
+\cite[Sections~4.B--4.C, especially Proposition~4.25]{EK}.
+We use their notation below. Our group can have a nontrivial FC-center,
+and the common-predecessor requirement also produces
+$xax^{-1}=bxc$. We therefore prove the precise simultaneous avoidance
+statement needed here, rather than assume it follows from a switching
+statement for ICC groups.
+
+\subsection{Negligible sets and finite equation avoidance}
+Following \cite[Definition~4.9]{EK}, a subset of $G$ is
+\emph{negligible} if it is contained in a finite union of cosets of
+infinite-index subgroups. This family is closed under subsets, finite
+unions, and left and right translation. For right translation, use
+$aKb=ab(b^{-1}Kb)$.
+
+\begin{lemma}[{Neumann's finite coset covering lemma \cite{Neumann}}]
+\label{lem:coset-cover}
+No finite-index subgroup of $G$ is negligible.
+\end{lemma}
+\begin{proof}
+Neumann's theorem says that a group covered by finitely many cosets of
+subgroups has a finite-index subgroup among them; see also
+\cite[Lemma~4.13]{EK}. For the stated version, let $H\leq G$ have
+finite index. Each nonempty $H\cap aK$ is a coset in $H$ of $H\cap K$.
+If $[G:K]=\infty$, then $[H:H\cap K]=\infty$. A negligible cover of
+$H$ would therefore contradict the theorem applied to $H$.
+\end{proof}
+
+Following \cite[\S\S4.B--4.C]{EK}, write the conjugacy and quadratic
+solution sets as
+\[
+ S_{a\to b}=\{x\in G:xax^{-1}=b\},\qquad
+ S^{\pm}_{a\to b}=\{x\in G:xax=b\}.
+\]
+If $x_0\in S_{a\to b}$, then
+\begin{equation}\label{eq:solution-coset}
+ S_{a\to b}=x_0C_G(a).
+\end{equation}
+Indeed, $xax^{-1}=x_0ax_0^{-1}$ if and only if $x_0^{-1}x$ commutes
+with $a$. Thus this solution set is negligible whenever $a\notin F$.
+Erschler--Kaimanovich also show that $S^{\pm}_{a\to b}$ is contained
+in a coset of $C_G(ab)$ \cite[Lemma~4.23]{EK}. This handles $ab\notin F$,
+but our induction must allow arbitrary coefficients, including the
+involution equation $x^2=e$. The following overlap argument treats
+all the required quadratic and mixed equations at once.
+
+\begin{lemma}[Finite equation avoidance]\label{lem:avoid}
+Suppose $[G:F]=\infty$ and $H\leq G$ has finite index. No finite union
+of a negligible set and sets of the following two forms covers $H$:
+\[
+ S^{\pm}_{a\to b}=\{x:xax=b\},\qquad
+ \{x:xax^{-1}=bxc\},\qquad a,b,c\in G.
+\]
+\end{lemma}
+\begin{proof}
+We first show that if $E$ is either displayed solution set and
+$h\notin F$, then $E\cap h^{-1}E$ is negligible. Membership means
+$x,hx\in E$. In the quadratic case this gives
+\[
+ hxahx=xax
+ \quad\Longrightarrow\quad
+ hxah=xa
+ \quad\Longrightarrow\quad
+ x(aha^{-1})x^{-1}=h^{-1}.
+\]
+Thus $E\cap h^{-1}E\subseteq S_{aha^{-1}\to h^{-1}}$.
+The element $aha^{-1}$ is outside $F$, so
+\eqref{eq:solution-coset} puts the intersection in a coset of an
+infinite-index centralizer, unless it is empty.
+
+For the mixed equation $xax^{-1}=bxc$, substituting this relation
+into the equation for $hx$ yields
+\[
+ hbxch^{-1}=bhxc
+ \quad\Longrightarrow\quad
+ x(ch^{-1}c^{-1})x^{-1}=b^{-1}h^{-1}bh.
+\]
+Since $ch^{-1}c^{-1}\notin F$, the same reasoning proves negligibility
+of the intersection. This is a statement about the overlaps; it does
+not assert that $E$ itself is negligible.
+
+Suppose now that $H\subseteq A\cup E_1\cup\cdots\cup E_r$, where
+$A$ is negligible and the $E_i$ are solution sets of the displayed
+forms. Since $[H:H\cap F]=\infty$, choose $h_0,\ldots,h_r\in H$
+in distinct cosets modulo $F$. For each $x\in H$, either one of
+$h_jx$ belongs to $A$, or two of the $r+1$ points belong to the same
+$E_i$. Hence
+\[
+ H\subseteq\bigcup_{j=0}^r h_j^{-1}A\ \cup\!
+ \bigcup_{\substack{1\leq i\leq r\\0\leq j<k\leq r}}
+ (h_j^{-1}E_i\cap h_k^{-1}E_i).
+\]
+The pair intersection equals
+$h_j^{-1}(E_i\cap(h_kh_j^{-1})^{-1}E_i)$ and is negligible by the
+first part, since $h_kh_j^{-1}\notin F$. The right-hand side is thus
+negligible, contradicting Lemma~\ref{lem:coset-cover}.
+\end{proof}
+
+Related recursive avoidance arguments occur in
+\cite[Theorems~4 and~5]{BP}, using centralizers and group Zariski
+topologies. No topological nondiscreteness assumption is needed in
+Lemma~\ref{lem:avoid}.
+
+\subsection{The finite extension problem}
+The three product requirements follow from a single condition,
+if we allow the identity as an empty terminal. Set $s_0=e$ and use the
+convention $t0=t$. The symbol $0$ is never an entry of a word in
+$\mathcal F$; it is used only for the terminal indices below.
+
+For a finite stage, let $\mathcal F_n$ be the words with entries in
+$\{1,\ldots,n\}$ and $\mathcal S_n=\{s_v:v\in\mathcal F_n\}$.
+Consider the following \emph{common-predecessor condition}:
+\begin{equation}\label{eq:predecessor}
+ \begin{gathered}
+ v,w\in\mathcal F_n,\quad i,j\in\{0,\ldots,n\},\quad i\ne j,
+ \quad s_vs_i^{-1}=s_ws_j^{-1}\\
+ \Longrightarrow\quad v=ti,\quad w=tj
+ \quad\text{for some }t\in\mathcal F_n.
+ \end{gathered}
+\end{equation}
+In words, if a point has right successors in the product set indexed
+by two distinct terminals, both must come from appending those terminals to one
+word. Allowing terminal $0$ also handles a point already in the
+product set.
+
+Condition~\eqref{eq:predecessor} is an exact reformulation of the
+three product requirements, valid also at a finite stage. First,
+it implies each of them:
+\begin{enumerate}
+\item If $s_v=s_w$ and $v=ti$ is nonempty, then
+$s_ws_i^{-1}=s_ts_0^{-1}$. The condition gives $w=ui$ and $t=u$,
+so $w=v$. Interchanging $v,w$ if necessary proves injectivity;
+the case of two empty words is immediate.
+\item If $s_vs_i=s_w$ with $1\leq i\leq n$, then
+$s_ws_i^{-1}=s_vs_0^{-1}$. The condition gives $w=vi$ as a word
+without repeated entries. Hence $i\notin\ran(v)$.
+\item If $gs_i=s_v$ and $gs_j=s_w$ with distinct $i,j\in\{1,\ldots,n\}$, then the condition
+gives $v=ti$, $w=tj$, and therefore $g=s_t\in\mathcal S_n$.
+\end{enumerate}
+Conversely, suppose the three requirements hold and put
+$g=s_vs_i^{-1}=s_ws_j^{-1}$. If one terminal is $0$, then
+$g\in\mathcal S_n$ immediately. Otherwise, the exterior-successor
+condition gives the same conclusion. Write $g=s_t$.
+The repeated-append exclusion says that each nonzero terminal is
+absent from $t$, and injectivity now gives $v=ti$, $w=tj$.
+The same reasoning applies to an infinite sequence.
+
+It remains to extend finite tuples while preserving
+\eqref{eq:predecessor}. Two further conditions will be maintained:
+\begin{align}
+ s_v&\notin F\quad
+       (v\in\mathcal F_n\setminus\{\varnothing\}),
+       \label{eq:fc-avoidance}\\
+ s_iF&\ne s_jF\quad(1\leq i<j\leq n).
+       \label{eq:coset-separation}
+\end{align}
+Both conditions are necessary for any infinite sequence satisfying
+\eqref{eq:predecessor}. For \eqref{eq:fc-avoidance}, suppose a nonempty
+word $U$ has value $u\in F$. A nonempty block $T$ using only later
+indices can be chosen with $s_T\in C_G(u)$, by the tail-prefix
+pigeonhole argument of Lemma~\ref{lem:block-commutation}.
+Then $s_{UT}=s_{TU}$ contradicts injectivity.
+For \eqref{eq:coset-separation}, if $h=s_i^{-1}s_j\in F$, choose
+such a later block $T$ with $s_T\in C_G(h)$. Then
+\[
+ s_{jT}s_j^{-1}=s_j s_Ts_j^{-1}
+ =s_i s_Ts_i^{-1}=s_{iT}s_i^{-1}.
+\]
+Condition~\eqref{eq:predecessor} would require the word $jT$ to end
+in $j$, which it does not.
+
+For a finite tuple these are additional hypotheses, since the tail
+used above is not available. In the extension proof they distinguish
+the possible insertion positions of the new letter.
+
+\begin{lemma}[Finite extension]\label{lem:extension}
+Suppose $[G:F]=\infty$, $n\geq0$, and a finite tuple
+$s_1,\ldots,s_n$ satisfies \eqref{eq:predecessor},
+\eqref{eq:fc-avoidance}, and \eqref{eq:coset-separation}.
+There is an element $x\in G$ such that the augmented tuple
+$s_1,\ldots,s_n,x$ satisfies all three conditions.
+\end{lemma}
+\begin{proof}
+Write $\star$ for the new formal letter $n+1$ and $x$ for its value.
+A new positive word has the form $A\star B$, where $A,B$ are old
+words with disjoint sets of entries. Lowercase $a,b,c,d$ denote the
+evaluations of old words $A,B,C,D$.
+
+\smallskip\noindent
+\emph{How conjugacy equations are treated.}
+For each conjugacy equation
+\begin{equation}\label{eq:conjugacy}
+ xux^{-1}=z
+\end{equation}
+encountered below, if $u\notin F$ we exclude its solution set, which
+is empty or a coset of the infinite-index centralizer $C_G(u)$.
+For the finitely many coefficients $u\in F$, require $x\in C_G(u)$.
+Their centralizers have a finite-index intersection $H$; take $H=G$
+if there are none. All coefficients are determined by the old
+sequence, so $H$ is fixed before $x$ is chosen. Within $H$, an equation
+\eqref{eq:conjugacy} with $u\in F$ becomes the old equality $u=z$:
+the new letter has disappeared. We check below that these surviving
+equalities give precisely the required predecessor.
+All other forbidden sets are singletons, cosets of $F$, or the
+quadratic and mixed solution sets in Lemma~\ref{lem:avoid}.
+
+\smallskip\noindent
+\emph{Preserving the two FC-center conditions.}
+A new positive product has the form $axb$, so
+\eqref{eq:fc-avoidance} excludes the sets
+\[
+ \{x:axb\in F\}=a^{-1}Fb^{-1}.
+\]
+Condition~\eqref{eq:coset-separation} also excludes $s_1F,\ldots,s_nF$.
+Since $F$ is normal and has infinite index, all of these are
+infinite-index cosets, and there are only finitely many of them.
+
+\smallskip\noindent
+\emph{Both distinguished terminals old.}
+Take distinct $i,j\in\{0,\ldots,n\}$ and consider
+$s_vs_i^{-1}=s_ws_j^{-1}$. If neither word contains $\star$, the old
+condition applies. If exactly one does, the equation fixes a single
+value of $x$. If both do, write $v=A\star B$, $w=C\star D$; then
+\[
+ axb s_i^{-1}=cxd s_j^{-1}
+ \quad\Longleftrightarrow\quad
+ x(bs_i^{-1}s_jd^{-1})x^{-1}=a^{-1}c.
+\]
+The choice rule leaves only
+$bs_i^{-1}s_jd^{-1}=a^{-1}c\in F$. Thus
+$(ab)s_i^{-1}=(cd)s_j^{-1}$, and the old predecessor condition gives
+$AB=Ti$ and $CD=Tj$ for an old word $T$.
+
+Now $A,C$ are prefixes of $Ti,Tj$, and $a^{-1}c\in F$.
+If one is a proper prefix of the other, $a^{-1}c$ is the value of
+a nonempty old word or the inverse of such a value, contradicting
+\eqref{eq:fc-avoidance}. If they are incomparable, they must be
+$A=Ti$, $C=Tj$, with $i,j\ne0$. In this case
+$a^{-1}c=s_i^{-1}s_j\notin F$ by \eqref{eq:coset-separation},
+again a contradiction. Hence $A=C$, and this common prefix lies
+in $T$. Inserting $\star$ at that position in $T$ gives
+$\widetilde T$ with $v=\widetilde Ti$ and $w=\widetilde Tj$,
+as required. This also covers either terminal being $0$.
+
+\smallskip\noindent
+\emph{One distinguished terminal new.}
+By symmetry it remains to consider
+\begin{equation}\label{eq:newterminal}
+ s_vx^{-1}=s_ws_j^{-1},\qquad j\in\{0,\ldots,n\}.
+\end{equation}
+There are four possibilities for the occurrence of $\star$ in $v,w$.
+If neither word contains it, the equation fixes $x$.
+If only $v=A\star B$ contains it and $w=C$, the equation is
+\[
+ xbx^{-1}=a^{-1}c s_j^{-1}.
+\]
+If $B$ is nonempty, \eqref{eq:fc-avoidance} gives $b\notin F$,
+so this solution set is excluded. If $B$ is empty, the equation is
+$as_j=c$. For $j\ne0$, the old predecessor condition with terminals
+$0,j$ gives $C=Aj$. For $j=0$, old injectivity, already deduced from
+that condition, gives $C=A$. Thus in either case
+$v=A\star$, $w=Aj$, exactly the required pattern.
+
+If only $w=C\star D$ contains $\star$ and $v=A$, then
+\[
+ ax^{-1}=cxd s_j^{-1}
+ \quad\Longleftrightarrow\quad x(ds_j^{-1})x=c^{-1}a,
+\]
+which is quadratic. If both words contain $\star$, then
+\[
+ axbx^{-1}=cxd s_j^{-1}
+ \quad\Longleftrightarrow\quad
+ xbx^{-1}=a^{-1}c\,x\,(ds_j^{-1}),
+\]
+which is mixed. Lemma~\ref{lem:avoid} allows us to exclude both types.
+
+Every possible failure of the three maintained conditions has now been
+accounted for. There are only finitely many equations at each stage,
+and singletons are negligible because $G$ is infinite. Applying
+Lemma~\ref{lem:avoid} within $H$ supplies the next element $x$.
+This proves the finite extension statement.
+\end{proof}
+
+\begin{theorem}\label{thm:sequence}
+If $[G:\FC(G)]=\infty$, there is a sequence $(s_i)_{i\geq1}$
+satisfying the three product hypotheses of
+Proposition~\ref{thm:certificate}. No countability assumption on $G$
+is needed for this construction.
+\end{theorem}
+\begin{proof}
+The empty tuple satisfies \eqref{eq:predecessor},
+\eqref{eq:fc-avoidance}, and \eqref{eq:coset-separation}
+vacuously. Apply Lemma~\ref{lem:extension}
+successively. Any failure of \eqref{eq:predecessor} for the resulting
+infinite sequence would involve only finitely many entries and
+terminal indices, so would already occur at a finite stage. The
+three deductions above therefore give all the required product
+properties.
+\end{proof}
+
+\section{The classification and examples}\label{sec:examples}
+The preceding sections now give both implications of the main theorem.
+
+\begin{proof}[Proof of Theorem~\ref{thm:classification}]
+Conditions (2) and (3) are equivalent by
+\cite[Theorem~4.2]{DD}. Corollary~\ref{cor:virtual} proves
+(1)$\Rightarrow$(2), and restricting to probability measures gives
+(3)$\Rightarrow$(4).
+
+If (1) fails, \eqref{eq:fc-index} gives $[G:\FC(G)]=\infty$.
+Theorem~\ref{thm:sequence} supplies the sequence required by
+Proposition~\ref{thm:certificate}, whose probability measures violate
+(4). This proves (4)$\Rightarrow$(1) and completes the equivalence.
+\end{proof}
+
+\subsection{Permanence and examples}
+In particular, among countable groups the strongly Choquet--Deny groups
+are exactly the eventually rewritable ($\mathcal Q_\infty$) groups, by
+\cite[Proposition~2]{BR} and Theorem~\ref{thm:classification}.
+The following consequences distinguish the classification from both
+virtual abelianness and the ordinary Choquet--Deny property.
+
+\begin{corollary}\label{cor:permanence}
+Among countable groups, the strongly Choquet--Deny property is preserved
+by subgroups, quotients, finite direct products, and passage to a group
+containing the given group with finite index.
+\end{corollary}
+\begin{proof}
+These are permanence properties of virtually FC groups. If $H\leq G$
+is FC of finite index, then $K\cap H$ is FC of finite index in every
+subgroup $K\leq G$, and the image of $H$ in any quotient is FC of
+finite index. Products and finite-index overgroups are immediate.
+Apply Theorem~\ref{thm:classification}.
+\end{proof}
+
+The subgroup and finite-index permanence were already established in
+\cite[Proposition 5.1]{DD}. The classification also makes clear why
+increasing unions need not preserve the property.
+
+\begin{example}\label{ex:finite-sum}
+Every countable direct sum of finite groups is strongly Choquet--Deny:
+conjugation preserves the finite support of each element, so the group
+is FC. More generally, a countable increasing union of finite normal
+subgroups is FC, since the conjugacy class of each element stays in
+one of those subgroups.
+
+In particular, $G_0=\bigoplus_{n\geq1}S_3$ is strongly Choquet--Deny
+but is not virtually abelian. To see the latter assertion, let
+$F_n=\prod_{j=1}^n S_3$ and let $A\leq G_0$ be abelian. Each coordinate
+projection of $A\cap F_n$ has order at most three, so
+\[
+ |A\cap F_n|\leq3^n,\qquad
+ [G_0:A]\geq[F_n:A\cap F_n]\geq2^n.
+\]
+Thus $A$ has infinite index.
+\end{example}
+
+\begin{example}\label{ex:dihedral}
+Let $D_\infty=\Z\rtimes(\Z/2\Z)$, where the nontrivial element acts
+by inversion, and put $G=\bigoplus_{n\geq1}D_\infty$.
+The FC-center of $D_\infty$ is its translation subgroup $\Z$:
+a translation has at most two conjugates, whereas every reflection
+has infinitely many. Conjugation in $G$ is coordinatewise, and hence
+\[
+ \FC(G)=\bigoplus_{n\geq1}\Z,\qquad
+ G/\FC(G)\cong\bigoplus_{n\geq1}\Z/2\Z.
+\]
+The FC-center has infinite index, so $G$ is not strongly Choquet--Deny.
+Nevertheless, $G$ is an increasing union of the normal direct factors
+$\prod_{j=1}^nD_\infty$, each of which is virtually abelian and strongly
+Choquet--Deny. Thus neither increasing unions of normal strongly
+Choquet--Deny subgroups nor countable direct sums preserve the property.
+
+This group is ordinary Choquet--Deny. Indeed, in an ICC quotient the
+image of $\FC(G)$ must be trivial, because its elements retain finite
+conjugacy classes. Such a quotient would then be abelian, hence trivial.
+The assertion follows from \cite[Theorem 1]{FHTVF}.
+\end{example}
+
+\begin{example}\label{ex:heisenberg}
+The integral Heisenberg obstruction is \cite[Example~5.5]{DD}.
+The following locally finite variant illustrates why the full countable
+classification requires more than the finitely generated case.
+Let $p$ be a prime and $R=\F_p[t]$. The Heisenberg group
+\[
+ H_3(R)=\left\{\begin{pmatrix}1&a&c\\0&1&b\\0&0&1\end{pmatrix}:
+ a,b,c\in R\right\}
+\]
+is countable, locally finite, and nilpotent of class two. For local
+finiteness, the first and second coordinates of a finitely generated
+subgroup lie in finite-dimensional $\F_p$-spaces, and its third
+coordinates lie in the span of the original third coordinates and
+the pairwise products of the first and second coordinates.
+
+Its FC-center is exactly its center, consisting of the elements with
+$a=b=0$. Indeed, if $a\ne0$, conjugation by the elements with coordinates
+$(0,b',0)$ gives infinitely many distinct shifts $ab'$ in the central coordinate.
+If $b\ne0$, the analogous conjugations by $(a',0,0)$ give the same
+conclusion. We use here that $R$ is an infinite integral domain.
+Thus $[H_3(R):\FC(H_3(R))]=\infty$, and the group is not strongly
+Choquet--Deny.
+
+Every nontrivial quotient is nilpotent of class at most two and has
+nontrivial center, so no quotient is ICC. It follows again from
+\cite[Theorem 1]{FHTVF} that $H_3(R)$ is ordinary Choquet--Deny.
+This gives a locally finite example separating the two properties.
+\end{example}
+
+\begin{thebibliography}{FHTVF}
+\bibitem[BP]{BP}
+T.~Banakh and I.~Protasov,
+\emph{Zariski topologies on groups},
+preprint, 2010,
+\href{https://arxiv.org/abs/1001.0601v1}{arXiv:1001.0601v1}.
+
+\bibitem[BR]{BR}
+R.~D.~Blyth and A.~H.~Rhemtulla,
+\emph{Rewritable products in FC-by-finite groups},
+Canad. J. Math. \textbf{41} (1989), no.~2, 369--384.
+\href{https://doi.org/10.4153/CJM-1989-018-8}{doi:10.4153/CJM-1989-018-8}.
+
+\bibitem[DD]{DD}
+S.~Dantas and M.~Doucha,
+\emph{Strongly Choquet--Deny groups and invariant strictly convex renormings},
+preprint, 2026,
+\href{https://arxiv.org/abs/2610.23584v1}{arXiv:2610.23584v1}.
+All numbered citations refer to this version.
+
+\bibitem[D]{D}
+M.~Doucha,
+\emph{Invariant strictly convex renormings},
+J. Funct. Anal. \textbf{290} (2026), no.~11, article~111428.
+\href{https://doi.org/10.1016/j.jfa.2026.111428}{doi:10.1016/j.jfa.2026.111428}.
+
+\bibitem[EFHN]{EFHN}
+T.~Eisner, B.~Farkas, M.~Haase, and R.~Nagel,
+\emph{Operator Theoretic Aspects of Ergodic Theory},
+Graduate Texts in Mathematics, vol.~272, Springer, Cham, 2015.
+\href{https://doi.org/10.1007/978-3-319-16898-2}{doi:10.1007/978-3-319-16898-2}.
+
+\bibitem[EK]{EK}
+A.~Erschler and V.~A.~Kaimanovich,
+\emph{Arboreal structures on groups and the associated boundaries},
+Geom. Funct. Anal. \textbf{33} (2023), 694--748.
+\href{https://doi.org/10.1007/s00039-023-00633-y}{doi:10.1007/s00039-023-00633-y}.
+Section, equation, and result numbers refer to the accessible preprint
+\href{https://arxiv.org/abs/1903.02095v1}{arXiv:1903.02095v1} (2019).
+
+\bibitem[FHTVF]{FHTVF}
+J.~Frisch, Y.~Hartman, O.~Tamuz, and P.~Vahidi Ferdowsi,
+\emph{Choquet--Deny groups and the infinite conjugacy class property},
+Ann. of Math. (2) \textbf{190} (2019), no.~1, 307--320.
+\href{https://doi.org/10.4007/annals.2019.190.1.5}{doi:10.4007/annals.2019.190.1.5}.
+
+\bibitem[FTVF]{FTVF}
+J.~Frisch, O.~Tamuz, and P.~Vahidi Ferdowsi,
+\emph{Strong amenability and the infinite conjugacy class property},
+Invent. Math. \textbf{218} (2019), 833--851.
+\href{https://doi.org/10.1007/s00222-019-00896-z}{doi:10.1007/s00222-019-00896-z}.
+\href{https://arxiv.org/abs/1801.04024v5}{arXiv:1801.04024v5}.
+
+\bibitem[J]{J}
+W.~Jaworski,
+\emph{Countable amenable identity excluding groups},
+Canad. Math. Bull. \textbf{47} (2004), no.~2, 215--228.
+\href{https://doi.org/10.4153/CMB-2004-021-1}{doi:10.4153/CMB-2004-021-1}.
+
+\bibitem[JN]{JN}
+W.~Jaworski and M.~Neufang,
+\emph{The Choquet--Deny equation in a Banach space},
+Canad. J. Math. \textbf{59} (2007), no.~4, 795--827.
+\href{https://doi.org/10.4153/CJM-2007-034-4}{doi:10.4153/CJM-2007-034-4}.
+
+\bibitem[Neu]{Neumann}
+B.~H.~Neumann,
+\emph{Groups covered by finitely many cosets},
+Publ. Math. Debrecen \textbf{3} (1954), 227--242.
+\href{https://doi.org/10.5486/PMD.1954.3.3-4.07}{doi:10.5486/PMD.1954.3.3-4.07}.
+\end{thebibliography}
+\end{document}

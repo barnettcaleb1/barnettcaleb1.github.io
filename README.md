@@ -2,14 +2,15 @@
 
 A plain HTML research page for AI-assisted mathematics, ready for GitHub Pages. Publish papers directly as PDFs or write results in Markdown with rendered LaTeX. A JSON index controls their metadata. The site has no build step, package manager, or backend.
 
-The archive currently contains four papers by Caleb Barnett:
+The archive currently contains five papers by Caleb Barnett:
 
+- [Strongly Choquet–Deny groups and the FC-center](content/papers/strongly-choquet-deny-groups-fc-center-draft.pdf), dated 23 October 2026 — Draft for discussion (independent review pending). Adapts the methods of Dantas and Doucha to the countable classification. [LaTeX source](content/attachments/strongly-choquet-deny-groups-fc-center-draft.tex).
 - [Hyperrigidity in low dimensions and a dimension-33 counterexample](content/papers/hyperrigidity-low-dimensions-dimension-33-counterexample-draft.pdf), version 2, dated 23 October 2026 — Working draft, not a published paper or released preprint (independent review pending). [LaTeX source](content/attachments/hyperrigidity-low-dimensions-dimension-33-counterexample-draft.tex).
 - [Kirchberg algebras as full amalgams of stably finite algebras](content/papers/kirchberg-algebras-full-amalgams-stably-finite-draft.pdf), dated 7 October 2026 — Draft (conditional verification).
 - [Cubic lower bounds for conjugacy separation in nilpotent groups](content/papers/cubic-lower-bounds-conjugacy-separation-nilpotent-groups-draft.pdf), dated 7 October 2026 — Draft (independent review pending).
 - [Rapid Decay and C*-Simplicity: A Supplementary Sunflower Proof](content/papers/rapid-decay-c-star-simplicity-sunflower-proof.pdf), dated 4 October 2026.
 
-Website: <https://barnettcaleb1.github.io/mathematics/>. Repository: <https://github.com/barnettcaleb1/mathematics>.
+Website: <https://barnettcaleb1.github.io/>. Repository: <https://github.com/barnettcaleb1/barnettcaleb1.github.io>.
 
 ## Preview locally
 

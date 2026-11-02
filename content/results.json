@@ -2,6 +2,32 @@
   "version": 1,
   "results": [
     {
+      "slug": "strongly-choquet-deny-groups-fc-center-draft",
+      "title": "Strongly Choquet–Deny groups and the FC-center",
+      "summary": "A note extending the finitely generated classification of Dantas and Doucha to countable groups: the strongly Choquet–Deny groups are precisely the virtually FC groups, with the same characterization for the positive condition. The argument adapts their renorming criterion and analytic obstruction, adding finite conjugacy averaging and a sequence construction when the FC-center has infinite index. AI-assisted draft for discussion; independent mathematical review is pending.",
+      "date": "2026-10-23",
+      "authors": [
+        "Caleb Barnett"
+      ],
+      "topic": "Group theory",
+      "status": "Draft",
+      "isExample": false,
+      "pdf": "content/papers/strongly-choquet-deny-groups-fc-center-draft.pdf",
+      "tags": [
+        "Choquet–Deny groups",
+        "FC-groups",
+        "invariant renormings",
+        "strict convexity",
+        "research note"
+      ],
+      "attachments": [
+        {
+          "label": "LaTeX source",
+          "url": "content/attachments/strongly-choquet-deny-groups-fc-center-draft.tex"
+        }
+      ]
+    },
+    {
       "slug": "hyperrigidity-low-dimensions-dimension-33-counterexample-draft",
       "title": "Hyperrigidity in low dimensions and a dimension-33 counterexample",
       "summary": "Version 2 proves hyperrigidity for every compact convex subset of R3 with closed extreme boundary, retains the explicit affine-dimension-33 counterexample, and establishes the range 4 ≤ d_min ≤ 33. The revised proof uses a dilation replacement and bounded Borel endpoint interpolation, avoiding disintegration. Includes further construction obstructions and a finite-POVM criterion. Working draft, not a published paper or released preprint; independent human mathematical verification is pending.",
