@@ -2,13 +2,15 @@
 
 A plain HTML research page for AI-assisted mathematics, ready for GitHub Pages. Publish papers directly as PDFs or write results in Markdown with rendered LaTeX. A JSON index controls their metadata. The site has no build step, package manager, or backend.
 
-The archive currently contains six papers by Caleb Barnett:
+The archive currently contains six papers. Caleb Barnett is attributed as author only on the Rapid Decay paper.
 
-- [Invariant random C*-subalgebras of products of hyperbolic groups](content/papers/invariant-random-c-star-subalgebras-hyperbolic-products-draft.pdf), dated 23 October 2026 — Draft for discussion (independent review pending). Extends boomerang and invariant-random subalgebra rigidity to products of torsion-free nonamenable hyperbolic groups and restricted direct sums. [LaTeX source](content/attachments/invariant-random-c-star-subalgebras-hyperbolic-products-draft.tex).
-- [Countable strongly Choquet–Deny groups are precisely the virtually FC groups](content/papers/strongly-choquet-deny-groups-fc-center-draft.pdf), dated 23 October 2026 — Draft for discussion (independent review pending). Adapts the methods of Dantas and Doucha to the countable classification. [LaTeX source](content/attachments/strongly-choquet-deny-groups-fc-center-draft.tex).
-- [Hyperrigidity in low dimensions and a dimension-33 counterexample](content/papers/hyperrigidity-low-dimensions-dimension-33-counterexample-draft.pdf), version 2, dated 23 October 2026 — Working draft, not a published paper or released preprint (independent review pending). [LaTeX source](content/attachments/hyperrigidity-low-dimensions-dimension-33-counterexample-draft.tex).
-- [Kirchberg algebras as full amalgams of stably finite algebras](content/papers/kirchberg-algebras-full-amalgams-stably-finite-draft.pdf), dated 7 October 2026 — Draft (conditional verification).
-- [Cubic lower bounds for conjugacy separation in nilpotent groups](content/papers/cubic-lower-bounds-conjugacy-separation-nilpotent-groups-draft.pdf), dated 7 October 2026 — Draft (independent review pending).
+Except for Rapid Decay and C*-Simplicity, the papers in this archive were prepared with AI assistance and have not been reviewed by Caleb Barnett or independently verified. No independent review is planned. Hosting these papers does not imply Caleb Barnett’s authorship or endorsement. Any formal verification is limited to the scope and assumptions stated in the paper.
+
+- [Invariant random C*-subalgebras of products of hyperbolic groups](content/papers/invariant-random-c-star-subalgebras-hyperbolic-products-draft.pdf), dated 23 October 2026. Extends boomerang and invariant-random subalgebra rigidity to products of torsion-free nonamenable hyperbolic groups and restricted direct sums. [LaTeX source](content/attachments/invariant-random-c-star-subalgebras-hyperbolic-products-draft.tex).
+- [Countable strongly Choquet–Deny groups are precisely the virtually FC groups](content/papers/strongly-choquet-deny-groups-fc-center-draft.pdf), dated 23 October 2026. Adapts the methods of Dantas and Doucha to the countable classification. [LaTeX source](content/attachments/strongly-choquet-deny-groups-fc-center-draft.tex).
+- [Hyperrigidity in low dimensions and a dimension-33 counterexample](content/papers/hyperrigidity-low-dimensions-dimension-33-counterexample-draft.pdf), version 2, dated 23 October 2026. [LaTeX source](content/attachments/hyperrigidity-low-dimensions-dimension-33-counterexample-draft.tex).
+- [Kirchberg algebras as full amalgams of stably finite algebras](content/papers/kirchberg-algebras-full-amalgams-stably-finite-draft.pdf), version 2, dated 7 October 2026; companion Lean development is conditional on external analytic interfaces. [LaTeX source](content/attachments/kirchberg-algebras-full-amalgams-stably-finite-draft.tex).
+- [Cubic lower bounds for conjugacy separation in nilpotent groups](content/papers/cubic-lower-bounds-conjugacy-separation-nilpotent-groups-draft.pdf), dated 7 October 2026; companion Lean formalization covers the lower-bound construction. [LaTeX source](content/attachments/cubic-lower-bounds-conjugacy-separation-nilpotent-groups-draft.tex).
 - [Rapid Decay and C*-Simplicity: A Supplementary Sunflower Proof](content/papers/rapid-decay-c-star-simplicity-sunflower-proof.pdf), dated 4 October 2026.
 
 Website: <https://barnettcaleb1.github.io/>. Repository: <https://github.com/barnettcaleb1/barnettcaleb1.github.io>.
@@ -43,7 +45,7 @@ Open <http://localhost:8000>. Use the local server because the article reader lo
 }
 ```
 
-Use the title and authors listed in the paper. An optional positive integer `version` appears in the metadata as `v2`, for example. Preserve earlier versions as attachments when revising a paper. A PDF entry needs no Markdown file, publication date, or verification label. Its homepage link opens the PDF directly. If you supply a date or status, the usual date and status rules below apply.
+Use the title listed in the paper. Set `authors` to an empty array when no author is attributed; the site maintainer is never used as a default paper author. The archive-wide review notice is maintained in `content/site.json` and in the static HTML fallback. Keep paper-specific mathematical and formal-verification scope intact, but do not repeat the archive notice in each paper. An optional positive integer `version` appears in the metadata as `v2`, for example. Preserve earlier versions as attachments when revising a paper. A PDF entry needs no Markdown file, publication date, or verification label. Its homepage link opens the PDF directly. If you supply a date or status, the usual date and status rules below apply.
 
 Keep the top-level manifest as `{"version": 1, "results": [...]}`. Each entry must have exactly one `pdf` or `markdown` field. Slugs must be unique lowercase words separated by hyphens, and the content filename must match the slug. Any topic can be used.
 
@@ -72,7 +74,7 @@ Keep the top-level manifest as `{"version": 1, "results": [...]}`. Each entry mu
 
 Markdown entries require a date using `YYYY-MM-DD` and a status.
 
-The four statuses are `Draft`, `Checked`, `Computational`, and `Conjecture`. Use `Draft` for research drafts pending independent mathematical verification, including papers with conditional formal verification. Choose the status that reflects the evidence you have; the status is an editorial label and is not assigned by the site. Explain the model, prompts, checks, limitations, and any human review within the result itself.
+The four statuses are `Draft`, `Checked`, `Computational`, and `Conjecture`. These labels are optional for PDF papers and are not used on the current PDF entries. For Markdown notes, choose a status that reflects the available evidence. Keep specific formal-verification scope and mathematical assumptions with the result; the general review and authorship notice belongs to the website.
 
 The article title comes from the index, so start the Markdown body with an introduction or `##` heading. Second-level headings populate the table of contents. Write mathematics as `$inline math$` and `$$display math$$`, or use `\(...\)` and `\[...\]`. Regular Markdown tables, links, and fenced code blocks are supported.
 
@@ -102,7 +104,7 @@ To remove a publication, delete its index entry and associated public content fi
 
 ## Customize
 
-- Edit `content/site.json` for the site name, description, introduction, about text, author, email, and repository URL. Leave optional contact fields empty to omit their links.
+- Edit `content/site.json` for the site name, description, introduction, about text, archive notice, site maintainer, email, and repository URL. Leave optional contact fields empty to omit their links.
 - Edit `assets/css/style.css` to change the type, spacing, or link colors.
 - Edit `index.html` for the homepage structure and `article.html` for the reader structure. Their script and data paths are relative, so no repository-specific base URL is needed.
 

@@ -4,16 +4,17 @@
 
   const THEME_KEY = "math-notes-theme";
   const STATUSES = Object.freeze({
-    Draft: "A research draft; independent mathematical verification is pending. See the paper for verification scope and limitations.",
+    Draft: "A preliminary manuscript. See the archive notice and any stated verification scope.",
     Checked: "A written proof has been checked. See the note for the scope of verification.",
     Computational: "Supported by computation; this label does not establish a general proof.",
     Conjecture: "An unproved claim or open question."
   });
   const DEFAULT_SITE = Object.freeze({
     name: "Caleb Barnett",
-    description: "AI-assisted mathematical research by Caleb Barnett.",
+    description: "AI-assisted mathematics archive maintained by Caleb Barnett.",
     intro: "AI-assisted mathematics.",
-    about: "AI use and verification are documented in each result.",
+    about: "This archive collects papers on group theory and operator algebras. Caleb Barnett maintains the site; authorship is listed only where attributed.",
+    notice: "Except for Rapid Decay and C*-Simplicity, the papers in this archive were prepared with AI assistance and have not been reviewed by Caleb Barnett or independently verified. No independent review is planned. Hosting these papers does not imply Caleb Barnett’s authorship or endorsement. Any formal verification is limited to the scope and assumptions stated in the paper.",
     author: "Caleb Barnett",
     email: "",
     repositoryUrl: ""
@@ -193,7 +194,7 @@
   async function initSite() {
     document.querySelectorAll("#current-year, [data-current-year]").forEach((node) => { node.textContent = new Date().getFullYear(); });
     const site = await loadSite();
-    const bindings = { name: "[data-site-name], #site-name", description: "[data-site-description]", intro: "[data-site-intro]", about: "[data-site-about]", author: "[data-author]" };
+    const bindings = { name: "[data-site-name], #site-name", description: "[data-site-description]", intro: "[data-site-intro]", about: "[data-site-about]", notice: "[data-site-notice]", author: "[data-author]" };
     for (const [key, selector] of Object.entries(bindings)) {
       document.querySelectorAll(selector).forEach((node) => {
         node.textContent = site[key];

@@ -4,13 +4,10 @@
     {
       "slug": "invariant-random-c-star-subalgebras-hyperbolic-products-draft",
       "title": "Invariant random C*-subalgebras of products of hyperbolic groups",
-      "summary": "A draft extending boomerang subalgebra rigidity to finite products of torsion-free nonamenable hyperbolic groups and countable restricted direct sums. The proposed classification identifies every invariant random C*-subalgebra with a unique invariant random subgroup. The proof combines selective tensor averaging, coordinatewise centering, and mixed Fourier-coefficient extraction. Prepared with substantial AI assistance; independent human mathematical review is pending.",
+      "summary": "An extension of boomerang subalgebra rigidity to finite products of torsion-free nonamenable hyperbolic groups and countable restricted direct sums. The proposed classification identifies every invariant random C*-subalgebra with a unique invariant random subgroup. The proof combines selective tensor averaging, coordinatewise centering, and mixed Fourier-coefficient extraction.",
       "date": "2026-10-23",
-      "authors": [
-        "Caleb Barnett"
-      ],
+      "authors": [],
       "topic": "Operator algebras",
-      "status": "Draft",
       "isExample": false,
       "pdf": "content/papers/invariant-random-c-star-subalgebras-hyperbolic-products-draft.pdf",
       "tags": [
@@ -18,8 +15,7 @@
         "hyperbolic groups",
         "boomerang recurrence",
         "reduced group C*-algebras",
-        "invariant random subgroups",
-        "research draft"
+        "invariant random subgroups"
       ],
       "attachments": [
         {
@@ -31,13 +27,10 @@
     {
       "slug": "strongly-choquet-deny-groups-fc-center-draft",
       "title": "Countable strongly Choquet–Deny groups are precisely the virtually FC groups",
-      "summary": "A note extending the finitely generated classification of Dantas and Doucha to countable groups: the strongly Choquet–Deny groups are precisely the virtually FC groups, with the same characterization for the positive condition. The argument adapts their renorming criterion and analytic obstruction, adding finite conjugacy averaging and a sequence construction when the FC-center has infinite index. AI-assisted draft for discussion; independent mathematical review is pending.",
+      "summary": "A note extending the finitely generated classification of Dantas and Doucha to countable groups: the strongly Choquet–Deny groups are precisely the virtually FC groups, with the same characterization for the positive condition. The argument adapts their renorming criterion and analytic obstruction, adding finite conjugacy averaging and a sequence construction when the FC-center has infinite index.",
       "date": "2026-10-23",
-      "authors": [
-        "Caleb Barnett"
-      ],
+      "authors": [],
       "topic": "Group theory",
-      "status": "Draft",
       "isExample": false,
       "pdf": "content/papers/strongly-choquet-deny-groups-fc-center-draft.pdf",
       "tags": [
@@ -57,13 +50,10 @@
     {
       "slug": "hyperrigidity-low-dimensions-dimension-33-counterexample-draft",
       "title": "Hyperrigidity in low dimensions and a dimension-33 counterexample",
-      "summary": "Version 2 proves hyperrigidity for every compact convex subset of R3 with closed extreme boundary, retains the explicit affine-dimension-33 counterexample, and establishes the range 4 ≤ d_min ≤ 33. The revised proof uses a dilation replacement and bounded Borel endpoint interpolation, avoiding disintegration. Includes further construction obstructions and a finite-POVM criterion. Working draft, not a published paper or released preprint; independent human mathematical verification is pending.",
+      "summary": "Version 2 presents hyperrigidity for every compact convex subset of R3 with closed extreme boundary, retains the explicit affine-dimension-33 counterexample, and establishes the range 4 ≤ d_min ≤ 33. The revised argument uses a dilation replacement and bounded Borel endpoint interpolation, avoiding disintegration. Includes further construction obstructions and a finite-POVM criterion.",
       "date": "2026-10-23",
-      "authors": [
-        "Caleb Barnett"
-      ],
+      "authors": [],
       "topic": "Operator algebras",
-      "status": "Draft",
       "isExample": false,
       "pdf": "content/papers/hyperrigidity-low-dimensions-dimension-33-counterexample-draft.pdf",
       "tags": [
@@ -71,8 +61,7 @@
         "operator algebras",
         "compact convex sets",
         "unique extension property",
-        "Riesz energy",
-        "research draft"
+        "Riesz energy"
       ],
       "attachments": [
         {
@@ -93,39 +82,72 @@
     {
       "slug": "kirchberg-algebras-full-amalgams-stably-finite-draft",
       "title": "Kirchberg algebras as full amalgams of stably finite algebras",
-      "summary": "A proposed decomposition of unital Kirchberg algebras as full amalgamated free products of stably finite algebras. Public draft 2, with conditional Lean verification through external analytic interfaces; independent human mathematical verification is pending.",
+      "summary": "A proposed decomposition of unital Kirchberg algebras as full amalgamated free products of stably finite algebras. The companion Lean development is conditional on external analytic interfaces.",
       "date": "2026-10-07",
-      "authors": ["Caleb Barnett"],
+      "authors": [],
       "topic": "Operator algebras",
-      "status": "Draft",
       "isExample": false,
       "pdf": "content/papers/kirchberg-algebras-full-amalgams-stably-finite-draft.pdf",
-      "tags": ["Kirchberg algebras", "C*-algebras", "amalgamated free products", "stably finite algebras", "KK theory", "Lean", "conditional verification"],
-      "attachments": []
+      "tags": [
+        "Kirchberg algebras",
+        "C*-algebras",
+        "amalgamated free products",
+        "stably finite algebras",
+        "KK theory",
+        "Lean",
+        "conditional verification"
+      ],
+      "attachments": [
+        {
+          "label": "LaTeX source",
+          "url": "content/attachments/kirchberg-algebras-full-amalgams-stably-finite-draft.tex"
+        }
+      ],
+      "version": 2
     },
     {
       "slug": "cubic-lower-bounds-conjugacy-separation-nilpotent-groups-draft",
       "title": "Cubic lower bounds for conjugacy separation in nilpotent groups",
-      "summary": "A research draft proposing cubic lower bounds, in Hirsch length, for conjugacy separability growth in torsion-free finitely generated nilpotent groups, with a companion Lean formalization of the lower-bound construction. Independent human review of the claims and their correspondence with the formalization is pending.",
+      "summary": "A construction proposing cubic lower bounds, in Hirsch length, for conjugacy separability growth in torsion-free finitely generated nilpotent groups, with a companion Lean formalization of the lower-bound construction.",
       "date": "2026-10-07",
-      "authors": ["Caleb Barnett"],
+      "authors": [],
       "topic": "Group theory",
-      "status": "Draft",
       "isExample": false,
       "pdf": "content/papers/cubic-lower-bounds-conjugacy-separation-nilpotent-groups-draft.pdf",
-      "tags": ["nilpotent groups", "conjugacy separability", "growth", "Hirsch length", "finite quotients", "Lean", "research draft"],
-      "attachments": []
+      "tags": [
+        "nilpotent groups",
+        "conjugacy separability",
+        "growth",
+        "Hirsch length",
+        "finite quotients",
+        "Lean"
+      ],
+      "attachments": [
+        {
+          "label": "LaTeX source",
+          "url": "content/attachments/cubic-lower-bounds-conjugacy-separation-nilpotent-groups-draft.tex"
+        }
+      ]
     },
     {
       "slug": "rapid-decay-c-star-simplicity-sunflower-proof",
       "title": "Rapid Decay and C*-Simplicity: A Supplementary Sunflower Proof",
       "summary": "A supplementary AI-assisted sunflower proof relating rapid decay, the amenable radical, and C*-simplicity, with an extension to sub-rapid decay.",
       "date": "2026-10-04",
-      "authors": ["Caleb Barnett"],
+      "authors": [
+        "Caleb Barnett"
+      ],
       "topic": "Operator algebras",
       "isExample": false,
       "pdf": "content/papers/rapid-decay-c-star-simplicity-sunflower-proof.pdf",
-      "tags": ["group theory", "operator algebras", "rapid decay", "C*-simplicity", "amenable radical", "sunflower lemma"],
+      "tags": [
+        "group theory",
+        "operator algebras",
+        "rapid decay",
+        "C*-simplicity",
+        "amenable radical",
+        "sunflower lemma"
+      ],
       "attachments": []
     }
   ]
