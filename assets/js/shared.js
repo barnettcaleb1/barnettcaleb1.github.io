@@ -13,7 +13,7 @@
     name: "Caleb Barnett",
     description: "AI-assisted mathematics archive covering group theory, ergodic theory, and operator algebras.",
     intro: "AI-assisted math.",
-    about: "This archive collects papers on group theory, ergodic theory, and operator algebras.",
+    about: "This archive collects papers on group theory, ergodic theory, and operator algebras. Except for Rapid Decay and C*-Simplicity, the papers in this archive were AI-written with AI-generated arguments (most multi-shot with occasional possibly intelligent nudging) and have not been reviewed by me or independently verified. I don't plan on reviewing these papers, they are just outputs intended to be used by whoever or whatever finds them useful.",
     notice: "Except for Rapid Decay and C*-Simplicity, the papers in this archive were AI-written with AI-generated arguments (most multi-shot with occasional possibly intelligent nudging) and have not been reviewed by me or independently verified. I don't plan on reviewing these papers, they are just outputs intended to be used by whoever or whatever finds them useful.",
     author: "Caleb Barnett",
     email: "",
