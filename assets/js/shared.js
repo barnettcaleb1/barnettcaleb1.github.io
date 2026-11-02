@@ -12,7 +12,7 @@
   const DEFAULT_SITE = Object.freeze({
     name: "Caleb Barnett",
     description: "AI-assisted mathematics archive covering group theory, ergodic theory, and operator algebras.",
-    intro: "AI-assisted mathematics.",
+    intro: "AI-assisted math.",
     about: "This archive collects papers on group theory, ergodic theory, and operator algebras.",
     notice: "Except for Rapid Decay and C*-Simplicity, the papers in this archive were prepared with AI assistance and have not been reviewed by Caleb Barnett or independently verified. No independent review is planned. Hosting these papers does not imply Caleb Barnett’s authorship or endorsement. Any formal verification is limited to the scope and assumptions stated in the paper.",
     author: "Caleb Barnett",
