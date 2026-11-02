@@ -2,6 +2,33 @@
   "version": 1,
   "results": [
     {
+      "slug": "invariant-random-c-star-subalgebras-hyperbolic-products-draft",
+      "title": "Invariant random C*-subalgebras of products of hyperbolic groups",
+      "summary": "A draft extending boomerang subalgebra rigidity to finite products of torsion-free nonamenable hyperbolic groups and countable restricted direct sums. The proposed classification identifies every invariant random C*-subalgebra with a unique invariant random subgroup. The proof combines selective tensor averaging, coordinatewise centering, and mixed Fourier-coefficient extraction. Prepared with substantial AI assistance; independent human mathematical review is pending.",
+      "date": "2026-10-23",
+      "authors": [
+        "Caleb Barnett"
+      ],
+      "topic": "Operator algebras",
+      "status": "Draft",
+      "isExample": false,
+      "pdf": "content/papers/invariant-random-c-star-subalgebras-hyperbolic-products-draft.pdf",
+      "tags": [
+        "invariant random subalgebras",
+        "hyperbolic groups",
+        "boomerang recurrence",
+        "reduced group C*-algebras",
+        "invariant random subgroups",
+        "research draft"
+      ],
+      "attachments": [
+        {
+          "label": "LaTeX source",
+          "url": "content/attachments/invariant-random-c-star-subalgebras-hyperbolic-products-draft.tex"
+        }
+      ]
+    },
+    {
       "slug": "strongly-choquet-deny-groups-fc-center-draft",
       "title": "Strongly Choquet–Deny groups and the FC-center",
       "summary": "A note extending the finitely generated classification of Dantas and Doucha to countable groups: the strongly Choquet–Deny groups are precisely the virtually FC groups, with the same characterization for the positive condition. The argument adapts their renorming criterion and analytic obstruction, adding finite conjugacy averaging and a sequence construction when the FC-center has infinite index. AI-assisted draft for discussion; independent mathematical review is pending.",

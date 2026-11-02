@@ -1,0 +1,742 @@
+\documentclass[11pt,letterpaper]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1.1in]{geometry}
+\usepackage{enumitem}
+\usepackage{needspace}
+\usepackage{microtype}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue,
+ pdftitle={Invariant random C*-subalgebras of products of hyperbolic groups},
+ pdfauthor={Caleb Barnett}}
+
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{theoremA}{Theorem~A}
+\newtheorem*{corollaryB}{Corollary~B}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Cr}{C_r^*}
+\newcommand{\Sub}{\operatorname{Sub}}
+\newcommand{\Prob}{\operatorname{Prob}}
+\newcommand{\IRS}{\operatorname{IRS}}
+\newcommand{\IRA}{\operatorname{IRA}}
+\newcommand{\Ad}{\operatorname{Ad}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\C}{\mathbb C}
+\newcommand{\F}{\mathbb F}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Ecyc}[2]{E_{\langle #2\rangle}^{(#1)}}
+\newcommand{\Etrace}[1]{\mathbb E_{\tau_0^{#1}}}
+
+\title[Random $C^*$-subalgebras of products]{Invariant random $C^*$-subalgebras\\
+of products of hyperbolic groups}
+\author{Caleb Barnett}
+\date{23 October 2026}
+\keywords{Invariant random subalgebra, reduced group $C^*$-algebra,
+hyperbolic group, boomerang, invariant random subgroup}
+
+\begin{document}
+\begin{abstract}
+We present a proof of boomerang rigidity for finite products of
+torsion-free nonamenable hyperbolic groups, extending the single-factor
+theorem of Fima--Oppelmayer--Tao. Every boomerang unital subalgebra of
+the reduced group $C^*$-algebra is a subgroup algebra. Consequently,
+the subgroup-algebra correspondence induces an affine bijection
+between invariant random subgroups and invariant random
+$C^*$-subalgebras. The proof combines the selective averaging of
+Amrutam--Jiang with recurrence in the space of subalgebras.
+Coordinate expectations remove terms with a trivial active coordinate;
+a common return sequence then isolates each nonzero Fourier
+coefficient. The argument also applies to countable restricted direct
+sums.
+\end{abstract}
+\maketitle
+\begin{center}
+\small
+\textit{Draft for discussion.} Prepared with substantial AI assistance.
+Independent human mathematical review is pending.
+\end{center}
+
+\section{Introduction}
+
+Let $\Gamma$ be a countable discrete group. Conjugation by the left
+regular representation defines an action on the space
+$\Sub(\Cr(\Gamma))$ of unital $C^*$-subalgebras containing the ambient
+unit. We equip this space with the Wijsman topology.
+An invariant random $C^*$-subalgebra is an invariant Borel probability
+measure on this space. Every invariant random subgroup gives such a
+measure through
+\[
+ \iota_r:\Sub(\Gamma)\longrightarrow\Sub(\Cr(\Gamma)),
+ \qquad H\longmapsto\Cr(H).
+\]
+Following Fima--Oppelmayer--Tao, a random subalgebra obtained in this
+way is called \emph{geometric}.
+
+Fima--Oppelmayer--Tao prove that every invariant random subalgebra is
+geometric when $\Gamma$ is torsion-free, nonamenable, and hyperbolic
+\cite[Corollary~6.9]{FOT}. Their stronger statement classifies
+boomerang subalgebras, whose conjugates return to the original algebra
+along a sequence of positive powers of each group element
+\cite[Theorem~6.8]{FOT}. In the deterministic setting,
+Amrutam--Jiang prove that every invariant unital subalgebra of
+$\Cr(\Gamma_1\times\cdots\times\Gamma_n)$ is a normal subgroup algebra
+when the factors have these hypotheses \cite[Theorem~5.4]{AJ}.
+
+This draft extends the boomerang and random conclusions to finite
+products of the same class of groups. The main statement is as follows.
+
+\begin{theoremA}
+Let $\Gamma=\Gamma_1\times\cdots\times\Gamma_n$, where $n\ge1$ and each
+$\Gamma_i$ is a torsion-free nonamenable hyperbolic group.
+If $B\in\Sub(\Cr(\Gamma))$ is boomerang, then
+\[
+ B=\Cr(H_B),\qquad
+ H_B=\{g\in\Gamma:\lambda_g\in B\}.
+\]
+\end{theoremA}
+
+\Needspace{9\baselineskip}
+The probabilistic consequence includes a precise inverse to the
+subgroup-algebra correspondence.
+
+\begin{corollaryB}
+For $\Gamma$ as in Theorem~A, every invariant random $C^*$-subalgebra
+is geometric. The map
+\[
+ \IRS(\Gamma)\longrightarrow\IRA(\Cr(\Gamma)),
+ \qquad \eta\longmapsto(\iota_r)_*\eta,
+\]
+is an affine bijection, with inverse
+$\nu\mapsto(B\mapsto H_B)_*\nu$. It preserves and reflects ergodicity.
+\end{corollaryB}
+
+In particular, the conclusion applies to $\F_2\times\F_2$.
+The subgroup $H_B$ need not split across the coordinates. For example, if
+$\chi:\F_2\to\Z$ is onto, then
+\[
+ H=\{(g,h)\in\F_2\times\F_2:\chi(g)=\chi(h)\}
+\]
+is normal. If $\chi(s)=1$, then $\lambda_{(s,s)}\in\Cr(H)$, whereas
+$\lambda_{(s,e)},\lambda_{(e,s)}\notin\Cr(H)$.
+Thus the proof must recover a tuple unitary without requiring its
+individual coordinate unitaries to belong to the algebra.
+
+The proof follows the coefficient argument in
+\cite[Lemmas~6.5--6.7 and Theorem 6.8]{FOT}.
+The product argument requires two additional steps. First, simultaneous
+selective averaging \cite[Theorem~3.3]{AJ} shows that coordinate cyclic
+expectations preserve a boomerang algebra. Composing two such
+expectations gives the coordinate trace map. Second, these trace maps
+remove terms that are trivial in any nontrivial coordinate of a selected
+group element. The reduced-word calculation then isolates the selected
+coefficient, using one return sequence for a tuple of conjugating
+elements.
+
+\section{Notation and preliminaries}\label{sec:notation}
+
+We use the notation of \cite{FOT} for subalgebras and subgroup
+expectations. Put $A=\Cr(\Gamma)$, and let $\lambda_g$ denote the left
+regular unitary associated with $g\in\Gamma$. The canonical trace is
+$\tau_0$, and
+\[
+ \widehat a(g)=\tau_0(a\lambda_g^*)\qquad(a\in A,\ g\in\Gamma).
+\]
+For $B\in\Sub(A)$, write
+\[
+ d(a,B)=\inf_{b\in B}\|a-b\|.
+\]
+The Wijsman topology is the weakest topology making all these distance
+functions continuous. The space $\Sub(A)$ is Polish when $A$ is
+separable \cite[Theorem~2.3]{FOT}.
+
+For $H\le\Gamma$, let $E_H:A\to\Cr(H)$ be the canonical conditional
+expectation. Thus
+\[
+ E_H(\lambda_g)=1_H(g)\lambda_g.
+\]
+It is unital completely positive and contractive. For subgroups $H,K$,
+\begin{equation}\label{eq:expectation-intersection}
+ E_HE_K=E_KE_H=E_{H\cap K}.
+\end{equation}
+This follows on group unitaries and then by norm density.
+
+Write $\alpha_g=\Ad(\lambda_g)$. Each $\alpha_g$ is a norm isometry and
+induces a homeomorphism of $\Sub(A)$.
+A subalgebra $B$ is \emph{boomerang} if, for every $s\in\Gamma$, there
+are strictly increasing positive integers $m_j$ such that
+$\alpha_{s^{m_j}}(B)\to B$ in the Wijsman topology.
+We call $(m_j)$ a return sequence for $s$ at $B$.
+For every $a\in B$ and such a sequence,
+\begin{equation}\label{eq:return}
+ d(\alpha_{s^{-m_j}}(a),B)
+ =d(a,\alpha_{s^{m_j}}(B))\longrightarrow0.
+\end{equation}
+
+We recall two elementary distance estimates, also underlying
+\cite[Lemma~6.7]{FOT}. If $T:A\to A$ is a linear contraction with
+$T(B)\subseteq B$, then
+\begin{equation}\label{eq:contraction}
+ d(Ta,B)\le d(a,B).
+\end{equation}
+For $u,v\in A$,
+\begin{equation}\label{eq:product-distance}
+ d(uv,B)\le \|u\|d(v,B)+\|v\|d(u,B)+d(u,B)d(v,B).
+\end{equation}
+Indeed, choose $b,c\in B$ close to $u,v$ and use
+$uv-bc=(u-b)v+b(v-c)$, together with
+$\|b\|\le\|u\|+\|u-b\|$.
+
+An element $t\ne e$ is called \emph{primitive} if $t=u^k$ implies
+$k=\pm1$. In a torsion-free nonamenable hyperbolic group, every nonidentity
+element has a primitive root, and its centralizer is infinite cyclic
+with a primitive generator; see \cite[Remark~4.2]{AJ} and the proof
+of \cite[Lemma~6.5]{FOT}. Every primitive element has a free partner:
+there is $h$ for which $\langle t,h\rangle$ is free on $t,h$
+\cite[Theorem~0.2]{AD}.
+
+For products, all tensor products are minimal. Let $\tau_0^i$ be the
+canonical trace on $\Cr(\Gamma_i)$. Following
+\cite[Section~5.2]{AJ}, denote the coordinate trace expectation by
+$\Etrace{i}$. On elementary tensors,
+\[
+ \Etrace{i}(a_1\otimes\cdots\otimes a_n)
+ =a_1\otimes\cdots\otimes
+       \bigl(\tau_0^i(a_i)1\bigr)\otimes\cdots\otimes a_n.
+\]
+For a primitive $t\in\Gamma_i$, we also use the coordinate notation
+\[
+ \Ecyc{i}{t}
+ =\id\otimes\cdots\otimes E_{\langle t\rangle}
+                       \otimes\cdots\otimes\id.
+\]
+The latter notation denotes the lift of the subgroup expectation in
+factor $i$.
+
+\section{Coordinate expectations}\label{sec:coordinates}
+
+We use the following consequence of the selective averaging theorem
+of Amrutam--Jiang.
+
+\begin{lemma}[Selective averaging {\cite[Theorem~3.3 and Lemma 4.1]{AJ}}]
+\label{lem:averaging}
+Let $G$ be a torsion-free nonamenable hyperbolic group, let $t\in G$
+be primitive, and let $(m_j)$ be a strictly increasing sequence of
+positive integers. For every finite family $a_1,\ldots,a_N\in\Cr(G)$,
+every $\varepsilon>0$, and every $J_0\ge1$, there is a finite convex
+combination
+\[
+ \Phi=\sum_{\ell=1}^{M}\theta_\ell\alpha_{t^{m_{j_\ell}}},
+ \qquad j_\ell\ge J_0,\quad
+ \theta_\ell\ge0,\quad\sum_{\ell=1}^{M}\theta_\ell=1,
+\]
+such that
+\[
+ \|\Phi(a_k)-E_{\langle t\rangle}(a_k)\|<\varepsilon
+ \qquad(1\le k\le N).
+\]
+The same assertion holds with $t$ replaced by $t^{-1}$.
+\end{lemma}
+
+The cited theorem gives equal-weight averages. The convex formulation
+above suffices here. Appendix~\ref{app:averaging} recalls its proof.
+
+Both $\Phi$ and $E_{\langle t\rangle}$ are unital completely positive:
+the first is a convex combination of $*$-automorphisms, and the second
+is a conditional expectation. Hence, for every unital $C^*$-algebra
+$D$, their minimal tensor lifts $\Phi\otimes\id_D$ and
+$E_{\langle t\rangle}\otimes\id_D$ are unital completely positive
+and contractive. If
+$a\in\Cr(G)\otimes_{\min}D$ and
+$p=\sum_{k=1}^{N}a_k\otimes d_k$, then
+\begin{align}
+ &\|(\Phi\otimes\id_D)(a)
+       -(E_{\langle t\rangle}\otimes\id_D)(a)\|\notag\\
+ &\qquad\le
+ 2\|a-p\|+\sum_{k=1}^{N}
+       \|\Phi(a_k)-E_{\langle t\rangle}(a_k)\|\,\|d_k\|.
+ \label{eq:tensor}
+\end{align}
+Thus one simultaneous estimate on finitely many factor elements gives
+the required norm approximation for each fixed tensor-product element.
+
+\begin{proposition}\label{prop:cyclic}
+Let $\Gamma=\Gamma_1\times\cdots\times\Gamma_n$ be as in Theorem~A.
+If $B\in\Sub(\Cr(\Gamma))$ is boomerang, then
+\[
+ \Ecyc{i}{t}(B)\subseteq B
+\]
+for every $i$ and every primitive $t\in\Gamma_i$.
+\end{proposition}
+\begin{proof}
+Fix $a\in B$ and embed $t$ in coordinate $i$, writing $\widetilde t$
+for the resulting element of $\Gamma$. Choose a return sequence
+$(m_j)$ for $\widetilde t$ at $B$. Equation~\eqref{eq:return} gives
+\[
+ d(\alpha_{\widetilde t^{-m_j}}(a),B)\longrightarrow0.
+\]
+Fix $\varepsilon>0$ and choose $J_0$ so that these distances are below
+$\varepsilon$ for $j\ge J_0$.
+
+Identify $A$ with $\Cr(\Gamma_i)\otimes_{\min}D$, where $D$ is the
+tensor product of the other factors. Choose
+$p=\sum_{k=1}^{N}a_k\otimes d_k$ with $\|a-p\|<\varepsilon$, and put
+$M_0=\sum_k\|d_k\|$.
+Apply Lemma~\ref{lem:averaging} to $t^{-1}$ and the tail $j\ge J_0$,
+with error $\varepsilon/(1+M_0)$ on each $a_k$.
+The resulting map $\Psi=\Phi\otimes\id_D$ is a convex combination
+of the conjugations $\alpha_{\widetilde t^{-m_j}}$ from that tail.
+By \eqref{eq:tensor},
+\[
+ \|\Psi(a)-\Ecyc{i}{t}(a)\|<3\varepsilon.
+\]
+Every summand of $\Psi(a)$ is within $\varepsilon$ of $B$. Since $B$
+is convex, $d(\Psi(a),B)\le\varepsilon$. It follows that
+$d(\Ecyc{i}{t}(a),B)<4\varepsilon$.
+Letting $\varepsilon\to0$ and using closedness of $B$ proves the assertion.
+\end{proof}
+
+\begin{corollary}\label{cor:expectations}
+Under the hypotheses of Proposition~\ref{prop:cyclic},
+$\Etrace{i}(B)\subseteq B$ for every $i$.
+Moreover,
+\[
+ E_{C_\Gamma(w)}(B)\subseteq B\qquad(w\in\Gamma).
+\]
+If $J\subseteq\{1,\ldots,n\}$ and $t_i\in\Gamma_i$ is primitive
+for $i\in J$, then the expectation onto
+\[
+ \Lambda=
+ \prod_{i\in J}\langle t_i\rangle
+ \times\prod_{i\notin J}\{e\}
+\]
+also preserves $B$.
+\end{corollary}
+\begin{proof}
+Choose a primitive $u\in\Gamma_i$ and a free partner $h$.
+Then $v=huh^{-1}$ is primitive and
+$\langle u\rangle\cap\langle v\rangle=\{e\}$.
+Equation~\eqref{eq:expectation-intersection} gives
+\begin{equation}\label{eq:coordinate-trace}
+ \Etrace{i}=\Ecyc{i}{u}\Ecyc{i}{v}.
+\end{equation}
+Proposition~\ref{prop:cyclic} proves the first assertion.
+
+For $w=(w_1,\ldots,w_n)$,
+\[
+ C_\Gamma(w)=\prod_{i=1}^{n}C_{\Gamma_i}(w_i).
+\]
+If $w_i\ne e$, the corresponding centralizer is generated by a
+primitive element; if $w_i=e$, it is the whole factor.
+Thus $E_{C_\Gamma(w)}$ is a composition of coordinate cyclic
+expectations and identity maps.
+Finally,
+\begin{equation}\label{eq:lambda-expectation}
+ E_\Lambda
+ =\left(\prod_{i\in J}\Ecyc{i}{t_i}\right)
+  \left(\prod_{i\notin J}\Etrace{i}\right).
+\end{equation}
+All these maps commute by \eqref{eq:expectation-intersection}.
+\end{proof}
+
+\section{Mixed Fourier coefficients}\label{sec:coefficients}
+
+The coefficient argument begins with the reduced-word calculation in
+\cite[Lemma~2.3]{AJ} and \cite[Lemma~6.6]{FOT}.
+
+\begin{lemma}\label{lem:words}
+Let $t,q$ freely generate a free subgroup of a group $G$.
+For $r,k,l\in\Z\setminus\{0\}$, put
+\[
+ w=t^rqt^rq^{-1},\qquad z=t^kqt^lq^{-1}.
+\]
+Then $z\in C_G(w)$ if and only if $k=l=r$.
+\end{lemma}
+\begin{proof}
+The products $wz$ and $zw$ are reduced alternating words in
+$\langle t\rangle*\langle q\rangle$. Equality of their first
+$t$-syllables gives $k=r$, and equality of their next $t$-syllables
+gives $l=r$. The converse is immediate.
+Both products lie in the embedded free subgroup, so this comparison
+also tests commutation in $G$.
+\end{proof}
+
+Fix a nonempty $J\subseteq\{1,\ldots,n\}$, primitive $t_i\in\Gamma_i$,
+and nonzero integers $r_i$ for $i\in J$. Set
+\[
+ \Lambda=\prod_{i\in J}\langle t_i\rangle
+                \times\prod_{i\notin J}\{e\}.
+\]
+For $\boldsymbol k=(k_i)_{i\in J}\in\Z^J$, write $t^{\boldsymbol k}$
+for the element with coordinates $t_i^{k_i}$ on $J$ and identity
+elsewhere. Put $g=t^{\boldsymbol r}$.
+Choose $q_i\in\Gamma_i$ free from $t_i$, and let $q$ have coordinates
+$q_i$ on $J$ and identity elsewhere.
+
+\begin{lemma}\label{lem:coefficient}
+Let $x\in\Cr(\Lambda)$ and $c=\widehat x(g)$, and put $w=gqgq^{-1}$.
+If $\Etrace{i}(x)=0$ for every $i\in J$, then
+\begin{equation}\label{eq:isolation}
+ E_{C_\Gamma(w)}(x\lambda_qx\lambda_q^*)=c^2\lambda_w.
+\end{equation}
+For every $x\in\Cr(\Lambda)$, without the preceding vanishing
+assumption,
+\begin{equation}\label{eq:recovery}
+ E_\Lambda(\lambda_w\lambda_qx^*\lambda_q^*)
+ =\overline c\,\lambda_g.
+\end{equation}
+\end{lemma}
+\begin{proof}
+First let
+\[
+ p=\sum_{\boldsymbol k\in(\Z\setminus\{0\})^J}
+        p_{\boldsymbol k}\lambda_{t^{\boldsymbol k}}
+\]
+have finite support. In $p\lambda_qp\lambda_q^*$, the ordered pair
+$(\boldsymbol k,\boldsymbol l)$ contributes
+$p_{\boldsymbol k}p_{\boldsymbol l}$ at the tuple with coordinates
+$t_i^{k_i}q_it_i^{l_i}q_i^{-1}$ on $J$.
+Such a tuple belongs to $C_\Gamma(w)$ exactly when each coordinate
+commutes with $t_i^{r_i}q_it_i^{r_i}q_i^{-1}$.
+Lemma~\ref{lem:words} forces
+$\boldsymbol k=\boldsymbol l=\boldsymbol r$.
+Consequently
+\[
+ E_{C_\Gamma(w)}(p\lambda_qp\lambda_q^*)
+ =p_{\boldsymbol r}^{\,2}\lambda_w.
+\]
+
+To pass from polynomials to $x$, define
+\begin{equation}\label{eq:Q}
+ Q_J=\prod_{i\in J}(\id-\Etrace{i}).
+\end{equation}
+The coordinate trace maps commute. The hypotheses give $Q_Jx=x$,
+and $\|Q_J\|\le2^{|J|}$.
+Take $p_m\in\C[\Lambda]$ converging to $x$ in norm and set
+$z_m=Q_Jp_m$. Then $z_m\to x$ in norm, and each $z_m$ has only
+nonzero exponents in every coordinate of $J$.
+The estimate
+\[
+ \|z_m\lambda_qz_m\lambda_q^*-x\lambda_qx\lambda_q^*\|
+ \le(\|z_m\|+\|x\|)\|z_m-x\|
+\]
+and continuity of Fourier coefficients prove \eqref{eq:isolation}.
+This passage uses polynomial density, without requiring convergence
+of Fourier partial sums.
+
+For the second identity, freeness gives
+$\Lambda\cap q\Lambda q^{-1}=\{e\}$.
+Checking group unitaries and using norm density yields
+\[
+ E_\Lambda(\lambda_qy\lambda_q^*)=\tau_0(y)1
+ \qquad(y\in\Cr(\Lambda)).
+\]
+Since $\lambda_w=\lambda_g\lambda_q\lambda_g\lambda_q^*$,
+bimodularity of $E_\Lambda$ gives
+\[
+ \begin{aligned}
+ E_\Lambda(\lambda_w\lambda_qx^*\lambda_q^*)
+ &=\lambda_g
+     E_\Lambda(\lambda_q(\lambda_gx^*)\lambda_q^*)\\
+ &=\tau_0(\lambda_gx^*)\lambda_g
+ =\overline c\,\lambda_g .
+ \end{aligned}
+\]
+Only membership of the bimodule factor $\lambda_g$ in $\Cr(\Lambda)$
+is used here; its membership in $B$ is the conclusion still to be proved.
+\end{proof}
+
+\begin{remark}
+The coordinate vanishing assumptions in \eqref{eq:isolation} remove
+the case $k_i=l_i=0$, which otherwise contributes an identity in
+coordinate $i$. The coefficients of $p$ need not factor across
+coordinates. The surviving coefficient is the square of the single
+coefficient $p_{\boldsymbol r}$.
+\end{remark}
+
+\section{Proof of the main statements}\label{sec:proof}
+
+\begin{proof}[Proof of Theorem~A]
+Put $H_B=\{g\in\Gamma:\lambda_g\in B\}$.
+This is a subgroup and $\Cr(H_B)\subseteq B$.
+We prove that
+\begin{equation}\label{eq:extraction}
+ a\in B,\quad \widehat a(g)\ne0
+ \quad\Longrightarrow\quad \lambda_g\in B.
+\end{equation}
+
+The case $g=e$ follows from unitality.
+Otherwise let $J=\{i:g_i\ne e\}$.
+For each $i\in J$, write $g_i=t_i^{r_i}$ with $t_i$ primitive
+and $r_i\ne0$. Form $\Lambda$ and $Q_J$ as in
+Section~\ref{sec:coefficients}, and set
+\begin{equation}\label{eq:centered-element}
+ x=Q_JE_\Lambda(a).
+\end{equation}
+Corollary~\ref{cor:expectations} implies $x\in B\cap\Cr(\Lambda)$.
+Moreover $\Etrace{i}(x)=0$ for every $i\in J$, and
+\[
+ c:=\widehat x(g)=\widehat a(g)\ne0.
+\]
+Indeed, $E_\Lambda$ retains the coefficient at $g$, while
+$\Etrace{i}$ annihilates that coefficient for each $i\in J$.
+
+Choose $h_i$ free from $t_i$ for every $i\in J$, and let $h\in\Gamma$
+have these coordinates and identity elsewhere.
+Choose a single return sequence $(m_j)$ for $h$ at $B$.
+Put
+\[
+ q_j=h^{-m_j},\qquad
+ w_j=gq_jgq_j^{-1},\qquad
+ \delta_j=d(\lambda_{q_j}x\lambda_{q_j}^*,B).
+\]
+Equation~\eqref{eq:return} gives $\delta_j\to0$.
+For every $j$ and $i\in J$, the pair $t_i,h_i^{-m_j}$ is free:
+substitution into a reduced word in these two elements leaves a
+nontrivial reduced word in $t_i,h_i$.
+Thus Lemma~\ref{lem:coefficient} applies with $q=q_j$.
+
+Let $K=\|x\|$. Since $x\in B$,
+\[
+ d(x\lambda_{q_j}x\lambda_{q_j}^*,B)\le K\delta_j.
+\]
+The expectation $E_{C_\Gamma(w_j)}$ is contractive and preserves $B$
+by Corollary~\ref{cor:expectations}. Equation~\eqref{eq:isolation}
+therefore gives
+\begin{equation}\label{eq:approximate-unitary}
+ \varepsilon_j:=d(\lambda_{w_j},B)
+ \le\frac{K}{|c|^2}\delta_j\longrightarrow0.
+\end{equation}
+Adjoints preserve distance to $B$. Using
+\eqref{eq:product-distance}, \eqref{eq:contraction}, and
+\eqref{eq:recovery}, we obtain
+\[
+ \begin{aligned}
+ |c|\,d(\lambda_g,B)
+ &=d\bigl(E_\Lambda(
+       \lambda_{w_j}\lambda_{q_j}x^*\lambda_{q_j}^*),B\bigr)\\
+ &\le\delta_j+K\varepsilon_j+\varepsilon_j\delta_j
+ \longrightarrow0.
+ \end{aligned}
+\]
+This proves \eqref{eq:extraction}.
+The same return sequence controls all active coordinates throughout.
+
+For $a\in B$, \eqref{eq:extraction} shows that its Fourier coefficients
+vanish outside $H_B$. Hence $a-E_{H_B}(a)$ has all Fourier coefficients
+zero. Such an element vanishes on $\delta_e$ and, by commutation with
+the right regular representation, on every $\delta_g$.
+It is therefore zero. Thus $a=E_{H_B}(a)\in\Cr(H_B)$, proving the
+opposite inclusion.
+\end{proof}
+
+\begin{proof}[Proof of Corollary~B]
+Let $\nu$ be an invariant random subalgebra of $\Cr(\Gamma)$.
+By \cite[Proposition~6.3]{FOT}, almost every $B$ is boomerang.
+This is Poincar\'e recurrence applied to a countable base of
+$\Sub(\Cr(\Gamma))$, followed by a countable intersection over
+$s\in\Gamma$. Theorem~A gives $\nu(I_\Gamma)=1$, where
+\[
+ I_\Gamma=\iota_r(\Sub(\Gamma)).
+\]
+
+For completeness, the subgroup recovery map is Borel, since
+\[
+ \{B:g\in H_B\}=\{B:d(\lambda_g,B)=0\}
+\]
+is Wijsman closed for each $g$.
+It is equivariant because
+$H_{\lambda_sB\lambda_s^*}=sH_Bs^{-1}$.
+The map $\iota_r$ is a Borel isomorphism onto $I_\Gamma$
+\cite[Theorem~2.13]{FOT}. Also $H_{\Cr(H)}=H$:
+if $\lambda_g\in\Cr(H)$, applying $E_H$ shows that $g\in H$.
+
+Set $\eta=(B\mapsto H_B)_*\nu$.
+Equivariance makes $\eta$ an IRS, and Theorem~A yields
+$(\iota_r)_*\eta=\nu$. Applying the recovery map to any other
+representing measure proves uniqueness. Both pushforward maps are
+affine. Their equivariant Borel inverse correspondence identifies
+invariant measurable sets, and hence preserves and reflects
+ergodicity.
+\end{proof}
+
+\section{Restricted direct sums and scope}\label{sec:extensions}
+
+\begin{corollary}\label{cor:restricted-sum}
+Let $\Gamma=\bigoplus_{i\in\N}\Gamma_i$, where each $\Gamma_i$ is a
+torsion-free nonamenable hyperbolic group.
+Every boomerang unital subalgebra of $\Cr(\Gamma)$ is a subgroup
+algebra. Every invariant random subalgebra is geometric, with the
+unique IRS given by the map $B\mapsto H_B$.
+\end{corollary}
+\begin{proof}
+For each $i$,
+\[
+ \Cr(\Gamma)=\Cr(\Gamma_i)\otimes_{\min}
+                   \Cr\left(\bigoplus_{k\ne i}\Gamma_k\right).
+\]
+The proof of Proposition~\ref{prop:cyclic} applies to this decomposition.
+Equation~\eqref{eq:coordinate-trace} then proves preservation of all
+coordinate trace expectations.
+
+Fix a finite set $J\subseteq\N$ and put
+$\Gamma_J=\prod_{i\in J}\Gamma_i$.
+Choose finite sets $F_m$ increasing to $\N\setminus J$.
+The maps $\prod_{i\in F_m}\Etrace{i}$ converge in norm on each element
+to $E_{\Gamma_J}$. They eventually agree with $E_{\Gamma_J}$ on
+each group polynomial, since every element of $\Gamma$ has finite
+coordinate support. Contractivity gives convergence on all of
+$\Cr(\Gamma)$. Closedness of $B$ implies
+$E_{\Gamma_J}(B)\subseteq B$.
+
+For a selected nonidentity $g$, its set $J$ of nontrivial coordinates
+is finite. Apply $E_{\Gamma_J}$, the cyclic expectations on $J$, and
+$Q_J$ to construct \eqref{eq:centered-element}.
+The coefficient calculation and the return sequence use only these
+coordinates. Each expectation $E_{C_\Gamma(w_j)}$ is a composition
+of the finitely many cyclic expectations on $J$, with the identity
+on the remaining coordinates.
+The proof of \eqref{eq:extraction} is therefore unchanged.
+Subgroup recovery and the proof for invariant measures apply because
+$\Gamma$ is countable.
+\end{proof}
+
+The factor properties used in the argument can be stated independently
+of hyperbolicity:
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+\item every nonidentity element has an infinite cyclic centralizer
+with a primitive generator;
+\item every primitive element admits a free partner;
+\item simultaneous selective averaging onto the primitive cyclic
+subgroup is available along every subsequence of powers, in the form
+of Lemma~\ref{lem:averaging}.
+\end{enumerate}
+The same proof applies to finite products and countable restricted
+direct sums of nontrivial countable groups with these properties.
+The tensor estimate \eqref{eq:tensor} requires no nuclearity or
+approximation property.
+
+These hypotheses have not been established here for general
+torsion-free acylindrically hyperbolic groups. In particular, cyclic
+centralizers are not available for all their nonidentity elements.
+No assertion is made for unrestricted infinite direct products.
+
+The classification reduces the study of invariant random subalgebras
+for these groups to the study of their IRSs. It does not enumerate
+those IRSs, nor does it resolve the general
+questions relating $C^*$-ISR, von Neumann ISR, and $C^*$-simplicity in
+\cite[Questions~6.11--6.12]{AJ}.
+
+\appendix
+\section{Selective averaging along subsequences}\label{app:averaging}
+
+We record the convex averaging argument used in
+Lemma~\ref{lem:averaging}. It is adapted from the boundary-state
+argument of \cite[Lemma~3.1 and Proposition 3.2]{AJ}.
+
+\Needspace{8\baselineskip}
+\begin{lemma}\label{lem:boundary}
+Let $G$ be a countable group acting continuously on a compact
+metrizable space $X$. Suppose that $t\in G$ has north--south dynamics
+in both time directions, with fixed points $t^+,t^-$, and
+\[
+ s\{t^+,t^-\}\cap\{t^+,t^-\}=\varnothing
+ \qquad(s\notin\langle t\rangle).
+\]
+Then the conclusion of Lemma~\ref{lem:averaging} holds for $t$.
+\end{lemma}
+\begin{proof}
+Put $F=\{t^+,t^-\}$.
+Extend a state $\varphi$ on $\Cr(G)$ to a state $\omega$ on
+$C(X)\rtimes_rG$, using the canonical unital inclusion.
+If $\rho=\omega|_{C(X)}$, then
+\[
+ (\omega\circ\alpha_{t^{-n}})(f)
+ =\int_X f(t^nx)\,d\rho(x)\qquad(f\in C(X)).
+\]
+North--south dynamics and dominated convergence show that these
+restrictions converge to a probability measure supported on $F$.
+
+Let $\omega_\infty$ be a weak-* cluster point of the states
+$\omega\circ\alpha_{t^{-n}}$.
+For $s\notin\langle t\rangle$, choose $f\in C(X)$ with
+$0\le f\le1$, $f|_F=1$, and $f|_{sF}=0$.
+Cauchy--Schwarz gives
+\begin{align*}
+ |\omega_\infty(f\lambda_s)|^2
+ &\le\omega_\infty(f)
+       \omega_\infty(\lambda_s^*f\lambda_s)=0,\\
+ |\omega_\infty((1-f)\lambda_s)|^2
+ &\le\omega_\infty(1-f)
+       \omega_\infty(\lambda_s^*(1-f)\lambda_s)=0.
+\end{align*}
+Thus $\omega_\infty(\lambda_s)=0$.
+Conjugation by powers of $t$ fixes $\Cr(\langle t\rangle)$ pointwise.
+Consequently, the restriction of every such cluster state to $\Cr(G)$
+is $\varphi\circ E_{\langle t\rangle}$: the functionals agree on
+group unitaries, and hence on all of $\Cr(G)$ by norm density.
+Weak-* compactness therefore gives
+\[
+ (\omega\circ\alpha_{t^{-n}})|_{\Cr(G)}
+ =\varphi\circ\alpha_{t^{-n}}
+ \xrightarrow{\;w^*\;}\varphi\circ E_{\langle t\rangle}.
+\]
+This argument establishes convergence of the restricted states;
+convergence of the full states on the crossed product is not needed.
+
+Every bounded linear functional is a linear combination of states.
+Therefore $\alpha_{t^{-n}}(a)$ converges to
+$E_{\langle t\rangle}(a)$ in the Banach weak topology for every
+$a\in\Cr(G)$.
+For a finite family, the corresponding tuple converges weakly in a
+finite direct sum of copies of $\Cr(G)$.
+By Hahn--Banach separation, its limit belongs to the norm-closed convex
+hull of every subsequence tail. This gives one common convex
+combination for the family.
+Interchanging $t$ and $t^{-1}$ proves the assertion in both directions.
+\end{proof}
+
+For primitive elements of torsion-free nonamenable hyperbolic groups,
+the boundary separation hypothesis is
+\cite[Lemma~4.1]{AJ}. Applying the lemma to the Gromov boundary
+therefore gives the form of selective averaging used in the proof.
+
+\section*{Preparation and status}
+
+This is an unreviewed research draft, prepared with substantial AI
+assistance. Internal calculations and finite reduced-word checks were
+used during preparation; they do not constitute independent human
+mathematical review or formal verification. A complete novelty
+assessment remains pending. The bibliography identifies the versions
+of the cited works used in the argument.
+
+\begin{thebibliography}{FOT26}
+
+\bibitem[AD19]{AD}
+C. R. Abbott and F. Dahmani,
+\emph{Property $P_{\mathrm{naive}}$ for acylindrically hyperbolic groups},
+Math. Z. \textbf{291} (2019), 555--568.
+\url{https://arxiv.org/abs/1610.04143}.
+
+\bibitem[AJ26]{AJ}
+T. Amrutam and Y. Jiang,
+\emph{Invariant $C^*$-subalgebras of the reduced group $C^*$-algebra},
+arXiv:2503.09548v3, 2026.
+\url{https://arxiv.org/html/2503.09548v3}.
+
+\bibitem[FOT26]{FOT}
+P. Fima, H. Oppelmayer, and L. Tao,
+\emph{Random $C^*$-subalgebras}, arXiv:2610.28295v1, 2026.
+\url{https://arxiv.org/html/2610.28295v1}.
+
+\end{thebibliography}
+\end{document}
